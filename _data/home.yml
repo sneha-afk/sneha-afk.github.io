@@ -6,33 +6,33 @@ navbar_entries:
     url: blog
 
 project_entries:
-  - title: Project 1
-    url: overview-post
-    desc: This is an example project, configured in _data/home.yml
-
-  - title: Project 2
-    url: overview-post
-    desc: Projects are shown in card layout
-
-  - title: Project 3
-    url: overview-post
-    desc: You can control visibility from _config.yml file
-
-  - title: Project 4
-    url: overview-post
-    desc: This project uses highlight markup, configured in _data/home.yml
+  - title: KeplerKV
+    url: https://github.com/sneha-afk/KeplerKV
+    desc: A lightweight, from-scratch key-value store. C++.
     highlight: WIP
 
-  - title: Project 5
-    url: overview-post
-    desc: Moonwalk also has horizontal list (used in header and footer)
-    highlight: WIP
+  - title: SlugQuest
+    url: https://github.com/SlugQuest
+    desc: A gameified to-do lis, my group capstone project in undergrad. Golang + SQLite, SvelteTS.
 
-  - title: Project 6
-    url: overview-post
-    desc: It also has a scalable vertical list (in case you need it)
+  # - title: Project 5
+  #   url: overview-post
+  #   desc: Moonwalk also has horizontal list (used in header and footer)
+  #   highlight: WIP
 
-# old_project_entries:
+old_project_entries:
+  - title: CSE 13S Tutoring Notes
+    url: https://github.com/sneha-afk/13s-docs
+    desc: Mini lessons in C, Git, make, and troubleshooting for CSE 13S @ UCSC. Segmentation fault (core dumped).
+
+  - title: DataBot
+    url: https://github.com/sneha-afk/databot
+    desc: Small demo app made at the end of CodeDay 2023.
+
+  - title: Hat Trick
+    url: https://github.com/sneha-afk/hat-trick
+    desc: Cute, the oldest end-to-end project I made back in AP Computer Science A in highschool.
+
 #   - title: Soopr
 #     url: https://www.soopr.co
 #     desc: Delight your readers - add beautiful share and like buttons easily to your websites 
@@ -51,8 +51,14 @@ project_entries:
 #     desc: The better people know you, the better they collaborate
 
 footer_entries:
+  - title: homepage
+    url: /
+
   - title: github
     url: https://github.com/sneha-afk
+
+  - title: linkedin
+    url: https://www.linkedin.com/in/sneha-de/
 
   - title: feed
     url: feed.xml

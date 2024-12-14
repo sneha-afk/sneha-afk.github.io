@@ -8,6 +8,14 @@
         {% if site.theme_config.appearance_toggle %}
           {% include toggle_theme_button.html %}
         {% endif %}
+
+        {% if site.theme_config.show_footer == true %}
+          <footer>
+            <div class="dashed"></div>
+            {% include horizontal_list.html collection=site.data.home.footer_entries %}
+          </footer>
+        {% endif %}
+
         <div class="credits">
           {%- if site.theme_config.show_copyright == true -%}
           &copy;&nbsp;{{ "now" | date: "%Y" }}&nbsp;{{site.author}}
