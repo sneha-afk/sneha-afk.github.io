@@ -8,12 +8,12 @@ navbar_entries:
 project_entries:
   - title: KeplerKV
     url: https://github.com/sneha-afk/KeplerKV
-    desc: A lightweight, from-scratch key-value store. C++.
+    desc: A lightweight, from-scratch key-value store. C++ built with CMake.
     highlight: WIP
 
   - title: SlugQuest
     url: https://github.com/SlugQuest
-    desc: A gameified to-do lis, my group capstone project in undergrad. Golang + SQLite, SvelteTS.
+    desc: A gameified to-do list, my group capstone project in undergrad. Golang + SQLite, SvelteTS.
 
   # - title: Project 5
   #   url: overview-post
