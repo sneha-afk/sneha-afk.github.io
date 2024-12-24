@@ -14,4 +14,6 @@ I am currently a Master's student in Computer Science at [UC San Diego](https://
 
 In my quest to know a bit of everything, my interests include AI/ML, OS and systems development, and data science.
 
+You can read about my previous experience at my [LinkedIn](https://www.linkedin.com/in/sneha-de/).
+
 Thanks for visiting, have a good one!

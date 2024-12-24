@@ -6,6 +6,11 @@ navbar_entries:
     url: blog
 
 project_entries:
+  - title: AstroAuth
+    url: https://github.com/sneha-afk/astroauth
+    desc: Simple authentication API. Totally safe.
+    highlight: WIP
+
   - title: KeplerKV
     url: https://github.com/sneha-afk/KeplerKV
     desc: A lightweight, from-scratch key-value store. C++ built with CMake.
@@ -15,15 +20,12 @@ project_entries:
     url: https://github.com/SlugQuest
     desc: A gameified to-do list, my group capstone project in undergrad. Golang + SQLite, SvelteTS.
 
-  # - title: Project 5
-  #   url: overview-post
-  #   desc: Moonwalk also has horizontal list (used in header and footer)
-  #   highlight: WIP
+
 
 old_project_entries:
   - title: CSE 13S Tutoring Notes
     url: https://github.com/sneha-afk/13s-docs
-    desc: Mini lessons in C, Git, make, and troubleshooting for CSE 13S @ UCSC. Segmentation fault (core dumped).
+    desc: Mini lessons in C, Git, make, and troubleshooting written while tutoring for CSE 13S @ UCSC.
 
   - title: DataBot
     url: https://github.com/sneha-afk/databot
@@ -33,10 +35,7 @@ old_project_entries:
     url: https://github.com/sneha-afk/hat-trick
     desc: Cute, the oldest end-to-end project I made back in AP Computer Science A in highschool.
 
-#   - title: Soopr
-#     url: https://www.soopr.co
-#     desc: Delight your readers - add beautiful share and like buttons easily to your websites 
-#     highlight: NEW
+
 
 #   - title: Cookie
 #     url: https://github.com/abhinavs/cookie

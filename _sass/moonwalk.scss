@@ -66,29 +66,29 @@ img {
 }
 @mixin light-appearance {
   html, body {
-      --bg: #eceff4;
-      --bg-secondary: #e5e9f0;
-      --headings: #2e3440;
-      --text: #3b4252;
-      --text-secondary: #434c5e;
-      --links: #5e81ac;
-      --highlight: #81a1c1;
-      --code-text: #bf616a;
-      --share-text: #999;
+    --bg: #f2f2f2;
+    --bg-secondary: #eceff4;
+    --headings: #2d3e50;
+    --text: #0a1929;
+    --text-secondary: #3a4a58;
+    --links: #1e5a6d;
+    --highlight: #4e8b99;
+    --code-text: #3a4a56;
+    --share-text: #6c7a8d;
   }
 }
 // -------------- THEME SWITCHER -------------- //
 @mixin dark-appearance { // https://github.com/myagko/nymph
   html, body  {
-      --headings: #BC7171;
-      --links: #7C9BB4;
-      --highlight: #D5BE82;
-      --bg: #171c1f;
-      --bg-secondary: #21272a;
-      --text: #eceff4;
-      --text-secondary: #BCC4C9;
-      --code-text: #89B7B0;
-      --share-text: #C4C4C4;
+    --bg: #101d23;
+    --bg-secondary: #1a252f;
+    --headings: #7aa6b2;
+    --text: #e0e9f1;
+    --text-secondary: #b3bec9;
+    --links: #67a9b3;
+    --highlight: #5d8d99;
+    --code-text: #a2b1b8;
+    --share-text: #c0c8d1;
   };
 }
 
