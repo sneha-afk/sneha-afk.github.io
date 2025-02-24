@@ -38,3 +38,15 @@ main {
   max-width: 70%;
   margin: 0 auto;
 }
+
+@media (max-width: 500px) {
+main {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+}
