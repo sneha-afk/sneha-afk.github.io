@@ -61,7 +61,7 @@ Moon
 
 <!-- markdownlint-capture -->
 <!-- markdownlint-disable -->
-> An example showing the `tip` type prompt.
+<!-- > An example showing the `tip` type prompt.
 {: .prompt-tip }
 
 > An example showing the `info` type prompt.
@@ -71,7 +71,14 @@ Moon
 {: .prompt-warning }
 
 > An example showing the `danger` type prompt.
-{: .prompt-danger }
+{: .prompt-danger } -->
+
+> An example of an informational blockquote.
+{: .blockquote-info }
+
+> A warning blockquote example.
+{: .blockquote-warning }
+
 <!-- markdownlint-restore -->
 
 ## Tables
@@ -149,3 +156,8 @@ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
   banana :crit, b, 2017-07-23, 1d
   cherry :active, c, after b a, 1d
 ```
+
+## Reverse Footnote
+
+[^footnote]: The footnote source
+[^fn-nth-2]: The 2nd footnote source

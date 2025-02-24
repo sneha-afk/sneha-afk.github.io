@@ -1,6 +1,8 @@
 ---
 layout: default
 title: /home
+back_link: false
+display_title: false
 ---
 ## welcome
 

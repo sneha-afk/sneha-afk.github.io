@@ -3,10 +3,6 @@ layout: default
 title: /about
 ---
 
-<a href="#" onclick="history.back(); return false;">/back</a>
-
-<h2 class="post-title">{{ page.title }}</h2>
-
 hello, i'm sneha.
 
 i am currently a master's student in computer science at [uc san diego](https://cse.ucsd.edu/) and obtained my bachelor's in the same at [uc santa cruz](https://engineering.ucsc.edu/departments/computer-science-and-engineering/). 🍌🐌 ❤️ 🧜‍♀️🔱

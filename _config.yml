@@ -2,5 +2,17 @@ title: sneha's site
 description: hello world.
 baseurl: ""
 url: "https://sneha-afk.github.io"
+
 markdown: kramdown
+kramdown:
+  parse_block_html: true
+  footnotes: true
+  input: GFM
+  syntax_highlighter: rouge # rougify style base16.dark > assets/css/syntax.css
+  syntax_highlighter_opts:
+    default_lang: text # Default language if none is specified
+    guess_lang: true
+    line_numbers: false
+    start_line: 1 # Ensure line numbers start correctly in blocks
+
 highlighter: rouge

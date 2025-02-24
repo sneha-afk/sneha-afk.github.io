@@ -2,11 +2,11 @@
 
 body {
   font-family: "Geist Mono";
+  font-size: 13px;
   background-color: #1a2023;
   color: #bcc4c9;
   margin: 0;
   padding: 20px;
-  font-size: 12px;
 }
 
 header {
@@ -21,6 +21,7 @@ h1 {
 a {
   color: #bc7171;
   text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 a:hover {
