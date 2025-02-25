@@ -3,6 +3,10 @@ description: hello world.
 baseurl: ""
 url: "https://sneha-afk.github.io"
 
+sass:
+  sass_dir: _sass
+  style: expanded
+
 markdown: kramdown
 kramdown:
   parse_block_html: true

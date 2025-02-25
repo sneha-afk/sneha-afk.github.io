@@ -307,6 +307,7 @@ DEPENDENCIES
   faraday-retry
   github-pages
   jekyll
+  jekyll-sass-converter
 
 BUNDLED WITH
    2.6.5
