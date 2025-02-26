@@ -1,9 +1,24 @@
 // Colors
-$primary-color: #bc7171;
-$background-color: #1a2023;
+// Taken from: https://github.com/myagko/nymph
+$color-red-primary: #bc7171;
+$color-red-secondary: #d09c9c;
+$color-orange-primary: #c99577;
+$color-orange-secondary: #d9b5a0;
+$color-yellow-primary: #d5be82;
+$color-yellow-secondary: #e2d1a7;
+$color-green-primary: #9fbc85;
+$color-green-secondary: #bcd0aa;
+$color-cyan-primary: #89b7b0;
+$color-cyan-secondary: #accdc8;
+$color-blue-primary: #7c9bb4;
+$color-blue-secondary: #a3b9ca;
+
+$primary-color: $color-red-primary;
+$background-primary: #151a1c;
+$background-secondary: #252b2e;
 $text-color: #bcc4c9;
-$hover-bg: #d5be82;
+$hover-bg: $color-yellow-primary;
 $hover-text: black;
 
 // Font
-$font-primary: "Geist Mono"
+$font-primary: "Geist Mono", Consolas, monospace;

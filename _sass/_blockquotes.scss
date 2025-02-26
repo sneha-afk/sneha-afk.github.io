@@ -1,0 +1,63 @@
+/* Base Blockquote Styling */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-left: 4px solid #7c9bb4; // Default accent color
+  background-color: #f9f9f9; // Light background
+  color: #333; // Dark text color
+  font-style: italic;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Info Blockquote */
+.blockquote-info {
+  border-left-color: #7c9bb4; // Blue for info
+  background-color: #e8f4f8; // Light blue background
+
+  &::before {
+    content: "ℹ️"; // Info emoji
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+/* Warning Blockquote */
+.blockquote-warning {
+  border-left-color: #cf6a4c; // Red for warnings
+  background-color: #f8e8e8; // Light red background
+
+  &::before {
+    content: "⚠️"; // Warning emoji
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+/* Note Blockquote */
+.blockquote-note {
+  border-left-color: #8197bf; // Blue for notes
+  background-color: #e8e8f8; // Light blue background
+
+  &::before {
+    content: "📝"; // Note emoji
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+/* Tip Blockquote */
+.blockquote-tip {
+  border-left-color: #99ad6a; // Green for tips
+  background-color: #e8f8e8; // Light green background
+
+  &::before {
+    content: "💡"; // Tip emoji
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}

@@ -1,0 +1,42 @@
+@import "variables";
+
+/* General Highlighting */
+.highlight {
+  background-color: #121212;
+  color: #e8e8d3;
+}
+
+/* Inline Code Styling */
+p code,
+li code,
+span code {
+  background: $background-secondary;
+  color: whitesmoke;
+  padding: 3px 6px;
+  border-radius: 8px;
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  display: inline;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Code Block Styling */
+.highlight pre {
+  padding: 0.75em;
+  overflow-x: auto;
+  border-radius: 8px;
+  position: relative;
+  font-family: $font-primary, monospace;
+  font-size: 0.75rem;
+
+  code {
+    background: none;
+    color: inherit;
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    white-space: pre;
+  }
+}

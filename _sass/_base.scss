@@ -5,7 +5,7 @@
 body {
   font-family: $font-primary;
   font-size: 13px;
-  background-color: $background-color;
+  background-color: $background-primary;
   color: $text-color;
   margin: 0;
   padding: 20px;
@@ -32,14 +32,16 @@ a {
   }
 }
 
-main, .container {
+main,
+.container {
   max-width: 60%;
   margin: 0 auto;
 }
 
 // Mobile support
 @media (max-width: 500px) {
-  main, .container {
+  main,
+  .container {
     max-width: 100%;
     margin: 0 auto;
   }
