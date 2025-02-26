@@ -39,7 +39,7 @@ main,
 }
 
 // Mobile support
-@media (max-width: 500px) {
+@media (max-width: $mobile-breakpoint) {
   main,
   .container {
     max-width: 100%;

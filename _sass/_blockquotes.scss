@@ -2,9 +2,9 @@
 blockquote {
   margin: 1.5em 0;
   padding: 1em 1.5em;
-  border-left: 4px solid #7c9bb4; // Default accent color
-  background-color: #f9f9f9; // Light background
-  color: #333; // Dark text color
+  border-left: 4px solid $color-blue-primary;
+  background-color: #f9f9f9;
+  color: #333;
   font-style: italic;
   border-radius: 4px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@ blockquote {
 
 /* Info Blockquote */
 .blockquote-info {
-  border-left-color: #7c9bb4; // Blue for info
+  border-left-color: $color-blue-primary;
   background-color: #e8f4f8; // Light blue background
 
   &::before {
@@ -52,7 +52,7 @@ blockquote {
 
 /* Tip Blockquote */
 .blockquote-tip {
-  border-left-color: #99ad6a; // Green for tips
+  border-left-color: $color-green-primary; // Green for tips
   background-color: #e8f8e8; // Light green background
 
   &::before {

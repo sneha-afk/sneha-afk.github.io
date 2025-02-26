@@ -2,6 +2,7 @@ title: sneha's site
 description: hello world.
 baseurl: ""
 url: "https://sneha-afk.github.io"
+permalink: /:title/
 
 sass:
   sass_dir: _sass
