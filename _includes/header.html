@@ -2,10 +2,9 @@
   <header class="site-navbar">
     <h1>{{ site.title }}</h1>
     <nav>
-      <a href="/">/home</a>
-      <a href="/pages/about">/about</a>
-      <a href="/pages/posts">/posts</a>
-      <a href="/pages/projects">/projects</a>
+      {% for item in site.header_navigation %}
+      <a href="{{ item.url }}"> {{ item.name }} </a>
+      {% endfor %}
     </nav>
   </header>
 </div>

@@ -4,6 +4,26 @@ baseurl: ""
 url: "https://sneha-afk.github.io"
 permalink: /:title/
 
+defaults:
+  - scope:
+      path: "pages"
+    values:
+      layout: default
+  - scope:
+      path: "posts"
+    values:
+      layout: post
+      comments: true
+
+author:
+  name: Sneha De
+  github: sneha-afk
+  linkedin: https://www.linkedin.com/in/sneha-de/
+
+404:
+  layout: default
+  permalink: /404.html
+
 sass:
   sass_dir: _sass
   style: compressed
@@ -15,6 +35,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
+    css_class: highlight
     default_lang: text
     guess_lang: true
     start_line: 1
@@ -22,3 +43,34 @@ kramdown:
       line_numbers: true
 
 highlighter: rouge
+
+plugins:
+  - jekyll-feed
+
+header_navigation:
+  - name: /home
+    url: /
+  - name: /about
+    url: /pages/about
+  - name: /posts
+    url: /pages/posts
+  - name: /projects
+    url: /pages/projects
+
+footer_navigation:
+  - name: /github
+    url: https://github.com/sneha-afk
+  - name: /linkedin
+    url: https://www.linkedin.com/in/sneha-de/
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - README.md
+  - LICENSE
+  - bin/

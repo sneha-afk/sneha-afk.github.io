@@ -4,16 +4,16 @@
 
 body {
   font-family: $font-primary;
-  font-size: 13px;
+  font-size: $font-size-sm;
   background-color: $background-primary;
   color: $text-color;
   margin: 0;
-  padding: 20px;
+  padding: $spacing-lg;
 }
 
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: $spacing-lg;
 }
 
 h1,
@@ -37,14 +37,16 @@ a {
   }
 }
 
+body,
 main,
 .container {
-  max-width: 60%;
+  max-width: 75%;
   margin: 0 auto;
 }
 
 // Mobile support
 @media (max-width: $mobile-breakpoint) {
+  body,
   main,
   .container {
     max-width: 100%;

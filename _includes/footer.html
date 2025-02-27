@@ -1,8 +1,9 @@
 <div class="container">
   <footer class="site-navbar">
     <nav>
-      <a href="https://github.com/sneha-afk">/github</a>
-      <a href="https://www.linkedin.com/in/sneha-de/">/linkedin</a>
+      {% for item in site.footer_navigation %}
+      <a href="{{ item.url }}"> {{ item.name }} </a>
+      {% endfor %}
     </nav>
   </footer>
 </div>

@@ -51,6 +51,14 @@ $accent-note: $color-cyan-dark;
 /* ========== FONT ========== */
 $font-primary: "Geist Mono", Consolas, monospace;
 
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 32px;
+
 $font-weight-light: 300;
 $font-weight-regular: 400;
 $font-weight-medium: 500;
@@ -63,3 +71,12 @@ $transition-slow: 0.4s ease;
 
 /* ========== BREAKPOINTS ========== */
 $mobile-breakpoint: 576px;
+
+/* ========== SPACING ========== */
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
