@@ -1,17 +1,39 @@
-// Colors
+/* ========== COLORS ========== */
 // Taken from: https://github.com/myagko/nymph
+// Primary Colors
 $color-red-primary: #bc7171;
-$color-red-secondary: #d09c9c;
 $color-orange-primary: #c99577;
-$color-orange-secondary: #d9b5a0;
 $color-yellow-primary: #d5be82;
-$color-yellow-secondary: #e2d1a7;
 $color-green-primary: #9fbc85;
-$color-green-secondary: #bcd0aa;
 $color-cyan-primary: #89b7b0;
-$color-cyan-secondary: #accdc8;
 $color-blue-primary: #7c9bb4;
-$color-blue-secondary: #a3b9ca;
+
+// Light Colors (20% lighter)
+$color-red-light: #d09c9c;
+$color-orange-light: #d9b5a0;
+$color-yellow-light: #e2d1a7;
+$color-green-light: #bcd0aa;
+$color-cyan-light: #accdc8;
+$color-blue-light: #a3b9ca;
+
+// Dark Colors (20% darker)
+$color-red-dark: #964c4c;
+$color-orange-dark: #a1755a;
+$color-yellow-dark: #ab9865;
+$color-green-dark: #7e9669;
+$color-cyan-dark: #6c928c;
+$color-blue-dark: #627b90;
+
+// Grayscale
+$gray-100: #f3f5f6;
+$gray-200: #dde2e5;
+$gray-300: #c6cdd1;
+$gray-400: #aeb7bc;
+$gray-500: #959fa5;
+$gray-600: #77838a;
+$gray-700: #5a6469;
+$gray-800: #3d4548;
+$gray-900: #1f2325;
 
 $primary-color: $color-red-primary;
 $background-primary: #151a1c;
@@ -20,7 +42,24 @@ $text-color: #bcc4c9;
 $hover-bg: $color-yellow-primary;
 $hover-text: black;
 
-// Font
+$accent-success: $color-green-dark;
+$accent-warning: $color-yellow-dark;
+$accent-danger: $color-red-dark;
+$accent-info: $color-blue-dark;
+$accent-note: $color-cyan-dark;
+
+/* ========== FONT ========== */
 $font-primary: "Geist Mono", Consolas, monospace;
 
-$mobile-breakpoint: 500px;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+/* ========== ANIMATION ========== */
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+/* ========== BREAKPOINTS ========== */
+$mobile-breakpoint: 576px;

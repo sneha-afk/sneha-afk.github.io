@@ -1,10 +1,12 @@
+@import "variables";
+
 /* Base Blockquote Styling */
 blockquote {
   margin: 1.5em 0;
   padding: 1em 1.5em;
   border-left: 4px solid $color-blue-primary;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: $gray-100;
+  color: $gray-900;
   font-style: italic;
   border-radius: 4px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
@@ -14,49 +16,56 @@ blockquote {
   }
 }
 
-/* Info Blockquote */
-.blockquote-info {
-  border-left-color: $color-blue-primary;
-  background-color: #e8f4f8; // Light blue background
+.blockquote-tip {
+  border-left-color: $accent-success;
+  background-color: $color-green-light;
 
   &::before {
-    content: "ℹ️"; // Info emoji
+    content: "💡";
     margin-right: 0.5em;
     font-style: normal;
   }
 }
 
-/* Warning Blockquote */
 .blockquote-warning {
-  border-left-color: #cf6a4c; // Red for warnings
-  background-color: #f8e8e8; // Light red background
+  border-left-color: $accent-warning;
+  background-color: $color-yellow-light;
 
   &::before {
-    content: "⚠️"; // Warning emoji
+    content: "⚠️";
     margin-right: 0.5em;
     font-style: normal;
   }
 }
 
-/* Note Blockquote */
+.blockquote-danger {
+  border-left-color: $accent-danger;
+  background-color: $color-red-light;
+
+  &::before {
+    content: "🛑";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+.blockquote-info {
+  border-left-color: $accent-info;
+  background-color: $color-blue-light;
+
+  &::before {
+    content: "ℹ️";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
 .blockquote-note {
-  border-left-color: #8197bf; // Blue for notes
-  background-color: #e8e8f8; // Light blue background
+  border-left-color: $accent-note;
+  background-color: $color-cyan-light;
 
   &::before {
     content: "📝"; // Note emoji
-    margin-right: 0.5em;
-    font-style: normal;
-  }
-}
-
-/* Tip Blockquote */
-.blockquote-tip {
-  border-left-color: $color-green-primary; // Green for tips
-  background-color: #e8f8e8; // Light green background
-
-  &::before {
-    content: "💡"; // Tip emoji
     margin-right: 0.5em;
     font-style: normal;
   }

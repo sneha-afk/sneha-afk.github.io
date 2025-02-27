@@ -1,9 +1,14 @@
 @import "variables";
 
-/* General Highlighting */
-.highlight {
-  background-color: #121212;
-  color: #e8e8d3;
+// Remove table borders defined on table
+.highlight table {
+  border: none;
+
+  td,
+  th,
+  pre {
+    border: none;
+  }
 }
 
 /* Inline Code Styling */
@@ -11,11 +16,12 @@ p code,
 li code,
 span code {
   background: $background-secondary;
-  color: whitesmoke;
+  color: $gray-100;
   padding: 3px 6px;
   border-radius: 8px;
   font-family: $font-primary;
   font-size: 0.75rem;
+  font-weight: $font-weight-medium;
   white-space: nowrap;
   display: inline;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
