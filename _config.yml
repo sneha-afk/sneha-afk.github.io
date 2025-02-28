@@ -22,7 +22,7 @@ author:
 
 404:
   layout: default
-  permalink: /404.html
+  permalink: /404
 
 sass:
   sass_dir: _sass
@@ -46,6 +46,16 @@ highlighter: rouge
 
 plugins:
   - jekyll-feed
+  - jekyll-toc
+
+toc:
+  min_level: 1
+  max_level: 6
+  list_class: toc
+  list_id: toc
+  sublist_class: toc-sublist
+  item_class: toc-item
+  item_prefix: toc-
 
 header_navigation:
   - name: /home

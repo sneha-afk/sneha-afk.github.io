@@ -37,8 +37,8 @@ $gray-900: #1f2325;
 
 $primary-color: $color-red-primary;
 $background-primary: #151a1c;
-$background-secondary: #252b2e;
-$text-color: #bcc4c9;
+$background-secondary: $gray-900;
+$text-color: $gray-300;
 $hover-bg: $color-yellow-primary;
 $hover-text: black;
 

@@ -17,54 +17,55 @@
     {% include header.html %}
 
     <main>
+      <!-- Back link -->
       <!-- Note: nil means was not explicitly set -->
-      <!-- Display back link? -->
       {% if page.back_link == nil %}
       <a href="#" onclick="history.back(); return false;">/back</a>
       {% endif %}
 
-      <!-- Display page title? -->
+      <!-- Page title -->
       {% if page.display_title == nil %}
       <h2 class="post-title">{{ page.title }}</h2>
       {% endif %}
 
-      <!-- Main content afterwards-->
+      <!-- Table of Contents - toc_only since content loaded after -->
+      {% if page.toc == true %}
+      <div class="toc">{{ content | toc_only }}</div>
+      {% endif %}
+
+      <!-- Main content -->
       {{ content }}
     </main>
 
     {% include footer.html %}
 
-    <!-- Fix: MathJax Configuration -->
+    <!-- MathJax Configuration -->
     <script type="text/javascript">
       window.MathJax = {
         tex: {
           inlineMath: [
             ["$", "$"],
             ["\\(", "\\)"],
-          ], // Enable inline math
+          ],
           displayMath: [
             ["$$", "$$"],
             ["\\[", "\\]"],
-          ], // Enable block math
-          tags: "ams", // Enables equation numbering and references
+          ],
+          tags: "ams",
         },
-        loader: { load: ["[tex]/ams"] }, // Ensure AMS extensions are loaded for referencing
-        svg: {
-          fontCache: "global",
-        },
+        loader: { load: ["[tex]/ams"] },
+        svg: { fontCache: "global" },
       };
     </script>
 
     <!-- Load MathJax -->
     <script
-      type="text/javascript"
-      async
       src="https://polyfill.io/v3/polyfill.min.js?features=es6"
+      defer
     ></script>
     <script
-      type="text/javascript"
-      async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+      defer
     ></script>
   </body>
 </html>
