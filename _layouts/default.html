@@ -30,7 +30,9 @@
 
       <!-- Table of Contents - toc_only since content loaded after -->
       {% if page.toc == true %}
-      <div class="toc">{{ content | toc_only }}</div>
+      <!-- <div class="toc">{{ content | toc_only }}</div> -->
+      {% toc %}
+      <hr />
       {% endif %}
 
       <!-- Main content -->
