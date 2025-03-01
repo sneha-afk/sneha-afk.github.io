@@ -6,6 +6,5 @@ gem "faraday-retry"
 gem "jekyll-sass-converter"
 
 group :jekyll_plugins do
-  gem "jekyll-toc"
   gem "jekyll-feed"
 end

@@ -28,12 +28,6 @@
       <h2 class="post-title">{{ page.title }}</h2>
       {% endif %}
 
-      <!-- Table of Contents - toc_only since content loaded after -->
-      {% if page.toc == true %}
-      <div class="toc">{% toc %}</div>
-      <hr />
-      {% endif %}
-
       <!-- Main content -->
       {{ content }}
     </main>

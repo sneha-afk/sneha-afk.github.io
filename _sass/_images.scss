@@ -1,0 +1,41 @@
+@import "variables";
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 2px solid $gray-800;
+  border-radius: $spacing-sm;
+  object-fit: cover;
+}
+
+// Container for images
+.img-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // Two columns of equal width
+  gap: $spacing-sm; // Space between images
+  width: 100%;
+  margin-bottom: $spacing-lg;
+}
+
+// Individual image item
+.img-item {
+  img {
+    margin: 0;
+    height: 100%;
+  }
+
+  .caption {
+    text-align: center;
+    margin-top: $spacing-xs;
+    font-size: 0.75rem;
+    color: $gray-500;
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .img-container {
+    grid-template-columns: 1fr; // Stack vertically if not enough space
+  }
+}

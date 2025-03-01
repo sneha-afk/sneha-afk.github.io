@@ -4,6 +4,10 @@ baseurl: ""
 url: "https://sneha-afk.github.io"
 permalink: /:title/
 
+plugins:
+  - jekyll-feed
+  # - jekyll-toc
+
 defaults:
   - scope:
       path: "pages"
@@ -43,10 +47,6 @@ kramdown:
       line_numbers: true
 
 highlighter: rouge
-
-plugins:
-  - jekyll-feed
-  - jekyll-toc
 
 toc:
   min_level: 1
