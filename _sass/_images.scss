@@ -13,11 +13,12 @@ img {
 // Container for images
 .img-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); // Two columns of equal width
+  grid-template-columns: repeat(2, 1fr);
   gap: $spacing-sm; // Space between images
   width: 100%;
   max-width: 100%;
   margin-bottom: $spacing-lg;
+  padding: 0 $spacing-sm;
 }
 
 // Individual image item
@@ -25,7 +26,8 @@ img {
   img {
     margin: 0;
     max-width: 100%;
-    height: 100%;
+    width: 100%;
+    height: auto;
   }
 
   .caption {
@@ -39,5 +41,12 @@ img {
 @media (max-width: $tablet-breakpoint) {
   .img-container {
     grid-template-columns: 1fr; // Stack vertically if not enough space
+    padding: 0 $spacing-xs;
+  }
+
+  .img-item {
+    img {
+      width: 100%;
+    }
   }
 }
