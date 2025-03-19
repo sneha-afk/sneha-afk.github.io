@@ -62,10 +62,10 @@ header_navigation:
     url: /
   - name: /about
     url: /pages/about
-  - name: /posts
-    url: /pages/posts
   - name: /projects
     url: /pages/projects
+  - name: /posts
+    url: /pages/posts
 
 footer_navigation:
   - name: /github

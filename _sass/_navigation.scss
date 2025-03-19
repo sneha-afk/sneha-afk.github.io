@@ -10,25 +10,25 @@
   h1 {
     margin: 0;
     flex: 0 1 auto; // Don't grow, allow shrinking, auto basis
-    align-self: flex-start; // Align left
+    align-self: flex-start;
   }
 
   nav {
     display: flex;
     align-items: center;
     margin-left: auto; // Push to the right
-    flex: 1;
-    justify-content: flex-end; // Align items from the right
+    flex: 1 1 auto; // Allow growing and shrinking
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: $spacing-md;
 
     ul {
       display: flex;
-      flex-wrap: wrap; // Enable wrapping
-      justify-content: flex-end; // Align items from the right
+      flex-wrap: wrap;
+      justify-content: flex-end;
       gap: $spacing-sm;
       padding: 0;
       margin: 0;
-      width: 100%; // Take full width
     }
 
     li {
@@ -36,7 +36,7 @@
     }
 
     a {
-      padding: 3px 6px;
+      padding: 4px;
       margin: 0;
       display: block; // Make links block-level for consistent spacing
     }
@@ -46,19 +46,24 @@
 /* Responsive Styling */
 @media (max-width: $mobile-breakpoint) {
   .site-navbar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     width: 100%;
     padding: 8px 12px;
 
+    h1 {
+      flex: 1 1 100%;
+      text-align: left;
+    }
+
     nav {
       width: 100%;
+      margin-left: 0;
+      justify-content: center;
 
       ul {
-        width: 100%;
-        justify-content: flex-start; // On mobile, start from left
-        flex-direction: row-reverse; // This will make items stack from right to left
-        flex-wrap: wrap-reverse; // Items wrap from bottom to top
+        justify-content: center;
+        flex-wrap: wrap;
       }
     }
   }
