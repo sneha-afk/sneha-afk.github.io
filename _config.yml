@@ -2,7 +2,6 @@ title: sneha's site
 description: hello world.
 baseurl: ""
 url: "https://sneha-afk.github.io"
-permalink: /:title/
 
 plugins:
   - jekyll-feed
@@ -10,14 +9,13 @@ plugins:
 
 defaults:
   - scope:
-      path: "pages"
+      path: ""
     values:
       layout: default
   - scope:
       path: "posts"
     values:
       layout: post
-      comments: true
 
 author:
   name: Sneha De
@@ -61,15 +59,15 @@ header_navigation:
   - name: /home
     url: /
   - name: /about
-    url: /pages/about
+    url: /about
   - name: /projects
-    url: /pages/projects
+    url: /projects
   - name: /posts
-    url: /pages/posts
+    url: /posts
 
 footer_navigation:
   - name: /resume
-    url: /pages/resume
+    url: /resume
   - name: /github
     url: https://github.com/sneha-afk
   - name: /linkedin

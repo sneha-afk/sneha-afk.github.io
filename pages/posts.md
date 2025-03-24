@@ -1,14 +1,13 @@
 ---
 title: /posts
+permalink: /posts
 ---
 
+<html lang="en">
 {% for post in site.posts %}
-### [{{ post.title }}]({{ post.url | relative_url }})
-*{{ post.date | date: "%B %-d, %Y" }}*
-
-<!-- {% if post.excerpt %}
-{{ post.excerpt }} -->
-<!-- [Read more &raquo;]({{ post.url | relative_url }})
-{% endif %} -->
-
+- {{ post.date | date: "%Y-%m-%d" }}: <a href="{{ post.url }}">{{ post.title }}</a>
+    {% if post.excerpt %}
+    <blockquote style="font-size: 11px;">{{ post.excerpt }}</blockquote>
+    {% endif %}
 {% endfor %}
+</html>

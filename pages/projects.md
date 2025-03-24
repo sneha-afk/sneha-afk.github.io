@@ -1,5 +1,6 @@
 ---
 title: /projects
+permalink: /projects
 ---
 
 Select projects, both personal and from school, listed here. Visit my [GitHub](https://github.com/sneha-afk/) profile to see more!

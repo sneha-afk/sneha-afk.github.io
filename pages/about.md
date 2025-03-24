@@ -1,5 +1,6 @@
 ---
 title: /about
+permalink: /about
 ---
 
 hello, i'm sneha (she/her).
