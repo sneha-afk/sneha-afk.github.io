@@ -68,6 +68,8 @@ header_navigation:
     url: /pages/posts
 
 footer_navigation:
+  - name: /resume
+    url: /pages/resume
   - name: /github
     url: https://github.com/sneha-afk
   - name: /linkedin

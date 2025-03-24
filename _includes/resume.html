@@ -1,0 +1,178 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <p>
+      Contact me on LinkedIn to get in touch or get a PDF of this resume, thank
+      you!
+    </p>
+    <hr />
+    <div class="resume">
+      <!-- Resume Header -->
+      <div class="resume-header">
+        <h1>Sneha De</h1>
+        <p>
+          Campbell, CA | Contact:
+          <a href="linkedin.com/in/sneha-de/">LinkedIn</a> |
+          <a href="linkedin.com/in/sneha-de/">LinkedIn</a> |
+          <a href="github.com/sneha-afk">GitHub</a>
+        </p>
+      </div>
+
+      <!-- Education Section -->
+      <div class="resume-section">
+        <h2>Education</h2>
+
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>Master of Science in Computer Science</h3>
+            <p class="date">Sep. 2024 - Jun. 2026</p>
+          </div>
+          <p><strong>University of California, San Diego</strong></p>
+          <div class="resume-item-details">
+            <ul>
+              <li>
+                <strong>Relevant coursework: </strong> Data Structures and
+                Algorithms, Artificial Intelligence and Machine Learning,
+                Operating Systems, Embedded Systems
+              </li>
+            </ul>
+          </div>
+          <div class="resume-item-header">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p class="date">Sep. 2022 - Jun. 2024</p>
+          </div>
+          <p>
+            <strong>University of California, Santa Cruz</strong>; GPA: 3.95
+          </p>
+          <div class="resume-item-details">
+            <ul>
+              <li>
+                <strong>Achievements: </strong> Highest honors in the major,
+                University Honors (Magna cum laude), Dean's Honors List
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="resume-section">
+        <h2>Skills</h2>
+        <p>Programming Languages:</p>
+        <div class="skills-list">
+          <div class="skill">C</div>
+          <div class="skill">C++</div>
+          <div class="skill">Python</div>
+          <div class="skill">Java</div>
+          <div class="skill">Go</div>
+          <div class="skill">SQL</div>
+        </div>
+        <br /><br />
+        <p>Tools & Platforms:</p>
+        <div class="skills-list">
+          <div class="skill">Git</div>
+          <div class="skill">Linux (Ubuntu, WSL)</div>
+          <div class="skill">SQLite</div>
+          <div class="skill">GNU Make</div>
+          <div class="skill">Postman</div>
+          <div class="skill">Markdown</div>
+          <div class="skill">LaTeX</div>
+        </div>
+        <br /><br />
+        <p>Libraries:</p>
+        <div class="skills-list">
+          <div class="skill">Keras</div>
+          <div class="skill">NumPy</div>
+          <div class="skill">requests</div>
+          <div class="skill">json</div>
+          <div class="skill">Postman</div>
+          <div class="skill">gpiozero</div>
+        </div>
+      </div>
+
+      <!-- Work Experience Section -->
+      <div class="resume-section">
+        <h2>Experience</h2>
+
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>Software Engineering Intern</h3>
+            <p class="date">Jun. 2025 - Sep. 2025</p>
+          </div>
+          <p><strong>Stripe</strong></p>
+          <div class="resume-item-details"></div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <h3>Group Tutor</h3>
+            <p class="date">Sep. 2023 - Jun. 2024</p>
+          </div>
+          <p>
+            <strong>
+              Baskin School of Engineering, University of California, Santa Cruz
+            </strong>
+          </p>
+          <div class="resume-item-details">
+            <ul>
+              <li>
+                Facilitated weekly sessions on C programming and introductory
+                system design, including data structures, memory management, and
+                effective debugging practices
+              </li>
+              <li>
+                Guided over 400 undergraduate students on using UNIX development
+                tools, including compilers (clang/gcc), build tools (Makefiles),
+                Valgrind, and Bash scripting to streamline the development
+                process
+              </li>
+            </ul>
+          </div>
+          <div class="resume-item-header">
+            <h3>Software Engineering Intern</h3>
+            <p class="date">Jun. 2023 - Aug. 2023</p>
+          </div>
+          <p>
+            <strong>CodeDay</strong>
+          </p>
+          <div class="resume-item-details">
+            <ul>
+              <li>
+                Contributed to Microsoft's Semantic Kernel, an open-source
+                multi-language SDK for AI orchestration
+              </li>
+              <li>
+                Collaborated on enabling logit bias adjustments to prioritize
+                tokens for fine-tuned LLM outputs:
+                <a
+                  href="https://github.com/microsoft/semantic-kernel/pull/1880"
+                >
+                  (PR #1880)
+                </a>
+              </li>
+              <li>
+                Implemented Redis integration for vector embedding storage,
+                enabling LLMs to generate context-specific outputs by retrieving
+                custom data, improving response relevancy and accuracy:
+                <a
+                  href="https://github.com/microsoft/semantic-kernel/pull/2132"
+                >
+                  (PR #2132)
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2>Projects</h2>
+        {% include resume_projects.html %}
+      </div>
+    </div>
+  </body>
+</html>
