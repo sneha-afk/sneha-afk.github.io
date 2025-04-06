@@ -57,8 +57,6 @@ toc:
 header_navigation:
   - name: /home
     url: /
-  - name: /about
-    url: /about
   - name: /resume
     url: /resume
   - name: /projects
@@ -67,6 +65,8 @@ header_navigation:
     url: /posts
 
 footer_navigation:
+  - name: /about
+    url: /about
   - name: /github
     url: https://github.com/sneha-afk
   - name: /linkedin
