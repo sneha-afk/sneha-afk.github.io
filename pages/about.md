@@ -3,8 +3,6 @@ title: /about
 permalink: /about
 ---
 
-hello, i'm sneha (she/her).
-
 i am currently a master's student in computer science at [uc san diego](https://cse.ucsd.edu/) and obtained my bachelor's in the same at [uc santa cruz](https://engineering.ucsc.edu/departments/computer-science-and-engineering/). 🍌🐌 ❤️ 🧜‍♀️🔱
 
 in my quest to know a bit of everything, my interests primarily include ai/ml, and os and systems development.

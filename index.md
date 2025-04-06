@@ -6,7 +6,7 @@ display_title: false
 ---
 ## welcome
 
-under construction...
+hello, i'm sneha (she/her) and you've found your way here!
 
 ## /posts
 {% for post in site.posts %}
