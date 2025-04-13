@@ -77,6 +77,12 @@
         justify-content: center;
         flex-wrap: wrap;
       }
+
+      a {
+        font-size: $font-size-sm;
+        padding: 0.3rem 0.5rem;
+        border-radius: $spacing-xs;
+      }
     }
   }
 }
