@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: right;
   flex-wrap: wrap;
-  margin: 0;
+  margin-bottom: $spacing-md;
 
   h1 {
     flex: 0 1 auto; // Don't grow, allow shrinking, auto basis
@@ -34,8 +34,25 @@
     }
 
     a {
-      padding: 4px;
-      display: block; // Make links block-level for consistent spacing
+      font-weight: $font-weight-bold;
+      font-size: $font-size-md;
+      color: $primary-color;
+      padding: 0.4rem 0.6rem;
+      display: block;
+      text-decoration: none;
+      border-radius: $spacing-xs;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        color: $hover-text;
+        background-color: $hover-bg;
+        text-decoration: none;
+        transform: translateY(-2px);
+      }
+
+      &:focus {
+        outline: 2px solid rgba($primary-color, 0.3);
+      }
     }
   }
 }

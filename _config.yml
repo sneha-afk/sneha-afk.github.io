@@ -65,8 +65,8 @@ header_navigation:
     url: /posts
 
 footer_navigation:
-  - name: /about
-    url: /about
+  - name: /gallery
+    url: /gallery
   - name: /github
     url: https://github.com/sneha-afk
   - name: /linkedin
