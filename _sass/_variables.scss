@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 
 /* ========== COLORS ========== */
 @function lighten-color($color, $percentage) {
@@ -64,7 +65,8 @@ $accent-info: $color-blue-dark;
 $accent-note: $color-cyan-dark;
 
 /* ========== FONT ========== */
-$font-primary: "Geist Mono", Consolas, monospace;
+$font-primary: Geist, Roboto, sans-serif;
+$font-monospace: "Geist Mono", Consolas, monospace;
 
 $font-size-xs: 12px;
 $font-size-sm: 14px;
