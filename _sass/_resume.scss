@@ -3,7 +3,7 @@
 .resume {
   line-height: 1.6;
 
-  .resume-header {
+  &-header {
     text-align: center;
     margin-bottom: $spacing-lg;
 
@@ -12,7 +12,7 @@
     }
   }
 
-  .resume-section {
+  &-section {
     margin-bottom: $spacing-lg;
 
     h2 {
@@ -36,27 +36,114 @@
     }
 
     .resume-item {
-      .resume-item-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        margin-bottom: $spacing-xs;
+      margin-bottom: $spacing-lg;
+      // padding-bottom: $spacing-md;
 
-        h3 {
+      &-header {
+        display: grid;
+        grid-template:
+          "position date" auto
+          "meta location" auto / 1fr auto;
+        gap: $spacing-xs $spacing-md;
+        margin-bottom: $spacing-sm;
+
+        > * {
           margin: 0;
-          flex-grow: 1;
+        }
+
+        .position {
+          grid-area: position;
+          font-weight: 700;
         }
 
         .date {
+          grid-area: date;
+          text-align: right;
+          font-style: italic;
+        }
+
+        .employer,
+        .degree,
+        .tech-stack {
+          grid-area: meta;
+          font-style: italic;
+        }
+
+        .tech-stack {
+          &::before {
+            content: "Technologies: ";
+            font-weight: bold;
+          }
+        }
+
+        .location {
+          grid-area: location;
+          text-align: right;
           font-style: italic;
         }
       }
 
-      .resume-item-details {
-        margin-left: $spacing-sm;
+      // &-header {
+      //   display: grid;
+      //   grid-template-areas:
+      //     "position date"
+      //     "employer location";
+      //   grid-template-columns: 1fr auto;
+      //   align-items: baseline;
+      //
+      //   .position {
+      //     grid-area: position;
+      //     font-weight: bold;
+      //     margin: 0;
+      //   }
+      //
+      //   .date {
+      //     grid-area: date;
+      //     font-style: italic;
+      //     text-align: right;
+      //     margin: 0;
+      //   }
+      //
+      //   .employer {
+      //     grid-area: employer;
+      //     font-style: italic;
+      //   }
+      //
+      //   .tech-stack {
+      //     grid-area: employer;
+      //     font-weight: bold;
+      //   }
+      //
+      //   // .tech-stack::before {
+      //   //   content: "Technologies";
+      //   //   font-weight: bold;
+      //   // }
+      //
+      //   .degree {
+      //     grid-area: employer;
+      //     font-weight: bold;
+      //   }
+      //
+      //   .location {
+      //     grid-area: location;
+      //     font-style: italic;
+      //     text-align: right;
+      //   }
+      // }
 
-        p {
-          margin: 0;
+      &-details {
+        margin-left: $spacing-md;
+        padding-left: $spacing-sm;
+
+        p,
+        ul,
+        ol {
+          margin: $spacing-xs 0;
+        }
+
+        ul,
+        ol {
+          list-style-position: outside;
         }
       }
     }
