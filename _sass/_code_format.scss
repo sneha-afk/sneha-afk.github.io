@@ -56,3 +56,17 @@ span code {
   color: #6a737d;
   user-select: none; // Prevent selection of line numbers
 }
+
+.code-lang-label {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  font-family: $font-monospace;
+  text-transform: lowercase;
+  color: $gray-200;
+  padding: 2px 6px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1;
+}

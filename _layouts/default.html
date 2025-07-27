@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,7 +26,7 @@
       <!-- Note: nil means was not explicitly set -->
       {% if page.back_link == nil %}
       <a href="#" onclick="history.back(); return false;" class="back-link">
-        \back
+        /back
       </a>
       {% endif %}
 
@@ -41,8 +41,9 @@
 
     {% include footer.html %}
 
-    <!-- MathJax Configuration -->
-    <script type="text/javascript">
+    <!-- MathJax Configuration (only if mathjax: true set in frontmatter) -->
+    {% if page.mathjax %}
+    <script>
       window.MathJax = {
         tex: {
           inlineMath: [
@@ -55,19 +56,47 @@
           ],
           tags: "ams",
         },
+        options: {
+          skipHtmlTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+          ],
+        },
         loader: { load: ["[tex]/ams"] },
         svg: { fontCache: "global" },
       };
     </script>
-
-    <!-- Load MathJax -->
-    <script
-      src="https://polyfill.io/v3/polyfill.min.js?features=es6"
-      defer
-    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
       defer
     ></script>
+    {% endif %}
+
+    <!-- Renders the language of a code block-->
+    <script>
+      document.querySelectorAll('div[class^="language-"]').forEach((el) => {
+        if (el.dataset.hasLangLabel) return;
+
+        const className = [...el.classList].find((c) =>
+          c.startsWith("language-"),
+        );
+        if (!className) return;
+
+        const lang = className.replace("language-", "");
+        if (!lang) return;
+
+        const label = document.createElement("div");
+        label.textContent = lang;
+        label.className = "code-lang-label";
+
+        el.style.position = "relative";
+        el.dataset.hasLangLabel = true;
+        el.appendChild(label);
+      });
+    </script>
   </body>
 </html>

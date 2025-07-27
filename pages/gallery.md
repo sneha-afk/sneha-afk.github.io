@@ -26,4 +26,3 @@ permalink: /gallery
     </div>
   </div>
 </html>
-
