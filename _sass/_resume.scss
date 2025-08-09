@@ -83,54 +83,6 @@
         }
       }
 
-      // &-header {
-      //   display: grid;
-      //   grid-template-areas:
-      //     "position date"
-      //     "employer location";
-      //   grid-template-columns: 1fr auto;
-      //   align-items: baseline;
-      //
-      //   .position {
-      //     grid-area: position;
-      //     font-weight: bold;
-      //     margin: 0;
-      //   }
-      //
-      //   .date {
-      //     grid-area: date;
-      //     font-style: italic;
-      //     text-align: right;
-      //     margin: 0;
-      //   }
-      //
-      //   .employer {
-      //     grid-area: employer;
-      //     font-style: italic;
-      //   }
-      //
-      //   .tech-stack {
-      //     grid-area: employer;
-      //     font-weight: bold;
-      //   }
-      //
-      //   // .tech-stack::before {
-      //   //   content: "Technologies";
-      //   //   font-weight: bold;
-      //   // }
-      //
-      //   .degree {
-      //     grid-area: employer;
-      //     font-weight: bold;
-      //   }
-      //
-      //   .location {
-      //     grid-area: location;
-      //     font-style: italic;
-      //     text-align: right;
-      //   }
-      // }
-
       &-details {
         margin-left: $spacing-md;
         padding-left: $spacing-sm;
@@ -172,9 +124,19 @@
 
       .resume-item {
         .resume-item-header {
+          display: flex;
           flex-direction: column;
-          align-items: flex-start;
           gap: $spacing-xs;
+
+          .position,
+          .employer,
+          .degree,
+          .tech-stack,
+          .date,
+          .location {
+            text-align: left;
+            margin-bottom: $spacing-xs;
+          }
         }
       }
     }

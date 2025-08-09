@@ -10,6 +10,19 @@ img {
   object-fit: cover;
 }
 
+img:hover {
+  color: #424242;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
 // Container for images
 .img-container {
   display: grid;
@@ -42,11 +55,5 @@ img {
   .img-container {
     grid-template-columns: 1fr; // Stack vertically if not enough space
     padding: 0 $spacing-xs;
-  }
-
-  .img-item {
-    img {
-      width: 100%;
-    }
   }
 }

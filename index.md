@@ -8,17 +8,20 @@ display_title: false
 
 hello, i'm sneha (she/her) and you've found your way here!
 
-i am currently a master's student in computer science at [uc san diego](https://cse.ucsd.edu/) and obtained my bachelor's in the same at [uc santa cruz](https://engineering.ucsc.edu/departments/computer-science-and-engineering/). 🍌🐌 ❤️ 🧜‍♀️🔱
+---
 
-in my quest to know a bit of everything, my interests are primarly in os and systems development, networking, and ai/ml.
+I am currently a Master's student in Computer Science at [UC San Diego](https://cse.ucsd.edu/) and obtained my Bachelor's in the same at [UC Santa Cruz](https://engineering.ucsc.edu/departments/computer-science-and-engineering/) 🍌🐌 ❤️ 🧜‍♀️🔱.
 
-outside of cs, i love to travel and try new food from any cuisine. and for a fun fact, i practiced Shotokan karate for seven years and reached Sandan (3rd degree black belt)!
+In my quest to know a bit of everything, my interests in tech lie primarily in OS and systems development, networked services, and AI/ML.
 
-see my resume at [/resume](./pages/resume.md) for more details on my experience.
+Outside of CS, I love to travel and try new food from any cuisine. And for a fun fact, I practiced Shotokan karate for eight years and reached Sandan (3rd degree black belt)!
 
-thank you for visiting, have a good one :)
+See my resume at [/resume](./pages/resume.md) for more details on my experience.
 
-## /posts
-{% for post in site.posts %}
-- {{ post.date | date: "%Y-%m-%d" }}: [{{ post.title }}]({{ post.url }})
+Thank you for visiting, have a good one :)
+
+## /recent-posts
+{% assign sorted_posts = site.posts | sort: "date" | reverse %}
+{% for post in sorted_posts limit:5 %}
+- `{{ post.date | date: "%Y-%m-%d" }}` <b>[{{ post.title }}]({{ post.url }})</b>
 {% endfor %}
