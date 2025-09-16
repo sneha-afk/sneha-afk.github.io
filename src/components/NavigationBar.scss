@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #7e5bef;
+  color: white;
+
+  .logo {
+    font-weight: bold;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+
+    a {
+      color: white;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
