@@ -1,22 +1,33 @@
-import "./NavigationBar.scss";
+import React from "react";
+import "../styles/_navigation.scss";
 
-function Navbar() {
+type NavItem = {
+  name: string;
+  url: string;
+};
+
+type NavigationBarProps = {
+  title?: string;
+  navigation: NavItem[];
+};
+
+const NavigationBar: React.FC<NavigationBarProps> = ({
+  title = "Sneha De",
+  navigation,
+}) => {
   return (
-    <nav className="navbar">
-      <h1 className="logo">Sneha De</h1>
-      <ul>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#projects">Projects</a>
-        </li>
-        <li>
-          <a href="#about">About</a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
+    <div className="container">
+      <header className="site-navbar">
+        <h1>{title}</h1>
 
-export default Navbar;
+        <nav aria-label="Primary navigation">
+          {navigation.map((item) => (
+            <a href={item.url}>{item.name}</a>
+          ))}
+        </nav>
+      </header>
+    </div>
+  );
+};
+
+export default NavigationBar;
