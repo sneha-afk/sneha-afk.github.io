@@ -1,0 +1,81 @@
+@use "variables" as *;
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-sm;
+  font-style: normal;
+  line-height: 1.5;
+  background-color: $background-primary;
+  color: $text-color;
+  margin: 0;
+  padding: $spacing-lg;
+}
+
+header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $primary-color;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: $hover-text;
+    background-color: $hover-bg;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: 2px solid rgba($primary-color, 0.3);
+    outline-offset: 2px;
+  }
+}
+
+.back-link {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-md;
+  color: $primary-color;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: $spacing-sm;
+  transition: all 0.2s ease-in-out;
+
+  &::before {
+    content: "<-";
+    font-size: 0.9em;
+  }
+
+  &:hover {
+    transform: translateX(-2px);
+  }
+}
+
+body,
+main,
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+// Mobile support
+@media (max-width: $mobile-breakpoint) {
+  body,
+  main,
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

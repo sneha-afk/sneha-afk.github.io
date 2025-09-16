@@ -1,0 +1,72 @@
+@import "variables";
+
+// Remove table borders defined on table
+.highlight table {
+  border: none;
+
+  td,
+  th,
+  pre {
+    border: none;
+  }
+}
+
+pre,
+code {
+  font-family: $font-monospace;
+  font-size: 0.8rem;
+}
+
+/* Inline Code Styling */
+p code,
+li code,
+span code {
+  background: $background-secondary;
+  color: $gray-100;
+  padding: 3px 6px;
+  border-radius: $spacing-sm;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  display: inline;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Code Block Styling */
+.highlight pre {
+  padding: 0.75em;
+  overflow-x: auto;
+  border-radius: $spacing-sm;
+  position: relative;
+  background: $background-secondary;
+  color: $gray-100;
+
+  // Rest is inherited from syntax highlighting
+  code {
+    background: none;
+    color: inherit;
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    white-space: pre;
+  }
+}
+
+.highlight .lineno {
+  color: #6a737d;
+  user-select: none; // Prevent selection of line numbers
+}
+
+.code-lang-label {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  font-size: 0.75rem;
+  font-family: $font-monospace;
+  text-transform: lowercase;
+  color: $gray-200;
+  padding: 2px 6px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1;
+}

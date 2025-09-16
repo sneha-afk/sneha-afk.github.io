@@ -1,0 +1,59 @@
+@import "variables";
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 2px solid $gray-800;
+  border-radius: $spacing-sm;
+  object-fit: cover;
+}
+
+img:hover {
+  color: #424242;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
+// Container for images
+.img-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-sm; // Space between images
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $spacing-lg;
+  padding: 0 $spacing-sm;
+}
+
+// Individual image item
+.img-item {
+  img {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .caption {
+    text-align: center;
+    margin-top: $spacing-xs;
+    font-size: 0.75rem;
+    color: $gray-500;
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .img-container {
+    grid-template-columns: 1fr; // Stack vertically if not enough space
+    padding: 0 $spacing-xs;
+  }
+}

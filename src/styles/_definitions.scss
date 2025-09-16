@@ -1,0 +1,17 @@
+@use "variables" as *;
+
+// dl {
+
+// }
+
+dt {
+  font-weight: $font-weight-medium;
+  background: $background-secondary;
+  color: $gray-100;
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+dd {
+  font-style: italic;
+}

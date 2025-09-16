@@ -1,0 +1,72 @@
+@import "variables";
+
+/* Base Blockquote Styling */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-radius: $spacing-sm;
+  border-left: $spacing-xs solid $color-blue-primary;
+  background-color: $gray-100;
+  color: $gray-900;
+  font-style: italic;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+
+  p {
+    margin: 0;
+  }
+}
+
+.blockquote-tip {
+  border-left-color: $accent-success;
+  background-color: $color-green-light;
+
+  &::before {
+    content: "💡";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+.blockquote-warning {
+  border-left-color: $accent-warning;
+  background-color: $color-yellow-light;
+
+  &::before {
+    content: "⚠️";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+.blockquote-danger {
+  border-left-color: $accent-danger;
+  background-color: $color-red-light;
+
+  &::before {
+    content: "🛑";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+.blockquote-info {
+  border-left-color: $accent-info;
+  background-color: $color-blue-light;
+
+  &::before {
+    content: "ℹ️";
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}
+
+.blockquote-note {
+  border-left-color: $accent-note;
+  background-color: $color-cyan-light;
+
+  &::before {
+    content: "📝"; // Note emoji
+    margin-right: 0.5em;
+    font-style: normal;
+  }
+}

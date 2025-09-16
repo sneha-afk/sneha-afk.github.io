@@ -1,0 +1,153 @@
+@import "variables";
+
+.resume {
+  line-height: 1.6;
+
+  &-header {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+
+    h1 {
+      margin-bottom: $spacing-sm;
+    }
+  }
+
+  &-section {
+    margin-bottom: $spacing-lg;
+
+    h2 {
+      border-bottom: 2px solid $primary-color;
+      padding-bottom: $spacing-xs;
+      margin-bottom: $spacing-md;
+    }
+
+    p {
+      margin: 0 0 $spacing-sm 0;
+    }
+
+    ul {
+      list-style-type: square;
+      margin-left: $spacing-lg;
+      padding-left: $spacing-sm;
+
+      li {
+        margin-bottom: $spacing-xs;
+      }
+    }
+
+    .resume-item {
+      margin-bottom: $spacing-lg;
+      // padding-bottom: $spacing-md;
+
+      &-header {
+        display: grid;
+        grid-template:
+          "position date" auto
+          "meta location" auto / 1fr auto;
+        gap: $spacing-xs $spacing-md;
+        margin-bottom: $spacing-sm;
+
+        > * {
+          margin: 0;
+        }
+
+        .position {
+          grid-area: position;
+          font-weight: 700;
+        }
+
+        .date {
+          grid-area: date;
+          text-align: right;
+          font-style: italic;
+        }
+
+        .employer,
+        .degree,
+        .tech-stack {
+          grid-area: meta;
+          font-style: italic;
+        }
+
+        .tech-stack {
+          &::before {
+            content: "Technologies: ";
+            font-weight: bold;
+          }
+        }
+
+        .location {
+          grid-area: location;
+          text-align: right;
+          font-style: italic;
+        }
+      }
+
+      &-details {
+        margin-left: $spacing-md;
+        padding-left: $spacing-sm;
+
+        p,
+        ul,
+        ol {
+          margin: $spacing-xs 0;
+        }
+
+        ul,
+        ol {
+          list-style-position: outside;
+        }
+      }
+    }
+  }
+
+  .skills-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+
+    .skill {
+      background-color: $primary-color;
+      color: $background-primary;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 4px;
+    }
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .resume {
+    .resume-section {
+      ul {
+        margin-left: $spacing-md;
+      }
+
+      .resume-item {
+        .resume-item-header {
+          display: flex;
+          flex-direction: column;
+          gap: $spacing-xs;
+
+          .position,
+          .employer,
+          .degree,
+          .tech-stack,
+          .date,
+          .location {
+            text-align: left;
+            margin-bottom: $spacing-xs;
+          }
+        }
+      }
+    }
+
+    .skills-list {
+      gap: $spacing-xs;
+
+      .skill {
+        padding: $spacing-xs $spacing-sm;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+}
