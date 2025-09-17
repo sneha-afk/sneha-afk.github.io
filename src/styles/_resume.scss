@@ -1,4 +1,6 @@
 @use "variables" as *;
+@use "mixins" as mixins;
+@use "sass:color";
 
 .resume {
   line-height: 1.6;
@@ -13,13 +15,7 @@
   }
 
   &-section {
-    margin-bottom: $spacing-lg;
-
-    h2 {
-      border-bottom: 2px solid $primary-color;
-      padding-bottom: $spacing-xs;
-      margin-bottom: $spacing-md;
-    }
+    gap: $spacing-sm;
 
     p {
       margin: 0 0 $spacing-sm 0;
@@ -36,8 +32,7 @@
     }
 
     .resume-item {
-      margin-bottom: $spacing-lg;
-      // padding-bottom: $spacing-md;
+      margin-bottom: $spacing-md;
 
       &-header {
         display: grid;
@@ -107,10 +102,22 @@
     gap: $spacing-sm;
 
     .skill {
-      background-color: $primary-color;
-      color: $background-primary;
-      padding: $spacing-xs $spacing-sm;
-      border-radius: 4px;
+      @include mixins.pill(
+        $background: linear-gradient(
+            135deg,
+            color.scale($background-secondary, $lightness: -50%),
+            color.scale($background-secondary, $lightness: 10%)
+          ),
+        $hover-background: linear-gradient(
+            135deg,
+            $color-blue-dark,
+            $color-blue-light
+          ),
+        $hover-color: $background-primary,
+        $padding-x: $spacing-md,
+        $padding-y: $spacing-xs,
+        $gap: $spacing-sm
+      );
     }
   }
 }

@@ -1,0 +1,43 @@
+@use "variables" as *;
+@use "sass:color";
+
+// Pill mixin for buttons, tags, post cards
+@mixin pill(
+  $background: $background-secondary,
+  $hover-background: $hover-bg,
+  $font-size: $font-size-sm,
+  $color: $text-color,
+  $hover-color: $hover-text,
+  $padding-x: $spacing-md,
+  $padding-y: $spacing-xs,
+  $gap: $spacing-xs,
+  $align: center,
+  $justify: center
+) {
+  display: inline-flex;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+  padding: $padding-y $padding-x;
+  border-radius: 9999px;
+  font-family: $font-primary;
+  font-size: $font-size;
+  font-weight: $font-weight-medium;
+  color: $color;
+  background: $background;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: $hover-background;
+    color: $hover-color;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus {
+    outline: 2px solid rgba($primary-color, 0.3);
+  }
+}

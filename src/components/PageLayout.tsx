@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import NavigationBar from "@components/NavigationBar";
 
+import "@styles/_code_format.scss";
+import "@styles/_tables.scss";
+import "@styles/_blockquotes.scss";
+import "@styles/_footnotes.scss";
+import "@styles/_images.scss";
 import "highlight.js/styles/base16/horizon-dark.css";
 
 interface PageLayoutProps {
@@ -24,12 +29,12 @@ const PageLayout = ({
   useEffect(() => {
     const addCodeLanguageLabels = () => {
       document
-        .querySelectorAll('code[class^="hljs language-"]')
-        .forEach((el) => {
-          const htmlEl = el.parentElement as HTMLElement; // label on the pre container
-          if (!htmlEl || htmlEl.dataset.hasLangLabel) return;
+        .querySelectorAll('pre > code[class*="language-"]')
+        .forEach((codeEl) => {
+          const preEl = codeEl.parentElement as HTMLPreElement;
+          if (!preEl || preEl.dataset.hasLangLabel) return;
 
-          const className = [...el.classList].find((c) =>
+          const className = [...codeEl.classList].find((c) =>
             c.startsWith("language-"),
           );
           if (!className) return;
@@ -40,15 +45,18 @@ const PageLayout = ({
           const label = document.createElement("div");
           label.textContent = lang;
           label.className = "code-lang-label";
-
-          htmlEl.style.position = "relative";
-          htmlEl.dataset.hasLangLabel = "true";
-          htmlEl.appendChild(label);
+          preEl.style.position = "relative";
+          preEl.dataset.hasLangLabel = "true";
+          preEl.appendChild(label);
         });
     };
 
-    const id = setTimeout(addCodeLanguageLabels, 0); // micro delay
-    return () => clearTimeout(id);
+    // Try multiple times in case highlighting is still processing
+    const timeouts = [10, 100, 500].map((delay) =>
+      setTimeout(addCodeLanguageLabels, delay),
+    );
+
+    return () => timeouts.forEach(clearTimeout);
   }, [children]);
 
   useEffect(() => {

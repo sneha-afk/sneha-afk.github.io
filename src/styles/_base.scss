@@ -1,21 +1,24 @@
 @use "variables" as *;
 
+/* ========== BASE ========== */
 body {
   font-family: $font-primary;
   font-size: $font-size-sm;
   font-style: normal;
-  line-height: 1.5;
+  line-height: 1.6;
   background-color: $background-primary;
   color: $text-color;
   margin: 0;
   padding: $spacing-lg;
 }
 
-header {
-  text-align: center;
-  margin-bottom: $spacing-lg;
+main,
+.container {
+  max-width: 70ch; // better readability
+  margin: 0 auto;
 }
 
+/* ========== HEADINGS ========== */
 h1,
 h2,
 h3,
@@ -23,59 +26,83 @@ h4,
 h5,
 h6 {
   color: $primary-color;
+  line-height: 1.3;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-md;
 }
 
+/* ========== LINKS ========== */
 a {
   color: $primary-color;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: $hover-text;
-    background-color: $hover-bg;
-    text-decoration: none;
-  }
-
-  &:focus {
-    outline: 2px solid rgba($primary-color, 0.3);
-    outline-offset: 2px;
-  }
-}
-
-.back-link {
-  font-weight: $font-weight-bold;
-  font-size: $font-size-md;
-  color: $primary-color;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: $spacing-sm;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   transition: all 0.2s ease-in-out;
 
-  &::before {
-    content: "<-";
-    font-size: 0.9em;
+  &:hover,
+  &:focus {
+    color: $hover-text;
+    background-color: $hover-bg;
+    outline: none;
   }
 
-  &:hover {
-    transform: translateX(-2px);
+  &:focus-visible {
+    outline: 3px solid $primary-color;
+    outline-offset: 3px;
   }
 }
 
-body,
-main,
-.container {
-  max-width: 80%;
-  margin: 0 auto;
+/* ========== SECTIONS ========== */
+section {
+  margin-bottom: $spacing-2xl;
+
+  h2 {
+    display: inline-block;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid $gray-300;
+  }
+
+  .emoji {
+    display: inline-block;
+    margin-right: 0.4rem;
+    font-size: 1.4rem;
+  }
+
+  .section-content {
+    line-height: 1.6;
+    margin-top: $spacing-sm;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
 }
 
-// Mobile support
+/* ========== LISTS ========== */
+ul,
+ol {
+  padding-left: $spacing-lg;
+  margin-bottom: $spacing-md;
+
+  li {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: $mobile-breakpoint) {
   body,
   main,
   .container {
+    padding: $spacing-md;
     max-width: 100%;
-    margin: 0 auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1.1em;
   }
 }

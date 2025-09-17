@@ -21,40 +21,6 @@
     justify-content: flex-end;
     gap: $spacing-md;
     font-family: $font-monospace;
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: $spacing-sm;
-      padding: 0;
-    }
-
-    li {
-      list-style: none;
-    }
-
-    a {
-      font-weight: $font-weight-bold;
-      font-size: $font-size-md;
-      color: $primary-color;
-      padding: 0.4rem 0.6rem;
-      display: block;
-      text-decoration: none;
-      border-radius: $spacing-xs;
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        color: $hover-text;
-        background-color: $hover-bg;
-        text-decoration: none;
-        transform: translateY(-2px);
-      }
-
-      &:focus {
-        outline: 2px solid rgba($primary-color, 0.3);
-      }
-    }
   }
 }
 
@@ -73,17 +39,6 @@
       width: 100%;
       margin-left: 0;
       justify-content: right;
-
-      ul {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      a {
-        font-size: $font-size-sm;
-        padding: 0.3rem 0.5rem;
-        border-radius: $spacing-xs;
-      }
     }
   }
 }

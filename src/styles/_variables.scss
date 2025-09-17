@@ -1,73 +1,9 @@
 @use "sass:color";
 
+/* ========== FONTS ========== */
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-/* ========== COLORS ========== */
-@function lighten-color($color, $percentage) {
-  @return color.adjust($color, $lightness: $percentage);
-}
-
-@function darken-color($color, $percentage) {
-  @return color.adjust($color, $lightness: -$percentage);
-}
-
-// Taken from: https://github.com/myagko/nymph
-// Primary Colors
-$color-red-primary: #bc7171;
-$color-orange-primary: #c99577;
-$color-yellow-primary: #d5be82;
-$color-green-primary: #9fbc85;
-$color-cyan-primary: #89b7b0;
-$color-blue-primary: #7c9bb4;
-$color-magenta-primary: #a883a2;
-
-$lighten-percent: 20%;
-$color-red-light: lighten-color($color-red-primary, $lighten-percent);
-$color-orange-light: lighten-color($color-orange-primary, $lighten-percent);
-$color-yellow-light: lighten-color($color-yellow-primary, $lighten-percent);
-$color-green-light: lighten-color($color-green-primary, $lighten-percent);
-$color-cyan-light: lighten-color($color-cyan-primary, $lighten-percent);
-$color-blue-light: lighten-color($color-blue-primary, $lighten-percent);
-$color-magenta-light: lighten-color($color-magenta-primary, $lighten-percent);
-
-$darken-percent: 25%;
-$color-red-dark: darken-color($color-red-primary, $darken-percent);
-$color-orange-dark: darken-color($color-orange-primary, $darken-percent);
-$color-yellow-dark: darken-color($color-yellow-primary, $darken-percent);
-$color-green-dark: darken-color($color-green-primary, $darken-percent);
-$color-cyan-dark: darken-color($color-cyan-primary, $darken-percent);
-$color-blue-dark: darken-color($color-blue-primary, $darken-percent);
-$color-magenta-dark: darken-color($color-magenta-primary, $darken-percent);
-
-// Grayscale
-$gray-100: #f3f5f6;
-$gray-200: #dde2e5;
-$gray-300: #c6cdd1;
-$gray-400: #aeb7bc;
-$gray-500: #959fa5;
-$gray-600: #77838a;
-$gray-700: #5a6469;
-$gray-800: #3d4548;
-$gray-900: #1f2325;
-
-$base-color: #161616;
-
-$primary-color: $color-red-primary;
-$background-primary: $base-color;
-$background-secondary: lighten-color($base-color, 5%);
-$text-color: $gray-200;
-$hover-bg: $color-yellow-primary;
-$hover-text: black;
-
-$accent-success: $color-green-dark;
-$accent-warning: $color-yellow-dark;
-$accent-danger: $color-red-dark;
-$accent-info: $color-blue-dark;
-$accent-note: $color-cyan-dark;
-
-/* ========== FONT ========== */
 $font-primary: Geist, Roboto, sans-serif;
 $font-monospace: "Geist Mono", Consolas, monospace;
 
@@ -84,17 +20,6 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 
-/* ========== ANIMATION ========== */
-$transition-fast: 0.15s ease;
-$transition-normal: 0.25s ease;
-$transition-slow: 0.4s ease;
-
-/* ========== BREAKPOINTS ========== */
-$mobile-breakpoint: 576px;
-$tablet-breakpoint: 768px;
-$desktop-breakpoint: 1024px;
-$widescreen-breakpoint: 1440px;
-
 /* ========== SPACING ========== */
 $spacing-xs: 4px;
 $spacing-sm: 8px;
@@ -103,3 +28,89 @@ $spacing-lg: 24px;
 $spacing-xl: 32px;
 $spacing-2xl: 48px;
 $spacing-3xl: 64px;
+
+$mobile-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
+$widescreen-breakpoint: 1440px;
+
+/* ========== TRANSITIONS ========== */
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+/* ========== COLOR UTILS ========== */
+@function lighten-color($color, $percent) {
+  @return color.adjust($color, $lightness: $percent);
+}
+
+@function darken-color($color, $percent) {
+  @return color.adjust($color, $lightness: -$percent);
+}
+
+/* ========== PRIMARY COLORS ========== */
+$color-red-primary: #bc7171;
+$color-orange-primary: #c99577;
+$color-yellow-primary: #d5be82;
+$color-green-primary: #9fbc85;
+$color-cyan-primary: #89b7b0;
+$color-blue-primary: #7c9bb4;
+$color-magenta-primary: #a883a2;
+
+/* ========== LIGHT VARIANTS ========== */
+$lighten-percent: 20%;
+$color-red-light: lighten-color($color-red-primary, $lighten-percent);
+$color-orange-light: lighten-color($color-orange-primary, $lighten-percent);
+$color-yellow-light: lighten-color($color-yellow-primary, $lighten-percent);
+$color-green-light: lighten-color($color-green-primary, $lighten-percent);
+$color-cyan-light: lighten-color($color-cyan-primary, $lighten-percent);
+$color-blue-light: lighten-color($color-blue-primary, $lighten-percent);
+$color-magenta-light: lighten-color($color-magenta-primary, $lighten-percent);
+
+/* ========== DARK VARIANTS ========== */
+$darken-percent: 25%;
+$color-red-dark: darken-color($color-red-primary, $darken-percent);
+$color-orange-dark: darken-color($color-orange-primary, $darken-percent);
+$color-yellow-dark: darken-color($color-yellow-primary, $darken-percent);
+$color-green-dark: darken-color($color-green-primary, $darken-percent);
+$color-cyan-dark: darken-color($color-cyan-primary, $darken-percent);
+$color-blue-dark: darken-color($color-blue-primary, $darken-percent);
+$color-magenta-dark: darken-color($color-magenta-primary, $darken-percent);
+
+/* ========== GRAYSCALE ========== */
+$gray-100: #f3f5f6;
+$gray-200: #dde2e5;
+$gray-300: #c6cdd1;
+$gray-400: #aeb7bc;
+$gray-500: #959fa5;
+$gray-600: #77838a;
+$gray-700: #5a6469;
+$gray-800: #3d4548;
+$gray-900: #1f2325;
+
+/* ========== BASE & BACKGROUND ========== */
+$base-color: #161616;
+$text-color: $gray-100;
+$background-primary: $base-color;
+$background-secondary: lighten-color($base-color, 5%);
+
+/* ========== PRIMARY & SECONDARY ========== */
+$primary-color: $color-red-primary;
+$secondary-color: $color-orange-primary;
+
+/* ========== HOVER ========== */
+$hover-bg: $color-yellow-primary;
+$hover-text: black;
+
+/* ========== ACCENTS / STATES ========== */
+$accent-success: $color-green-dark;
+$accent-warning: $color-yellow-dark;
+$accent-danger: $color-red-dark;
+$accent-info: $color-blue-dark;
+$accent-note: $color-cyan-dark;
+
+/* ========== DERIVED VARIANTS ========== */
+$primary-light: lighten-color($primary-color, 15%);
+$primary-dark: darken-color($primary-color, 15%);
+$secondary-light: lighten-color($secondary-color, 15%);
+$secondary-dark: darken-color($secondary-color, 15%);

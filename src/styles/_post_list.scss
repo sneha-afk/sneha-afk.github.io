@@ -1,0 +1,62 @@
+@use "variables" as *;
+@use "mixins" as mixins;
+@use "sass:color";
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  .post-card {
+    @include mixins.pill(
+      $background: linear-gradient(
+          135deg,
+          color.scale($background-secondary, $lightness: -30%),
+          color.scale($background-secondary, $lightness: 5%)
+        ),
+      $hover-background: linear-gradient(
+          135deg,
+          $color-blue-dark,
+          $color-blue-light
+        ),
+      $color: $text-color,
+      $hover-color: $hover-text
+    );
+
+    text-decoration: none;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.1s ease-in-out;
+
+      &:hover,
+      &:focus {
+        background: none;
+        text-decoration: none;
+        color: $hover-text;
+      }
+    }
+
+    .post-date {
+      font-family: $font-monospace;
+      font-size: $font-size-xs;
+      opacity: 0.8;
+      text-decoration: none;
+    }
+
+    .post-title {
+      font-weight: $font-weight-medium;
+      color: inherit;
+      position: relative;
+
+      &::before {
+        content: "•";
+        margin: 0 $spacing-sm;
+        color: $primary-color;
+      }
+    }
+  }
+}

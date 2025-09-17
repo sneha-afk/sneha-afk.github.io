@@ -1,6 +1,7 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
-// Remove table borders defined on table
+// ================== TABLE STYLING ==================
 .highlight table {
   border: none;
 
@@ -11,13 +12,14 @@
   }
 }
 
+// ================== BASE CODE STYLING ==================
 pre,
 code {
   font-family: $font-monospace;
   font-size: 0.8rem;
 }
 
-/* Inline Code Styling */
+// ================== INLINE CODE ==================
 p code,
 li code,
 span code {
@@ -31,30 +33,29 @@ span code {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* Code Block Styling */
+// ================== CODE BLOCKS ==================
 code,
 .highlight pre {
   padding: 0.75em;
-  overflow-x: auto;
   border-radius: $spacing-sm;
+  overflow-x: auto;
   position: relative;
+  background-color: $background-secondary;
 }
 
+// ================== LINE NUMBERS ==================
 .highlight .lineno {
-  color: #6a737d;
-  user-select: none; // Prevent selection of line numbers
+  color: $gray-400;
+  user-select: none; // Prevent accidental selection
 }
 
+// ================== LANGUAGE LABEL ==================
 .code-lang-label {
   position: absolute;
   top: 0.25rem;
   right: 0.5rem;
   font-size: 0.75rem;
-  font-family: $font-monospace;
-  text-transform: lowercase;
-  color: $gray-200;
-  padding: 2px 6px;
-  border-radius: 6px;
   pointer-events: none;
+  user-select: none;
   z-index: 1;
 }

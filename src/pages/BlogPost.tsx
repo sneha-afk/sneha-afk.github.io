@@ -5,7 +5,11 @@ import PageLayout from "../components/PageLayout";
 import { loadOnePost, type Post } from "../utils/loadOnePost";
 import Breadcrumbs from "../components/Breadcrumbs";
 
-const MarkdownRenderer = React.lazy(() => import("@components/markdown/MarkdownRenderer"));
+import "@styles/posts.scss";
+
+const MarkdownRenderer = React.lazy(
+  () => import("@components/markdown/MarkdownRenderer"),
+);
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();

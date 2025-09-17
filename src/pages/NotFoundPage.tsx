@@ -37,7 +37,6 @@ function NotFoundPage() {
         style={{
           textAlign: "center",
           padding: "4rem 2rem",
-          userSelect: "none",
         }}
       >
         <h1 style={{ marginBottom: "1.5rem" }}>oops, that doesn't exist :(</h1>
@@ -49,6 +48,7 @@ function NotFoundPage() {
             cursor: "pointer",
             display: "inline-block",
             margin: "0 10px",
+            userSelect: "none",
             animation: "float 3s ease-in-out infinite",
           }}
         >

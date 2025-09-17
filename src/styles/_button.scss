@@ -1,23 +1,48 @@
 @use "variables" as *;
+@use "mixins" as mixins;
+@use "sass:color";
 
 .button-link {
+  @include mixins.pill(
+    $background: $background-primary,
+    $hover-background: linear-gradient(
+        135deg,
+        $color-blue-dark,
+        $color-blue-light
+      ),
+    $color: $primary-color,
+    $hover-color: $hover-text
+  );
   font-weight: $font-weight-bold;
-  font-size: $font-size-md;
-  color: $primary-color;
-  padding: 0.4rem 0.6rem;
-  display: block;
-  text-decoration: none;
-  border-radius: $spacing-xs;
-  transition: all 0.2s ease-in-out;
+}
 
-  &:hover {
-    color: $hover-text;
-    background-color: $hover-bg;
-    text-decoration: none;
-    transform: translateY(-2px);
+.back-link {
+  @include mixins.pill(
+    $background: linear-gradient(
+        135deg,
+        color.scale($background-secondary, $lightness: -30%),
+        color.scale($background-secondary, $lightness: 5%)
+      ),
+    $hover-background: linear-gradient(
+        135deg,
+        $color-blue-dark,
+        $color-blue-light
+      ),
+    $color: $text-color,
+    $hover-color: $hover-text
+  );
+
+  font-weight: $font-weight-bold;
+
+  &::before {
+    content: "<-";
+    font-size: 0.9em;
   }
 
-  &:focus {
-    outline: 2px solid rgba($primary-color, 0.3);
+  &:hover,
+  &:focus-visible {
+    transform: translateX(-2px); // keep subtle hover
+    outline: 2px solid $primary-color;
+    // outline-offset: 3px;
   }
 }
