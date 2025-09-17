@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
 
 import PageLayout from "../components/PageLayout";
 import { loadOnePost, type Post } from "../utils/loadOnePost";
-import { markdownComponents } from "../components/markdown/MarkdownComponents";
-import "../styles/posts.scss";
 import Breadcrumbs from "../components/Breadcrumbs";
+
+const MarkdownRenderer = React.lazy(() => import("@components/markdown/MarkdownRenderer"));
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -36,13 +33,9 @@ const BlogPost: React.FC = () => {
           { label: post.title },
         ]}
       />
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight]}
-        components={markdownComponents}
-      >
-        {post.content}
-      </ReactMarkdown>
+      <Suspense fallback={<div>Rendering post…</div>}>
+        <MarkdownRenderer content={post.content} />
+      </Suspense>
     </PageLayout>
   );
 };

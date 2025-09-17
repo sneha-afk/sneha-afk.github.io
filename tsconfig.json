@@ -1,4 +1,5 @@
 {
+  // Root "solution" config
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
@@ -10,13 +11,19 @@
     "lib": ["DOM", "ESNext"],
     "baseUrl": "src/",
     "paths": {
+      "@components": ["components"],
       "@components/*": ["components/*"],
+      "@components/markdown": ["components/markdown"],
+      "@components/markdown/*": ["components/markdown/*"],
+      "@pages": ["pages"],
       "@pages/*": ["pages/*"],
+      "@utils": ["utils"],
       "@utils/*": ["utils/*"],
+      "@styles": ["styles"],
       "@styles/*": ["styles/*"],
+      "@context": ["context"],
       "@context/*": ["context/*"]
     },
-    "types": ["vite/client", "node"],
-    "include": ["src"]
+    "types": ["vite/client", "node"]
   }
 }

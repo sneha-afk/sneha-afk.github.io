@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   HomePage,
   ResumePage,
-  Error404Page,
+  NotFoundPage,
   BlogPost,
   BlogIndex,
   ProjectsPage,
@@ -18,7 +18,7 @@ function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/posts" element={<BlogIndex />} />
         <Route path="/posts/:slug" element={<BlogPost />} />
-        <Route path="*" element={<Error404Page />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

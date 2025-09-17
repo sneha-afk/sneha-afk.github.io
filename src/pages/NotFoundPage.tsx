@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PageLayout from "../components/PageLayout";
 
-function Error404Page() {
+function NotFoundPage() {
   const [emoji, setEmoji] = useState("🛸");
   const emojis = [
     "🛸",
@@ -76,4 +76,4 @@ function Error404Page() {
   );
 }
 
-export default Error404Page;
+export default NotFoundPage;

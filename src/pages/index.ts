@@ -3,4 +3,4 @@ export { default as ResumePage } from "./ResumePage";
 export { default as BlogPost } from "./BlogPost";
 export { default as BlogIndex } from "./BlogIndex";
 export { default as ProjectsPage } from "./ProjectsPage";
-export { default as Error404Page } from "./404";
+export { default as NotFoundPage } from "./NotFoundPage";
