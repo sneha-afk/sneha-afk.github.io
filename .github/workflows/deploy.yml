@@ -74,7 +74,6 @@ jobs:
         run: pnpm install
 
       - name: Build application
-        if: steps.build-check.outputs.build-needed == 'true'
         run: pnpm build
 
       - name: Upload build artifacts
