@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 
-import "highlight.js/styles/base16/ros-pine.css";
+import "highlight.js/styles/base16/horizon-dark.css";
 
 interface PageLayoutProps {
   title?: string;

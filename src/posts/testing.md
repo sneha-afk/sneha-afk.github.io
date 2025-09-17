@@ -122,7 +122,7 @@ Inline: $E = mc^2$
 Block:
 
 $$
-\int_{a}^{b} x^2 \, dx
+\int_{a}^{b} x^2 dx
 $$
 
 More complex:

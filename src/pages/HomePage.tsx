@@ -1,14 +1,11 @@
+import { Link } from "react-router-dom";
+
 import PageLayout from "../components/PageLayout";
+import { usePosts } from "../context/PostsContext";
 
 const HomePage = () => {
-  // TODO: figure this out...
-  const recentPosts = [
-    {
-      date: "2025-01-15",
-      title: "lol",
-      url: "/posts/lol",
-    },
-  ];
+  const { posts } = usePosts();
+  const recentPosts = posts.slice(0, 5);
 
   return (
     <PageLayout title="Welcome" showBackLink={false} showPageTitle={false}>
@@ -62,16 +59,16 @@ const HomePage = () => {
 
         <section>
           <h2>/recent-posts</h2>
-          <div>
-            {recentPosts.map((post, index) => (
-              <div key={index}>
-                <code>{post.date}</code>{" "}
-                <strong>
-                  <a href={post.url}>{post.title}</a>
-                </strong>
-              </div>
+
+          <ul>
+            {recentPosts.map((post) => (
+              <li key={post.slug}>
+                {post.date}
+                {": "}
+                <Link to={`/posts/${post.slug}`}>{post.title}</Link>{" "}
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       </div>
     </PageLayout>
