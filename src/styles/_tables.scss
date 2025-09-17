@@ -1,36 +1,143 @@
 @use "variables" as *;
+@use "mixins" as *;
+@use "sass:color";
 
+// ================== BASE TABLE ==================
 table:not(.highlight table) {
   width: 100%;
-  border-spacing: 0px;
   border-collapse: separate;
-  border-radius: $spacing-sm;
-  border-left: $spacing-xs solid $gray-400;
-  border-right: $spacing-xs solid $gray-400;
-  border-bottom: $table-border-width solid $gray-400;
-  overflow: hidden;
-}
-
-// Inner cells
-table:not(.highlight table) th,
-table:not(.highlight table) td {
-  border-left: $table-border-width solid $gray-400;
-  border-top: $table-border-width solid $gray-400;
-}
-
-// Header row
-table:not(.highlight table) th {
+  border-spacing: 0;
+  margin: $spacing-lg 0;
+  color: $text-color;
   background: $background-secondary;
+  @include card($background-secondary, 2, $spacing-xs);
+  line-height: 1.25;
+  transition: all $transition-fast;
+}
+
+// ================== HEADER ==================
+table:not(.highlight table) th {
+  background: color.adjust($background-primary, $lightness: 2%);
+  color: $primary-color;
   font-weight: $font-weight-bold;
-  padding: $table-cell-padding;
+  padding: $spacing-sm;
+  font-size: $font-size-sm;
+  text-align: left;
+  position: relative;
+  border-bottom: 2px solid rgba($primary-color, 0.2);
+
+  &:hover {
+    background: rgba($primary-dark, 0.1);
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba($gray-700, 0.2);
+  }
 }
 
-// Data cells
+// ================== BODY CELLS ==================
 table:not(.highlight table) td {
-  padding: $table-cell-padding;
+  padding: $spacing-sm;
+  color: $gray-200;
+  position: relative;
+  border-bottom: 1px solid rgba($gray-700, 0.2);
 }
 
-// Change color when hovering over a row
-table:not(.highlight table) tr:hover td {
-  background: $gray-900;
+// ================== ZEBRA STRIPING ==================
+table:not(.highlight table) tbody tr:nth-child(odd) {
+  background-color: rgba($gray-700, 0.1);
+}
+
+table:not(.highlight table) tbody tr:nth-child(even) {
+  background-color: rgba($gray-900, 0.05);
+}
+
+// ================== HOVER EFFECTS ==================
+table:not(.highlight table) tbody tr {
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: rgba($primary-color, 0.05);
+
+    td {
+      // Fixed: Replaced deprecated lighten() with color.adjust()
+      color: color.adjust($gray-200, $lightness: 15%);
+    }
+  }
+}
+
+// ================== CORNER RADIUS ==================
+table:not(.highlight table) {
+  th:first-child {
+    border-top-left-radius: $spacing-sm;
+  }
+
+  th:last-child {
+    border-top-right-radius: $spacing-sm;
+  }
+
+  tr:last-child {
+    td:first-child {
+      border-bottom-left-radius: $spacing-sm;
+    }
+
+    td:last-child {
+      border-bottom-right-radius: $spacing-sm;
+      padding-right: $spacing-lg;
+    }
+
+    td {
+      border-bottom: none;
+    }
+  }
+}
+
+// ================== RESPONSIVE DESIGN ==================
+@include respond-to(mobile) {
+  table:not(.highlight table) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: $spacing-sm;
+  }
+}
+
+// ================== SPECIAL ROW VARIANTS ==================
+table:not(.highlight table) tr.success {
+  background-color: rgba($accent-success, 0.08) !important;
+
+  &:hover {
+    background-color: rgba($accent-success, 0.12) !important;
+  }
+}
+
+table:not(.highlight table) tr.warning {
+  background-color: rgba($accent-warning, 0.08) !important;
+
+  &:hover {
+    background-color: rgba($accent-warning, 0.12) !important;
+  }
+}
+
+table:not(.highlight table) tr.danger {
+  background-color: rgba($accent-danger, 0.08) !important;
+
+  &:hover {
+    background-color: rgba($accent-danger, 0.12) !important;
+  }
+}
+
+// ================== TABLE CAPTION ==================
+table:not(.highlight table) caption {
+  caption-side: top;
+  text-align: left;
+  padding: $spacing-md $spacing-lg;
+  font-weight: $font-weight-bold;
+  color: $primary-color;
+  background: rgba($primary-dark, 0.08);
+  border-top-left-radius: $spacing-sm;
+  border-top-right-radius: $spacing-sm;
+  font-size: $font-size-lg;
 }

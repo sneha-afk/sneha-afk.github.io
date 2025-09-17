@@ -21,6 +21,7 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 
 /* ========== SPACING ========== */
+$spacing-xxs: 2px;
 $spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-md: 16px;
@@ -116,6 +117,8 @@ $secondary-light: lighten-color($secondary-color, 15%);
 $secondary-dark: darken-color($secondary-color, 15%);
 
 /* ========== COMPONENT SPECIFIC ========== */
+$pill-radius: 999px;
+
 // Checkbox
 $checkbox-size: $font-size-md;
 $checkbox-border-radius: 4px;
@@ -135,16 +138,17 @@ $image-border-width: 2px;
 $image-border-radius: $spacing-sm;
 
 // Code
-$code-padding: 3px 6px;
-$code-block-padding: 0.75em;
-$code-font-size: 0.8rem;
+$code-padding: $spacing-xxs $spacing-xs;
+$code-block-padding: $spacing-sm;
+$code-font-size: $font-size-xs;
+$code-block-font-size: $font-size-xs;
 
 // Navigation
 $nav-gap: $spacing-md;
 
 // Breadcrumbs
 $breadcrumbs-padding: $spacing-xs $spacing-sm;
-$breadcrumbs-radius: $spacing-xs;
+$breadcrumbs-radius: $pill-radius;
 
 // Post cards
 $post-card-padding-y: $spacing-xs;

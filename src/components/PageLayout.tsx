@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import NavigationBar from "@components/NavigationBar";
 import { useContentProcessor } from "@hooks";
-import "highlight.js/styles/base16/horizon-dark.css";
+// import "highlight.js/styles/base16/horizon-dark.css";
 
 interface PageLayoutProps {
   title?: string;

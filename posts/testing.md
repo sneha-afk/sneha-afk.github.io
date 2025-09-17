@@ -16,17 +16,22 @@ Regular font: [Geist by Vercel](https://vercel.com/font)
 ## Headers
 
 # H1
+
 ## H2
+
 ### H3
+
 #### H4
+
 ##### H5
+
 ###### H6
 
 ## Text Formatting
 
 **Bold text**
 
-*Italic text*
+_Italic text_
 
 ~~Strikethrough text~~
 
@@ -35,7 +40,6 @@ Regular font: [Geist by Vercel](https://vercel.com/font)
 <span style="color: red;">Inline HTML</span>
 
 [Link to Google](https://www.google.com)
-
 
 ## Lists
 
@@ -60,6 +64,7 @@ Regular font: [Geist by Vercel](https://vercel.com/font)
 Inline code `looks like this`.
 
 Code blocks look like:
+
 ```python
 def hello_world():
     print("Hello, world!")
@@ -74,13 +79,23 @@ void main() {
 }
 ```
 
+```lua
+vim.g.is_windows = vim.fn.has("win32") or vim.fn.has("win64")
+```
+
 ## Tables
 
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| -------- | -------- | -------- |
 | Row 1    | Data 1   | Data 2   |
 | Row 2    | Data 3   | Data 4   |
 | Row 3    | Data 5   | Data 6   |
+
+| Header 1 | Header 2 | Header 3 | Header 4 |
+| -------- | -------- | -------- | -------- |
+| Row 1    | Data 1   | Data 2   | Data x   |
+| Row 2    | Data 3   | Data 4   | Data y   |
+| Row 3    | Data 5   | Data 6   | Data z   |
 
 ## Blockquotes
 
@@ -104,9 +119,7 @@ void main() {
 
 ### Centered Image
 
-<p align="center">
-  <img src="https://placehold.co/200x100/png" alt="Centered Image" title="Centered Image">
-</p>
+<img src="https://placehold.co/200x100/png" alt="Centered Image" title="Centered Image" class="img-center">
 
 ## MathJax
 

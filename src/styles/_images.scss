@@ -18,6 +18,12 @@ img {
   }
 }
 
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 // Container for images
 .img-container {
   @include mixins.grid-layout(2, $spacing-sm);

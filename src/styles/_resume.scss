@@ -166,31 +166,6 @@
 
 @include mixins.respond-to(mobile) {
   .resume {
-    padding: 0 $spacing-md;
-
-    &-header {
-      margin-bottom: $spacing-lg;
-      padding: $spacing-md;
-
-      h1 {
-        font-size: $font-size-xl;
-      }
-
-      .contact-info {
-        a {
-          font-size: $font-size-xs;
-        }
-      }
-    }
-
-    &-section {
-      margin-bottom: $spacing-lg;
-
-      &-title {
-        font-size: $font-size-md;
-      }
-    }
-
     &-item {
       padding: $spacing-sm;
       margin-bottom: $spacing-md;
@@ -213,12 +188,6 @@
           order: 3;
           color: $gray-500;
         }
-      }
-    }
-
-    .skills-list {
-      .skill {
-        padding: 1px $spacing-xs;
       }
     }
   }

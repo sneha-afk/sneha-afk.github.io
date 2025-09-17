@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 
 import { loadOnePost, type Post } from "@utils/loadOnePost";
 import { PageLayout, Breadcrumbs, LoadingSpinner } from "@components";
-import {NotFoundPage} from "@pages"
+import { NotFoundPage } from "@pages";
 
 import "@styles/posts.scss";
 
 const MarkdownRenderer = React.lazy(
-  () => import("@components/markdown/MarkdownRenderer")
+  () => import("@components/markdown/MarkdownRenderer"),
 );
 
 const BlogPost: React.FC = () => {

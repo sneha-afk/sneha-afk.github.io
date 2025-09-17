@@ -11,7 +11,7 @@ export async function loadPosts(): Promise<PostMeta[]> {
   // Grab all markdown files in /src/posts
   // import.meta.glob returns an object where each key is the file path
   // and the value is a function that imports the module (lazy by default)
-  const files = import.meta.glob("/src/posts/*.md", {
+  const files = import.meta.glob("/posts/*.md", {
     import: "default", // Only get the default export of the file
     query: "?raw", // Load the file content as a raw string
   });

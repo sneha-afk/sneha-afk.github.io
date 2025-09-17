@@ -1,31 +1,20 @@
 @use "variables" as *;
 
-// ================== TABLE STYLING ==================
-.highlight table {
-  border: none;
-
-  td,
-  th,
-  pre {
-    border: none;
-  }
-}
-
 // ================== BASE CODE STYLING ==================
 pre,
 code {
   font-family: $font-monospace;
   font-size: $code-font-size;
+  line-height: 1.5;
 }
 
 // ================== INLINE CODE ==================
-p code,
-li code,
-span code {
+.inline-code {
   background: $background-secondary;
   color: $gray-100;
   padding: $code-padding;
   border-radius: $spacing-sm;
+  font-family: $font-monospace;
   font-weight: $font-weight-medium;
   white-space: nowrap;
   display: inline;
@@ -33,28 +22,25 @@ span code {
 }
 
 // ================== CODE BLOCKS ==================
-code,
-.highlight pre {
-  padding: $code-block-padding;
-  border-radius: $spacing-sm;
-  overflow-x: auto;
+.code-block-wrapper {
   position: relative;
-  background-color: $background-secondary;
+  margin: $spacing-xs 0;
 }
 
-// ================== LINE NUMBERS ==================
-.highlight .lineno {
-  color: $gray-400;
-  user-select: none; // Prevent accidental selection
-}
-
-// ================== LANGUAGE LABEL ==================
 .code-lang-label {
   position: absolute;
-  top: 0.25rem;
   right: 0.5rem;
-  font-size: 0.75rem;
-  pointer-events: none;
+  font-size: $font-size-xs;
+  font-family: $font-monospace;
   user-select: none;
+  color: $gray-500;
   z-index: 1;
+}
+
+.code-block {
+  border-radius: $spacing-sm;
+}
+
+.code-block code {
+  font-size: $code-block-font-size;
 }
