@@ -1,9 +1,8 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
-import PageLayout from "../components/PageLayout";
-import { loadOnePost, type Post } from "../utils/loadOnePost";
-import Breadcrumbs from "../components/Breadcrumbs";
+import { loadOnePost, type Post } from "@utils/loadOnePost";
+import { PageLayout, Breadcrumbs } from "@components";
 
 import "@styles/posts.scss";
 

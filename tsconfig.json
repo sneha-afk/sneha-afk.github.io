@@ -22,7 +22,9 @@
       "@styles": ["styles"],
       "@styles/*": ["styles/*"],
       "@context": ["context"],
-      "@context/*": ["context/*"]
+      "@context/*": ["context/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"]
     },
     "types": ["vite/client", "node"]
   }
