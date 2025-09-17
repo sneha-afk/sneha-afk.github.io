@@ -2,12 +2,13 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import { loadOnePost, type Post } from "@utils/loadOnePost";
-import { PageLayout, Breadcrumbs } from "@components";
+import { PageLayout, Breadcrumbs, LoadingSpinner } from "@components";
+import {NotFoundPage} from "@pages"
 
 import "@styles/posts.scss";
 
 const MarkdownRenderer = React.lazy(
-  () => import("@components/markdown/MarkdownRenderer"),
+  () => import("@components/markdown/MarkdownRenderer")
 );
 
 const BlogPost: React.FC = () => {
@@ -23,20 +24,26 @@ const BlogPost: React.FC = () => {
       setLoading(false);
     });
   }, [slug]);
-
-  if (loading) return <PageLayout title="Loading…">Loading post…</PageLayout>;
-  if (!post) return <PageLayout title="Not Found">Post not found</PageLayout>;
+  if (loading)
+    return (
+      <PageLayout>
+        <LoadingSpinner text="Loading content..." fullscreen={false} />
+      </PageLayout>
+    );
+  if (!post) return <NotFoundPage />;
 
   return (
     <PageLayout title={post.title} enableMathJax>
-      <Breadcrumbs
-        items={[
-          { label: "~", path: "/" },
-          { label: "posts", path: "/posts" },
-          { label: post.title },
-        ]}
-      />
-      <Suspense fallback={<div>Rendering post…</div>}>
+      <Suspense
+        fallback={<LoadingSpinner text="Almost there..." fullscreen={false} />}
+      >
+        <Breadcrumbs
+          items={[
+            { label: "~", path: "/" },
+            { label: "posts", path: "/posts" },
+            { label: post.title },
+          ]}
+        />
         <MarkdownRenderer content={post.content} />
       </Suspense>
     </PageLayout>

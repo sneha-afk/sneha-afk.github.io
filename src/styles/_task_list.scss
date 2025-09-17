@@ -1,16 +1,12 @@
 @use "variables" as *;
 @use "mixins" as mixins;
 
-.task-list {
-  list-style: none;
+.contains-task-list {
   padding-left: 0;
-  margin: 1rem 0;
 
-  &-item {
+  .task-list-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    gap: 0.5rem;
+    gap: 0.25rem;
 
     input[type="checkbox"] {
       @include mixins.custom-checkbox;
