@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 
+import "highlight.js/styles/base16/ros-pine.css";
+
 interface PageLayoutProps {
   title?: string;
   showBackLink?: boolean;
@@ -21,29 +23,32 @@ const PageLayout = ({
 }: React.PropsWithChildren<PageLayoutProps>) => {
   useEffect(() => {
     const addCodeLanguageLabels = () => {
-      document.querySelectorAll('div[class^="language-"]').forEach((el) => {
-        const htmlEl = el as HTMLElement;
-        if (htmlEl.dataset.hasLangLabel) return;
+      document
+        .querySelectorAll('code[class^="hljs language-"]')
+        .forEach((el) => {
+          const htmlEl = el.parentElement as HTMLElement; // label on the pre container
+          if (!htmlEl || htmlEl.dataset.hasLangLabel) return;
 
-        const className = [...el.classList].find((c) =>
-          c.startsWith("language-"),
-        );
-        if (!className) return;
+          const className = [...el.classList].find((c) =>
+            c.startsWith("language-"),
+          );
+          if (!className) return;
 
-        const lang = className.replace("language-", "");
-        if (!lang) return;
+          const lang = className.replace("language-", "");
+          if (!lang) return;
 
-        const label = document.createElement("div");
-        label.textContent = lang;
-        label.className = "code-lang-label";
+          const label = document.createElement("div");
+          label.textContent = lang;
+          label.className = "code-lang-label";
 
-        htmlEl.style.position = "relative";
-        htmlEl.dataset.hasLangLabel = "true";
-        htmlEl.appendChild(label);
-      });
+          htmlEl.style.position = "relative";
+          htmlEl.dataset.hasLangLabel = "true";
+          htmlEl.appendChild(label);
+        });
     };
 
-    addCodeLanguageLabels();
+    const id = setTimeout(addCodeLanguageLabels, 0); // micro delay
+    return () => clearTimeout(id);
   }, [children]);
 
   useEffect(() => {

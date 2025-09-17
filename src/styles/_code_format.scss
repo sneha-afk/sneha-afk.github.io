@@ -32,24 +32,12 @@ span code {
 }
 
 /* Code Block Styling */
+code,
 .highlight pre {
   padding: 0.75em;
   overflow-x: auto;
   border-radius: $spacing-sm;
   position: relative;
-  background: $background-secondary;
-  color: $gray-100;
-
-  // Rest is inherited from syntax highlighting
-  code {
-    background: none;
-    color: inherit;
-    display: block;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    white-space: pre;
-  }
 }
 
 .highlight .lineno {
