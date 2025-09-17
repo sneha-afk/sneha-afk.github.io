@@ -73,16 +73,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Skip build if cached and no source changes
-      - name: Check if build needed
-        id: build-check
-        run: |
-          if [[ -d "${{ env.BUILD_DIR }}" && -n "$(ls -A ${{ env.BUILD_DIR }})" ]]; then
-            echo "build-needed=false" >> $GITHUB_OUTPUT
-          else
-            echo "build-needed=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Build application
         if: steps.build-check.outputs.build-needed == 'true'
         run: pnpm build
