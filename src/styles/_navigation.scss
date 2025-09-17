@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
 .site-navbar {
   display: flex;
@@ -19,12 +20,12 @@
     flex: 1 1 auto; // Allow growing and shrinking
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: $spacing-md;
+    gap: $nav-gap;
     font-family: $font-monospace;
   }
 }
 
-@media (max-width: $mobile-breakpoint) {
+@include mixins.respond-to(mobile) {
   .site-navbar {
     flex-direction: row;
     align-items: flex-end;

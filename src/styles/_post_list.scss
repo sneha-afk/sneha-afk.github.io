@@ -11,18 +11,18 @@
 
   .post-card {
     @include mixins.pill(
-      $background: linear-gradient(
+      $background:
+        linear-gradient(
           135deg,
           color.scale($background-secondary, $lightness: -30%),
           color.scale($background-secondary, $lightness: 5%)
         ),
-      $hover-background: linear-gradient(
-          135deg,
-          $color-blue-dark,
-          $color-blue-light
-        ),
+      $hover-background:
+        linear-gradient(135deg, $color-blue-dark, $color-blue-light),
       $color: $text-color,
-      $hover-color: $hover-text
+      $hover-color: $hover-text,
+      $padding-x: $post-card-padding-x,
+      $padding-y: $post-card-padding-y
     );
 
     text-decoration: none;

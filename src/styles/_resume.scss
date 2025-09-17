@@ -3,158 +3,356 @@
 @use "sass:color";
 
 .resume {
-  line-height: 1.6;
+  max-width: 80ch;
 
   &-header {
     text-align: center;
-    margin-bottom: $spacing-lg;
+    padding: $spacing-md;
 
     h1 {
-      margin-bottom: $spacing-sm;
+      margin: 0 0 $spacing-sm;
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $text-color;
+    }
+
+    .subtitle {
+      color: $gray-400;
+      margin: 0 0 $spacing-md;
+      font-size: $font-size-md;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: $spacing-sm;
     }
   }
 
   &-section {
-    gap: $spacing-sm;
+    margin: 0;
 
     p {
-      margin: 0 0 $spacing-sm 0;
+      margin: 0 0 $spacing-sm;
     }
 
     ul {
       list-style-type: square;
-      margin-left: $spacing-lg;
-      padding-left: $spacing-sm;
+      margin: 0 0 $spacing-md $spacing-md;
+      padding-left: 0;
 
       li {
-        margin-bottom: $spacing-xs;
-      }
-    }
-
-    .resume-item {
-      margin-bottom: $spacing-md;
-
-      &-header {
-        display: grid;
-        grid-template:
-          "position date" auto
-          "meta location" auto / 1fr auto;
-        gap: $spacing-xs $spacing-md;
-        margin-bottom: $spacing-sm;
-
-        > * {
-          margin: 0;
-        }
-
-        .position {
-          grid-area: position;
-          font-weight: 700;
-        }
-
-        .date {
-          grid-area: date;
-          text-align: right;
-          font-style: italic;
-        }
-
-        .employer,
-        .degree,
-        .tech-stack {
-          grid-area: meta;
-          font-style: italic;
-        }
-
-        .tech-stack {
-          &::before {
-            content: "Technologies: ";
-            font-weight: bold;
-          }
-        }
-
-        .location {
-          grid-area: location;
-          text-align: right;
-          font-style: italic;
-        }
-      }
-
-      &-details {
-        margin-left: $spacing-md;
-        padding-left: $spacing-sm;
-
-        p,
-        ul,
-        ol {
-          margin: $spacing-xs 0;
-        }
-
-        ul,
-        ol {
-          list-style-position: outside;
+        &::marker {
+          color: $primary-color;
         }
       }
     }
   }
 
+  &-item {
+    margin-bottom: $spacing-md;
+    padding: $spacing-md;
+    @include mixins.card($elevation: 1);
+    border-left: 2px solid $gray-600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-left-color: $primary-color;
+    }
+
+    &-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: $spacing-xs $spacing-md;
+      margin-bottom: $spacing-sm;
+
+      .position {
+        grid-column: 1;
+        grid-row: 1;
+        font-weight: $font-weight-bold;
+        color: $text-color;
+        margin: 0;
+        font-size: $font-size-md;
+      }
+
+      .date {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+        color: $gray-200;
+        margin: 0;
+        font-size: $font-size-sm;
+      }
+
+      .meta-info {
+        grid-column: 1;
+        grid-row: 2;
+        color: $gray-300;
+        margin: 0;
+        font-size: $font-size-sm;
+      }
+
+      .location {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: right;
+        color: $gray-300;
+        font-size: $font-size-xs;
+      }
+    }
+
+    .tech-stack {
+      margin: $spacing-sm 0;
+
+      strong {
+        display: block;
+        color: $text-color;
+        margin: 0 0 $spacing-xs;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-medium;
+      }
+
+      .tech-items {
+        font-size: $font-size-xs;
+        color: $gray-400;
+
+        &:not(:last-child)::after {
+          content: "•";
+          margin: 0 $spacing-xs;
+          color: $gray-600;
+        }
+      }
+    }
+
+    &-details {
+      ul {
+        li {
+          position: relative;
+          margin-bottom: $spacing-xs;
+        }
+      }
+    }
+  }
+
+  .skills-container {
+    margin: $spacing-lg 0 0;
+  }
+
   .skills-list {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
-    gap: $spacing-sm;
+    gap: $spacing-xs;
+    margin: $spacing-sm 0;
 
     .skill {
       @include mixins.pill(
-        $background: linear-gradient(
-            135deg,
-            color.scale($background-secondary, $lightness: -50%),
-            color.scale($background-secondary, $lightness: 10%)
-          ),
-        $hover-background: linear-gradient(
-            135deg,
-            $color-blue-dark,
-            $color-blue-light
-          ),
+        $background: color.adjust($background-secondary, $lightness: 5%),
+        $hover-background: $primary-color,
+        $color: $text-color,
         $hover-color: $background-primary,
-        $padding-x: $spacing-md,
-        $padding-y: $spacing-xs,
-        $gap: $spacing-sm
+        $padding-x: $spacing-sm,
+        $padding-y: 2px
       );
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
     }
   }
 }
 
-@media (max-width: $mobile-breakpoint) {
+@include mixins.respond-to(mobile) {
   .resume {
-    .resume-section {
-      ul {
-        margin-left: $spacing-md;
+    padding: 0 $spacing-md;
+
+    &-header {
+      margin-bottom: $spacing-lg;
+      padding: $spacing-md;
+
+      h1 {
+        font-size: $font-size-xl;
       }
 
-      .resume-item {
-        .resume-item-header {
-          display: flex;
-          flex-direction: column;
-          gap: $spacing-xs;
+      .contact-info {
+        a {
+          font-size: $font-size-xs;
+        }
+      }
+    }
 
-          .position,
-          .employer,
-          .degree,
-          .tech-stack,
-          .date,
-          .location {
-            text-align: left;
-            margin-bottom: $spacing-xs;
-          }
+    &-section {
+      margin-bottom: $spacing-lg;
+
+      &-title {
+        font-size: $font-size-md;
+      }
+    }
+
+    &-item {
+      padding: $spacing-sm;
+      margin-bottom: $spacing-md;
+
+      &-header {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+
+        .position,
+        .date,
+        .meta-info,
+        .location {
+          text-align: left;
+          margin: 0;
+        }
+
+        .date,
+        .location {
+          order: 3;
+          color: $gray-500;
         }
       }
     }
 
     .skills-list {
-      gap: $spacing-xs;
+      .skill {
+        padding: 1px $spacing-xs;
+      }
+    }
+  }
+}
+
+@media print {
+  .resume {
+    padding: 0;
+    max-width: none;
+    font-size: 12pt;
+    line-height: 1.4;
+
+    // Reset colors for print
+    * {
+      color: black !important;
+      background: white !important;
+      box-shadow: none !important;
+    }
+
+    &-header {
+      border-bottom: 2px solid #000 !important;
+      margin-bottom: $spacing-md;
+      padding: $spacing-md !important;
+
+      h1 {
+        font-size: 18pt !important;
+        margin-bottom: $spacing-xs !important;
+      }
+
+      .contact-info {
+        a {
+          border: 1px solid #000 !important;
+          padding: 1px $spacing-xs !important;
+          margin: 0 $spacing-xs $spacing-xs 0 !important;
+        }
+      }
+    }
+
+    &-section {
+      margin-bottom: $spacing-lg;
+      page-break-inside: avoid;
+
+      &-title {
+        font-size: 14pt !important;
+        border-bottom: 1px solid #000 !important;
+      }
+    }
+
+    &-item {
+      border: 1px solid #ccc !important;
+      border-left: 3px solid #000 !important;
+      margin-bottom: $spacing-md;
+      padding: $spacing-sm !important;
+      page-break-inside: avoid;
+
+      &-header {
+        .date,
+        .meta-info,
+        .location {
+          color: #555 !important;
+        }
+      }
+
+      .tech-stack {
+        .tech-items {
+          color: #555 !important;
+        }
+      }
+    }
+
+    .skills-list {
+      margin: $spacing-sm 0;
 
       .skill {
-        padding: $spacing-xs $spacing-sm;
-        font-size: $font-size-xs;
+        border: 1px solid #000 !important;
+        padding: 1px $spacing-xs !important;
+        margin: 0 $spacing-xs $spacing-xs 0 !important;
+        display: inline-block;
       }
+    }
+
+    ul,
+    ol {
+      page-break-inside: avoid;
+    }
+
+    li {
+      page-break-inside: avoid;
+    }
+
+    a[href] {
+      &::after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        font-style: italic;
+        color: #555 !important;
+      }
+
+      &[href^="mailto:"]::after,
+      &[href^="tel:"]::after {
+        content: "";
+      }
+    }
+
+    .resume-item:hover {
+      transform: none !important;
+    }
+
+    .skill:hover {
+      transform: none !important;
+    }
+  }
+}
+
+@page {
+  margin: 0.5in;
+}
+
+@media print and (color) {
+  .resume {
+    .primary-color {
+      color: #000 !important;
+    }
+
+    .resume-item {
+      border-left-color: #000 !important;
+    }
+
+    li::before {
+      color: #000 !important;
+    }
+
+    li::marker {
+      color: #000 !important;
     }
   }
 }

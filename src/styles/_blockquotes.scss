@@ -1,11 +1,11 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
-/* Base Blockquote Styling */
 blockquote {
   margin: 1.5em 0;
-  padding: 1em 1.5em;
-  border-radius: $spacing-sm;
-  border-left: $spacing-xs solid $color-blue-primary;
+  padding: $blockquote-padding;
+  border-radius: $blockquote-radius;
+  border-left: $blockquote-border-width solid $color-blue-primary;
   background-color: $gray-100;
   color: $gray-900;
   font-style: italic;
@@ -22,52 +22,49 @@ blockquote {
   }
 }
 
-.blockquote-tip {
-  border-left-color: $accent-success;
-  background-color: $color-green-light;
-
-  &::before {
-    content: "💡 TIP";
-    color: $color-green-dark;
+.blockquote {
+  &-tip {
+    @include mixins.blockquote-variant(
+      $accent-success,
+      $color-green-light,
+      "💡 TIP",
+      $color-green-dark
+    );
   }
-}
 
-.blockquote-warning {
-  border-left-color: $accent-warning;
-  background-color: $color-yellow-light;
-
-  &::before {
-    content: "⚠️ WARNING";
-    color: $color-yellow-dark;
+  &-warning {
+    @include mixins.blockquote-variant(
+      $accent-warning,
+      $color-yellow-light,
+      "⚠️ WARNING",
+      $color-yellow-dark
+    );
   }
-}
 
-.blockquote-danger {
-  border-left-color: $accent-danger;
-  background-color: $color-red-light;
-
-  &::before {
-    content: "🛑 DANGER";
-    color: $color-red-dark;
+  &-danger {
+    @include mixins.blockquote-variant(
+      $accent-danger,
+      $color-red-light,
+      "🛑 DANGER",
+      $color-red-dark
+    );
   }
-}
 
-.blockquote-info {
-  border-left-color: $accent-info;
-  background-color: $color-blue-light;
-
-  &::before {
-    content: "ℹ️ INFO";
-    color: $color-blue-dark;
+  &-info {
+    @include mixins.blockquote-variant(
+      $accent-info,
+      $color-blue-light,
+      "ℹ️ INFO",
+      $color-blue-dark
+    );
   }
-}
 
-.blockquote-note {
-  border-left-color: $accent-note;
-  background-color: $color-cyan-light;
-
-  &::before {
-    content: "📝 NOTE";
-    color: $color-cyan-dark;
+  &-note {
+    @include mixins.blockquote-variant(
+      $accent-note,
+      $color-cyan-light,
+      "📝 NOTE",
+      $color-cyan-dark
+    );
   }
 }

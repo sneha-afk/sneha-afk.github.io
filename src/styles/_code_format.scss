@@ -1,5 +1,4 @@
 @use "variables" as *;
-@use "mixins" as mixins;
 
 // ================== TABLE STYLING ==================
 .highlight table {
@@ -16,7 +15,7 @@
 pre,
 code {
   font-family: $font-monospace;
-  font-size: 0.8rem;
+  font-size: $code-font-size;
 }
 
 // ================== INLINE CODE ==================
@@ -25,7 +24,7 @@ li code,
 span code {
   background: $background-secondary;
   color: $gray-100;
-  padding: 3px 6px;
+  padding: $code-padding;
   border-radius: $spacing-sm;
   font-weight: $font-weight-medium;
   white-space: nowrap;
@@ -36,7 +35,7 @@ span code {
 // ================== CODE BLOCKS ==================
 code,
 .highlight pre {
-  padding: 0.75em;
+  padding: $code-block-padding;
   border-radius: $spacing-sm;
   overflow-x: auto;
   position: relative;

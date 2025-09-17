@@ -1,22 +1,19 @@
-// List item
+@use "variables" as *;
+@forward "task_list";
 
+// List item
 li {
+  margin-bottom: $spacing-sm;
 }
 
 // Unordered lists
 ul {
+  padding-left: $spacing-lg;
+  margin-bottom: $spacing-md;
 }
 
 // Ordered lists
 ol {
+  padding-left: $spacing-lg;
+  margin-bottom: $spacing-md;
 }
-
-// Task lists
-.task-list {
-}
-
-// Task item
-.task-list-item {
-}
-
-// TODO: figure out how to reference: <input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />

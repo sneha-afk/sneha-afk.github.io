@@ -1,13 +1,3 @@
 @use "variables" as vars;
-
 @use "base" as base;
-
-@use "navigation" as nav;
-@use "table_of_contents" as toc;
-
-@use "images" as img;
-@use "tables" as tbl;
-@use "lists" as lst;
-@use "code_format" as code;
-@use "blockquotes" as bq;
-@use "footnotes" as fn;
+@use "components" as comp;

@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
 /* ========== BASE ========== */
 body {
@@ -89,7 +90,7 @@ ol {
 }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: $mobile-breakpoint) {
+@include mixins.respond-to(mobile) {
   body,
   main,
   .container {

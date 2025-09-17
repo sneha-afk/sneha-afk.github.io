@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
 .toc {
   background: $background-secondary;
@@ -61,8 +62,7 @@
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: $mobile-breakpoint) {
+@include mixins.respond-to(mobile) {
   .toc {
     padding: 1rem;
 

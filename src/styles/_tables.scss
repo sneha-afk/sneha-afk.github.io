@@ -7,27 +7,27 @@ table:not(.highlight table) {
   border-radius: $spacing-sm;
   border-left: $spacing-xs solid $gray-400;
   border-right: $spacing-xs solid $gray-400;
-  border-bottom: 1px solid $gray-400;
+  border-bottom: $table-border-width solid $gray-400;
   overflow: hidden;
 }
 
 // Inner cells
 table:not(.highlight table) th,
 table:not(.highlight table) td {
-  border-left: 1px solid $gray-400;
-  border-top: 1px solid $gray-400;
+  border-left: $table-border-width solid $gray-400;
+  border-top: $table-border-width solid $gray-400;
 }
 
 // Header row
 table:not(.highlight table) th {
   background: $background-secondary;
   font-weight: $font-weight-bold;
-  padding: 0.25em;
+  padding: $table-cell-padding;
 }
 
 // Data cells
 table:not(.highlight table) td {
-  padding: 0.25em;
+  padding: $table-cell-padding;
 }
 
 // Change color when hovering over a row

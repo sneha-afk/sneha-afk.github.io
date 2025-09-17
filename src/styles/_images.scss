@@ -1,33 +1,26 @@
 @use "variables" as *;
+@use "mixins" as mixins;
 
 img {
   max-width: 100%;
   height: auto;
   margin: 0 auto;
   box-sizing: border-box;
-  border: 2px solid $gray-800;
-  border-radius: $spacing-sm;
+  border: $image-border-width solid $gray-800;
+  border-radius: $image-border-radius;
   object-fit: cover;
-}
-
-img:hover {
-  color: #424242;
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -ms-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  opacity: 1;
-  transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  -webkit-transform: scale(1.1);
+
+  &:hover {
+    color: #424242;
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 // Container for images
 .img-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-sm; // Space between images
+  @include mixins.grid-layout(2, $spacing-sm);
   width: 100%;
   max-width: 100%;
   margin-bottom: $spacing-lg;
@@ -51,7 +44,7 @@ img:hover {
   }
 }
 
-@media (max-width: $tablet-breakpoint) {
+@include mixins.respond-to(tablet) {
   .img-container {
     grid-template-columns: 1fr; // Stack vertically if not enough space
     padding: 0 $spacing-xs;

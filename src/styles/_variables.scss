@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-$font-primary: Geist, Roboto, sans-serif;
+$font-primary: Inter, Roboto, sans-serif;
 $font-monospace: "Geist Mono", Consolas, monospace;
 
 $font-size-xs: 12px;
@@ -114,3 +114,38 @@ $primary-light: lighten-color($primary-color, 15%);
 $primary-dark: darken-color($primary-color, 15%);
 $secondary-light: lighten-color($secondary-color, 15%);
 $secondary-dark: darken-color($secondary-color, 15%);
+
+/* ========== COMPONENT SPECIFIC ========== */
+// Checkbox
+$checkbox-size: $font-size-md;
+$checkbox-border-radius: 4px;
+$checkbox-check-size: 0.7rem;
+
+// Blockquotes
+$blockquote-border-width: $spacing-xs;
+$blockquote-padding: 1em 1.5em;
+$blockquote-radius: $spacing-sm;
+
+// Tables
+$table-border-width: 1px;
+$table-cell-padding: 0.25em;
+
+// Images
+$image-border-width: 2px;
+$image-border-radius: $spacing-sm;
+
+// Code
+$code-padding: 3px 6px;
+$code-block-padding: 0.75em;
+$code-font-size: 0.8rem;
+
+// Navigation
+$nav-gap: $spacing-md;
+
+// Breadcrumbs
+$breadcrumbs-padding: $spacing-xs $spacing-sm;
+$breadcrumbs-radius: $spacing-xs;
+
+// Post cards
+$post-card-padding-y: $spacing-xs;
+$post-card-padding-x: $spacing-md;
