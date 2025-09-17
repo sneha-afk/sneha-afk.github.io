@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "@components/NavigationBar";
 
 import "highlight.js/styles/base16/horizon-dark.css";
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "../styles/_navigation.scss";
+
+import "@styles/_navigation.scss";
+import ButtonLink from "@components/ButtonLink";
 
 type NavItem = {
   name: string;
@@ -23,9 +24,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
 
         <nav aria-label="Primary navigation">
           {navigation.map((item) => (
-            <Link key={item.url} to={item.url}>
-              {item.name}
-            </Link>
+            <ButtonLink key={item.url} link={item.url} label={item.name} />
           ))}
         </nav>
       </header>

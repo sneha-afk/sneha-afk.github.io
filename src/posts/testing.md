@@ -84,22 +84,17 @@ void main() {
 
 ## Blockquotes
 
-> This is a blockquote. It can span multiple lines and is often used to highlight important information or quotes.
+> This is a blockquote.
 
-> Info blockquote
-{: .blockquote-info }
+> INFO: Info blockquote
 
-> Warning blockquote
-{: .blockquote-warning }
+> WARNING: Warning blockquote
 
-> Danger blockquote
-{: .blockquote-danger }
+> DANGER: Danger blockquote
 
-> Tip blockquote
-{: .blockquote-tip}
+> TIP: Tip blockquote
 
-> Note blockquote
-{: .blockquote-note}
+> NOTE: Note blockquote
 
 ## Images
 
@@ -146,20 +141,3 @@ Here is a footnote reference[^1].
 - [x] Task 1
 - [ ] Task 2
 - [ ] Task 3
-
-## Definition List
-
-Term 1
-: Definition of term 1
-
-Term 2
-: Definition of term 2
-
-## Abbreviations
-
-Hover over the text to get the full text.
-
-The HTML specification is maintained by the W3C.
-
-*[HTML]: HyperText Markup Language
-*[W3C]: World Wide Web Consortium

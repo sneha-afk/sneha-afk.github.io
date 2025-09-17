@@ -6,8 +6,9 @@ import rehypeHighlight from "rehype-highlight";
 
 import PageLayout from "../components/PageLayout";
 import { loadOnePost, type Post } from "../utils/loadOnePost";
-
+import { markdownComponents } from "../components/markdown/MarkdownComponents";
 import "../styles/posts.scss";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -28,9 +29,17 @@ const BlogPost: React.FC = () => {
 
   return (
     <PageLayout title={post.title} enableMathJax>
+      <Breadcrumbs
+        items={[
+          { label: "~", path: "/" },
+          { label: "posts", path: "/posts" },
+          { label: post.title },
+        ]}
+      />
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight]}
+        components={markdownComponents}
       >
         {post.content}
       </ReactMarkdown>

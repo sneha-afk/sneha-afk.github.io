@@ -1,4 +1,4 @@
-import "../styles/_resume.scss";
+import "@styles/_resume.scss";
 
 interface ProjectLink {
   label: string;
@@ -15,7 +15,6 @@ interface ProjectItem {
   achievements: string[];
 }
 
-// Data
 const PROJECTS: ProjectItem[] = [
   {
     id: "smarthomeaccess",
@@ -67,7 +66,6 @@ const PROJECTS: ProjectItem[] = [
   },
 ];
 
-// Components
 interface ProjectCardProps {
   project: ProjectItem;
   showTitle?: boolean;

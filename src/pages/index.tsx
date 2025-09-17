@@ -1,8 +1,6 @@
-import HomePage from "./HomePage";
-import Error404Page from "./404";
-import ResumePage from "./ResumePage";
-import ProjectPage from "./ProjectsPage";
-import BlogIndex from "./BlogIndex";
-import BlogPost from "./BlogPost";
-
-export { HomePage, ResumePage, ProjectPage, Error404Page, BlogIndex, BlogPost };
+export { default as HomePage } from "./HomePage";
+export { default as ResumePage } from "./ResumePage";
+export { default as BlogPost } from "./BlogPost";
+export { default as BlogIndex } from "./BlogIndex";
+export { default as ProjectsPage } from "./ProjectsPage";
+export { default as Error404Page } from "./404";

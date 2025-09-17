@@ -1,0 +1,38 @@
+@use "variables" as *;
+
+.breadcrumbs {
+  position: sticky;
+  top: 10px;
+  right: 20px;
+  float: right;
+  margin-left: auto;
+  margin-bottom: $spacing-md;
+  z-index: 1000;
+  padding: $spacing-xs $spacing-sm;
+
+  font-family: $font-monospace;
+  font-size: $font-size-sm;
+  background-color: $background-secondary;
+  border-radius: $spacing-xs;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: $text-color;
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .breadcrumbs {
+    font-size: $font-size-xs;
+    float: none;
+  }
+}

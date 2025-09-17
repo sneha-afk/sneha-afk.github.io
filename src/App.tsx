@@ -5,8 +5,8 @@ import {
   Error404Page,
   BlogPost,
   BlogIndex,
-  ProjectPage,
-} from "./pages";
+  ProjectsPage,
+} from "@pages";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/resume" element={<ResumePage />} />
-        <Route path="/projects" element={<ProjectPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/posts" element={<BlogIndex />} />
         <Route path="/posts/:slug" element={<BlogPost />} />
         <Route path="*" element={<Error404Page />} />

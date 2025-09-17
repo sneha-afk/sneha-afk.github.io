@@ -6,7 +6,7 @@ import {
   type ReactNode,
   useMemo,
 } from "react";
-import { loadPosts, type PostMeta } from "../utils/loadPosts";
+import { loadPosts, type PostMeta } from "@utils/loadPosts";
 
 type PostsContextType = {
   posts: PostMeta[];

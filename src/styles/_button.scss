@@ -1,0 +1,23 @@
+@use "variables" as *;
+
+.button-link {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-md;
+  color: $primary-color;
+  padding: 0.4rem 0.6rem;
+  display: block;
+  text-decoration: none;
+  border-radius: $spacing-xs;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: $hover-text;
+    background-color: $hover-bg;
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid rgba($primary-color, 0.3);
+  }
+}

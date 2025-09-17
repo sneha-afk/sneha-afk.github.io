@@ -14,6 +14,12 @@ blockquote {
   p {
     margin: 0;
   }
+
+  &::before {
+    margin-right: 0.5em;
+    font-style: normal;
+    font-weight: bold;
+  }
 }
 
 .blockquote-tip {
@@ -21,9 +27,8 @@ blockquote {
   background-color: $color-green-light;
 
   &::before {
-    content: "💡";
-    margin-right: 0.5em;
-    font-style: normal;
+    content: "💡 TIP";
+    color: $color-green-dark;
   }
 }
 
@@ -32,9 +37,8 @@ blockquote {
   background-color: $color-yellow-light;
 
   &::before {
-    content: "⚠️";
-    margin-right: 0.5em;
-    font-style: normal;
+    content: "⚠️ WARNING";
+    color: $color-yellow-dark;
   }
 }
 
@@ -43,9 +47,8 @@ blockquote {
   background-color: $color-red-light;
 
   &::before {
-    content: "🛑";
-    margin-right: 0.5em;
-    font-style: normal;
+    content: "🛑 DANGER";
+    color: $color-red-dark;
   }
 }
 
@@ -54,9 +57,8 @@ blockquote {
   background-color: $color-blue-light;
 
   &::before {
-    content: "ℹ️";
-    margin-right: 0.5em;
-    font-style: normal;
+    content: "ℹ️ INFO";
+    color: $color-blue-dark;
   }
 }
 
@@ -65,8 +67,7 @@ blockquote {
   background-color: $color-cyan-light;
 
   &::before {
-    content: "📝"; // Note emoji
-    margin-right: 0.5em;
-    font-style: normal;
+    content: "📝 NOTE";
+    color: $color-cyan-dark;
   }
 }

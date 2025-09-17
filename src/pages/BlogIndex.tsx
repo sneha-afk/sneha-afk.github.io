@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 import { usePosts } from "../context/PostsContext";
 
-import "../styles/_post_index.scss";
+import "@styles/_post_index.scss";
 
 const BlogIndex: React.FC = () => {
   const { posts } = usePosts();
@@ -16,7 +16,7 @@ const BlogIndex: React.FC = () => {
     <PageLayout title="/posts">
       <ul>
         {posts.map((post) => (
-          <li key={post.slug}>
+          <li className="post-list" key={post.slug}>
             {post.date}: <Link to={`/posts/${post.slug}`}>{post.title}</Link>
           </li>
         ))}
