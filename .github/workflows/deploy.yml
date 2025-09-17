@@ -25,7 +25,6 @@ env:
   BUILD_DIR: './dist'
 
 jobs:
-  # Separate build job for better organization
   build:
     name: Build application
     runs-on: ubuntu-latest
@@ -75,6 +74,9 @@ jobs:
 
       - name: Build application
         run: pnpm build
+
+      - name: Add 404 fallback for SPA
+        run: cp ${{ env.BUILD_DIR }}/index.html ${{ env.BUILD_DIR }}/404.html
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
