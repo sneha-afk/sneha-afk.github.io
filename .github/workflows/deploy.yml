@@ -37,7 +37,7 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -54,10 +54,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
 
-    strategy:
-      matrix:
-        node-version: [${{ env.NODE_VERSION }}]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -67,10 +63,10 @@ jobs:
         with:
           version: ${{ env.PNPM_VERSION }}
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       # Cache node_modules separately for faster installs
@@ -118,7 +114,6 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Download build artifacts
@@ -130,7 +125,7 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload to GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ env.BUILD_DIR }}
