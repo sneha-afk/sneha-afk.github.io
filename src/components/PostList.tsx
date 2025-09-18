@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { usePosts } from "@context/PostsContext";
+import { usePosts } from "@context";
 import "@styles/_post_list.scss";
 
 import { LoadingSpinner } from "@components";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { duotoneSpace as baseTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -9,75 +9,85 @@ import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
 import lua from "react-syntax-highlighter/dist/esm/languages/prism/lua";
 import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
 
-SyntaxHighlighter.registerLanguage("typescript", ts);
-SyntaxHighlighter.registerLanguage("javascript", js);
-SyntaxHighlighter.registerLanguage("python", python);
-SyntaxHighlighter.registerLanguage("c", c);
-SyntaxHighlighter.registerLanguage("lua", lua);
-SyntaxHighlighter.registerLanguage("go", go);
+// Register languages
+[
+  ["typescript", ts],
+  ["javascript", js],
+  ["python", python],
+  ["c", c],
+  ["lua", lua],
+  ["go", go],
+].forEach(([name, lang]) => SyntaxHighlighter.registerLanguage(name, lang));
 
 const codeTheme = { ...baseTheme, 'code[class*="language-"]': {} };
 
-const CodeBlock: React.FC<any> = ({
-  inline,
-  className,
+interface CodeBlockProps extends React.HTMLAttributes<HTMLElement> {
+  inline?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({
+  inline = false,
+  className = "",
   children,
   ...props
 }) => {
-  const languageMatch = /language-(\w+)/.exec(className || "");
   const [copied, setCopied] = useState(false);
-  const codeString = String(children).replace(/\n$/, "");
+  const codeString = String(children ?? "").replace(/\n$/, "");
+  const languageMatch = /language-(\w+)/.exec(className || "");
+  const language = languageMatch?.[1];
 
-  const language = languageMatch ? languageMatch[1] : null;
-
-  if (!inline && language) {
-    if (language === "mermaid") {
-      return (
-        <div
-          className="mermaid"
-          dangerouslySetInnerHTML={{ __html: codeString }}
-        />
-      );
-    }
-
-    const handleCopy = async () => {
-      try {
-        await navigator.clipboard.writeText(codeString);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
-    };
-
+  // Inline code
+  if (inline || !language) {
     return (
-      <div className="code-block-wrapper">
-        <div
-          className="code-lang-label"
-          onClick={handleCopy}
-          style={{ cursor: "pointer" }}
-          title={copied ? "Copied!" : `Copy ${language} code`}
-        >
-          {copied ? "✔" : `${language}`} 📋
-        </div>
-        <SyntaxHighlighter
-          style={codeTheme}
-          language={language}
-          PreTag="div"
-          showLineNumbers
-          className="code-block"
-          {...props}
-        >
-          {codeString}
-        </SyntaxHighlighter>
-      </div>
+      <code className="inline-code" {...props}>
+        {children}
+      </code>
     );
   }
 
+  if (language === "mermaid") {
+    return (
+      <div
+        className="mermaid"
+        dangerouslySetInnerHTML={{ __html: codeString }}
+      />
+    );
+  }
+
+  // Regular syntax-highlighted block
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(codeString);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
   return (
-    <code className="inline-code" {...props}>
-      {children}
-    </code>
+    <div className="code-block-wrapper">
+      <div
+        className="code-lang-label"
+        onClick={handleCopy}
+        style={{ cursor: "pointer" }}
+        title={copied ? "Copied!" : `Copy ${language} code`}
+      >
+        {copied ? "✔" : `${language}`} 📋
+      </div>
+      <SyntaxHighlighter
+        style={codeTheme as any}
+        language={language}
+        PreTag="div"
+        showLineNumbers
+        className="code-block"
+        {...props}
+      >
+        {codeString}
+      </SyntaxHighlighter>
+    </div>
   );
 };
 

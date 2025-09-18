@@ -17,7 +17,7 @@ const useRetryProcessor = (
   processFn: () => boolean | void | Promise<boolean | void>,
   dependencies: React.DependencyList,
   delays: number[] = [100, 300, 1000, 2000],
-  stopOnSuccess = true,
+  stopOnSuccess = true
 ) => {
   useEffect(() => {
     let stopped = false;
@@ -42,7 +42,7 @@ const useRetryProcessor = (
     });
 
     return () => timeouts.forEach(clearTimeout);
-  }, dependencies);
+  }, [dependencies, processFn, delays, stopOnSuccess]);
 };
 
 /**
@@ -61,14 +61,14 @@ export const useContentProcessor = ({
   const mathJaxStatus = useScript(
     enableMathJax
       ? "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-      : null,
+      : null
   );
 
   const mermaidStatus = useScript(
     enableMermaid
       ? "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
       : null,
-    { type: "module" },
+    { type: "module" }
   );
 
   useEffect(() => {
