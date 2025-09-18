@@ -1,13 +1,4 @@
 #!/usr/bin/env python3
-"""
-posts_cli.py - Manage Markdown blog posts in public/posts
-
-Usage:
-    python posts_cli.py create --title "My Post" --date 2025-09-17 --tags blog,intro
-    python posts_cli.py delete --slug "my-post"
-    python posts_cli.py list
-    python posts_cli.py rename --slug "my-post" --title "New Title"
-"""
 
 import os
 import re
@@ -24,15 +15,123 @@ def slugify(text: str) -> str:
     text = re.sub(r"[^a-z0-9]+", "-", text)
     return text.strip("-")
 
+def parse_frontmatter(content: str):
+    """
+    Parse front matter from markdown content manually.
+    Returns (metadata_dict, content_without_frontmatter)
+    """
+    metadata = {}
+    content_lines = content.split('\n')
+
+    # Check if content starts with front matter
+    if not content_lines or content_lines[0].strip() != '---':
+        return metadata, content
+
+    # Find the end of front matter
+    end_index = None
+    for i, line in enumerate(content_lines[1:], 1):
+        if line.strip() == '---':
+            end_index = i
+            break
+
+    if end_index is None:
+        return metadata, content  # No closing --- found
+
+    # Parse front matter lines
+    for line in content_lines[1:end_index]:
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+
+        # Split key: value
+        if ':' in line:
+            key, value = line.split(':', 1)
+            key = key.strip()
+            value = value.strip()
+
+            # Handle different value types
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1]  # Remove quotes
+            elif value.startswith("'") and value.endswith("'"):
+                value = value[1:-1]  # Remove quotes
+            elif value.startswith('[') and value.endswith(']'):
+                # Parse array (like tags)
+                value = [item.strip().strip('"\'') for item in value[1:-1].split(',')]
+
+            metadata[key] = value
+
+    # Get content without front matter
+    content_without_frontmatter = '\n'.join(content_lines[end_index + 1:])
+    return metadata, content_without_frontmatter
+
+def read_post_file(filepath: str):
+    """Read and parse a post file"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        return parse_frontmatter(content)
+    except Exception as e:
+        print(f"Error reading {filepath}: {e}")
+        return {}, ""
+
+def serialize_frontmatter(metadata: dict) -> str:
+    """Convert metadata dictionary to front matter string"""
+    front_matter_lines = ["---"]
+    for key, value in metadata.items():
+        if isinstance(value, list):
+            value_str = ", ".join(f'"{v}"' for v in value)
+            front_matter_lines.append(f"{key}: [{value_str}]")
+        else:
+            front_matter_lines.append(f'{key}: "{value}"')
+    front_matter_lines.append("---")
+    return "\n".join(front_matter_lines)
+
+def write_post_file(filepath: str, metadata: dict, content: str):
+    """Write post with front matter and content to file"""
+    front_matter = serialize_frontmatter(metadata)
+    new_content = front_matter + "\n" + content
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
 def generate_index():
-    """Regenerate index.json based on current markdown files"""
-    md_files = [f.replace(".md", "") for f in os.listdir(POSTS_DIR) if f.endswith(".md")]
-    os.makedirs(POSTS_DIR, exist_ok=True)
+    """Regenerate index.json with full metadata for all posts"""
+    if not os.path.exists(POSTS_DIR):
+        os.makedirs(POSTS_DIR)
+        with open(INDEX_FILE, "w", encoding="utf-8") as f:
+            json.dump([], f, indent=2)
+        return []
+
+    md_files = [f for f in os.listdir(POSTS_DIR) if f.endswith(".md")]
+    posts_meta = []
+
+    for filename in md_files:
+        slug = filename.replace(".md", "")
+        filepath = os.path.join(POSTS_DIR, filename)
+        metadata, _ = read_post_file(filepath)
+
+        post_meta = {
+            "slug": slug,
+            "title": metadata.get("title", "Untitled").strip(),
+            "date": metadata.get("date", "").strip(),
+            "tags": metadata.get("tags", [])
+        }
+
+        if isinstance(post_meta["tags"], str):
+            post_meta["tags"] = [tag.strip() for tag in post_meta["tags"].split(",")]
+
+        if not post_meta["date"]:
+            print(f"Warning: Post '{slug}' is missing a date")
+
+        posts_meta.append(post_meta)
+
     with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(md_files, f, indent=2)
-    return md_files
+        json.dump(posts_meta, f, indent=2, ensure_ascii=False)
+
+    print(f"Index generated with {len(posts_meta)} posts")
+    return posts_meta
 
 def create_post(title: str, post_date: str = None, tags: list[str] = None):
+    """Create a new blog post"""
     post_date = post_date or date.today().isoformat()
     tags = tags or []
 
@@ -44,24 +143,22 @@ def create_post(title: str, post_date: str = None, tags: list[str] = None):
         print(f"Post '{filename}' already exists.")
         return
 
-    front_matter = [
-        "---",
-        f'title: "{title}"',
-        f'date: "{post_date}"'
-    ]
-    if tags:
-        front_matter.append(f"tags: [{', '.join(f'\"{t}\"' for t in tags)}]")
-    front_matter.append("---\n")
-    front_matter.append("# Start writing your post here\n")
+    metadata = {
+        "title": title,
+        "date": post_date,
+        "tags": tags
+    }
+
+    content = "# Start writing your post here\n\nYour content goes here..."
 
     os.makedirs(POSTS_DIR, exist_ok=True)
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write("\n".join(front_matter))
+    write_post_file(filepath, metadata, content)
 
     print(f"Post created at {filepath}")
     generate_index()
 
 def delete_post(slug: str = None):
+    """Delete a blog post"""
     posts = generate_index()
     if not posts:
         print("No posts found to delete.")
@@ -70,7 +167,7 @@ def delete_post(slug: str = None):
     if not slug:
         print("Available posts:")
         for p in posts:
-            print(f" - {p}")
+            print(f" - {p['slug']} ({p['title']})")
         slug = input("Enter the slug of the post to delete: ").strip()
         if not slug:
             print("No slug provided. Aborting.")
@@ -83,11 +180,17 @@ def delete_post(slug: str = None):
         print(f"Post '{filename}' does not exist.")
         return
 
+    confirm = input(f"Are you sure you want to delete '{filename}'? (y/N): ")
+    if confirm.lower() != 'y':
+        print("Deletion cancelled.")
+        return
+
     os.remove(filepath)
     print(f"Post '{filename}' deleted.")
     generate_index()
 
 def rename_post(slug: str, new_title: str):
+    """Rename a blog post and update its title"""
     old_file = os.path.join(POSTS_DIR, f"{slug}.md")
     if not os.path.exists(old_file):
         print(f"Post '{slug}.md' does not exist.")
@@ -99,32 +202,54 @@ def rename_post(slug: str, new_title: str):
         print(f"A post with slug '{new_slug}' already exists.")
         return
 
-    # Read old content
-    with open(old_file, "r", encoding="utf-8") as f:
-        content = f.read()
+    metadata, content = read_post_file(old_file)
+    metadata["title"] = new_title
 
-    # Update title in front-matter
-    content = re.sub(r'title: ".*"', f'title: "{new_title}"', content, count=1)
-
-    # Write to new file and delete old
-    with open(new_file, "w", encoding="utf-8") as f:
-        f.write(content)
+    write_post_file(new_file, metadata, content)
     os.remove(old_file)
 
-    print(f"Post renamed to '{new_slug}.md'")
+    print(f"Post renamed from '{slug}' to '{new_slug}'")
     generate_index()
 
-def list_posts():
+def edit_post(slug: str, field: str, value: str):
+    """Edit a specific field of a post"""
+    filepath = os.path.join(POSTS_DIR, f"{slug}.md")
+    if not os.path.exists(filepath):
+        print(f"Post '{slug}.md' does not exist.")
+        return
+
+    metadata, content = read_post_file(filepath)
+
+    if field == "tags":
+        metadata[field] = [t.strip() for t in value.split(",")]
+    else:
+        metadata[field] = value
+
+    write_post_file(filepath, metadata, content)
+    print(f"Updated {field} for post '{slug}'")
+    generate_index()
+
+def list_posts(verbose: bool = False):
+    """List all blog posts"""
     posts = generate_index()
     if posts:
-        print("Posts:")
-        for p in posts:
-            print(f" - {p}")
+        print(f"Found {len(posts)} posts:")
+        for i, post in enumerate(posts, 1):
+            if verbose:
+                tags = ", ".join(post.get("tags", []))
+                print(f"  {i}. {post['slug']}")
+                print(f"     Title: {post['title']}")
+                print(f"     Date: {post['date']}")
+                if tags:
+                    print(f"     Tags: {tags}")
+                print()
+            else:
+                print(f"  {i}. {post['slug']} - {post['title']} ({post['date']})")
     else:
         print("No posts found.")
 
 def main():
-    parser = argparse.ArgumentParser(description="Manage Markdown blog posts")
+    parser = argparse.ArgumentParser(description="sneha's doohickey Markdown post tool")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     # Create command
@@ -142,8 +267,18 @@ def main():
     rename_parser.add_argument("--slug", required=True, help="Slug of the post to rename")
     rename_parser.add_argument("--title", required=True, help="New title for the post")
 
+    # Edit command
+    edit_parser = subparsers.add_parser("edit", help="Edit a post's metadata")
+    edit_parser.add_argument("--slug", required=True, help="Slug of the post to edit")
+    edit_parser.add_argument("--field", required=True, choices=["title", "date", "tags"], help="Field to edit")
+    edit_parser.add_argument("--value", required=True, help="New value for the field")
+
     # List command
-    subparsers.add_parser("list", help="List all posts")
+    list_parser = subparsers.add_parser("list", help="List all posts")
+    list_parser.add_argument("--verbose", action="store_true", help="Show detailed information")
+
+    # Generate index command
+    subparsers.add_parser("generate-index", help="Regenerate the index.json file")
 
     args = parser.parse_args()
 
@@ -154,8 +289,12 @@ def main():
         delete_post(args.slug)
     elif args.command == "rename":
         rename_post(args.slug, args.title)
+    elif args.command == "edit":
+        edit_post(args.slug, args.field, args.value)
     elif args.command == "list":
-        list_posts()
+        list_posts(args.verbose)
+    elif args.command == "generate-index":
+        generate_index()
 
 if __name__ == "__main__":
     main()

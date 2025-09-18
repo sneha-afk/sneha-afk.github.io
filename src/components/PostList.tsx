@@ -19,7 +19,9 @@ const PostList: React.FC<PostListProps> = ({ limit }) => {
   const { posts, loading } = usePosts();
 
   if (loading)
-    return <LoadingSpinner text="Loading content..." fullscreen={false} />;
+    return (
+      <LoadingSpinner text="Loading list of posts..." fullscreen={false} />
+    );
 
   const displayPosts = posts.slice(0, limit ?? undefined);
 

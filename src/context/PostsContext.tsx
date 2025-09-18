@@ -4,7 +4,6 @@ import {
   useEffect,
   useState,
   type ReactNode,
-  useMemo,
 } from "react";
 import { loadPosts, type PostMeta } from "@utils/loadPosts";
 
@@ -29,7 +28,7 @@ export const PostsProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  const value = useMemo(() => ({ posts, loading }), [posts, loading]);
+  const value = { posts, loading };
 
   return (
     <PostsContext.Provider value={value}>{children}</PostsContext.Provider>
