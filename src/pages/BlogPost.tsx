@@ -2,7 +2,12 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import { loadOnePost, type Post } from "@utils/loadOnePost";
-import { PageLayout, Breadcrumbs, LoadingSpinner } from "@components";
+import {
+  PageLayout,
+  Breadcrumbs,
+  LoadingSpinner,
+  ViewSourceButton,
+} from "@components";
 import { NotFoundPage } from "@pages";
 
 import "@styles/posts.scss";
@@ -40,11 +45,12 @@ const BlogPost: React.FC = () => {
         <Breadcrumbs
           items={[
             { label: "~", path: "/" },
-            { label: "posts", path: "/posts" },
+            { label: "blog", path: "/blog" },
             { label: post.title },
           ]}
         />
         <MarkdownRenderer content={post.content} />
+        <ViewSourceButton slug={slug ?? ""} />
       </Suspense>
     </PageLayout>
   );

@@ -1,4 +1,5 @@
 import { PageLayout, Section, PostList } from "@components";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -39,8 +40,11 @@ const HomePage = () => {
         </p>
 
         <p>
-          See my resume at <a href="/resume">/resume</a> for more details on my
-          experience.
+          See my resume at{" "}
+          <Link key={"/resume"} to={"/resume"}>
+            {"/resume"}
+          </Link>{" "}
+          for more details on my experience.
         </p>
 
         <p>Thank you for visiting, have a good one :)</p>

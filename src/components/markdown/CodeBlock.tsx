@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { duotoneSpace as baseTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -26,13 +26,30 @@ const CodeBlock: React.FC<any> = ({
   ...props
 }) => {
   const languageMatch = /language-(\w+)/.exec(className || "");
+  const [copied, setCopied] = useState(false);
 
   if (!inline && languageMatch) {
     const language = languageMatch[1];
+    const handleCopy = async () => {
+      try {
+        await navigator.clipboard.writeText(String(children));
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500); // Reset after 1.5s
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    };
 
     return (
       <div className="code-block-wrapper">
-        <div className="code-lang-label">{language}</div>
+        <div
+          className="code-lang-label"
+          onClick={handleCopy}
+          style={{ cursor: "pointer" }}
+          title={copied ? "Copied!" : `Copy ${language} code`}
+        >
+          {copied ? "✔" : `${language}`} 📋
+        </div>
         <SyntaxHighlighter
           style={codeTheme}
           language={language}

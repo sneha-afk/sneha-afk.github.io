@@ -9,9 +9,9 @@ Kitchen sink of CSS elements since I tried to make it from scratch.
 
 ## Typography
 
-Regular font: [Geist by Vercel](https://vercel.com/font)
+Regular font
 
-`Monospace font: Geist Mono`
+`Monospace font`
 
 ## Headers
 
