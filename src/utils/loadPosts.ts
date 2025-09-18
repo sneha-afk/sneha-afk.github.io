@@ -8,34 +8,36 @@ export type PostMeta = {
 };
 
 export async function loadPosts(): Promise<PostMeta[]> {
-  // Grab all markdown files in /src/posts
-  // import.meta.glob returns an object where each key is the file path
-  // and the value is a function that imports the module (lazy by default)
-  const files = import.meta.glob("/posts/*.md", {
-    import: "default", // Only get the default export of the file
-    query: "?raw", // Load the file content as a raw string
-  });
+  try {
+    // 1️⃣ Fetch the index JSON
+    const indexRes = await fetch(`${import.meta.env.BASE_URL}posts/index.json`);
+    if (!indexRes.ok) throw new Error("Post index not found");
+    const slugs: string[] = await indexRes.json();
 
-  // Map over all file entries and process them
-  const posts: PostMeta[] = await Promise.all(
-    Object.entries(files).map(async ([path, loader]) => {
-      // 'loader' is a function returning a promise for the file content
-      const raw = await (loader as () => Promise<string>)();
+    // 2️⃣ Fetch each markdown file and parse front-matter
+    const posts = await Promise.all(
+      slugs.map(async (slug) => {
+        const res = await fetch(`${import.meta.env.BASE_URL}posts/${slug}.md`);
+        if (!res.ok) throw new Error(`Post "${slug}" not found`);
+        const raw = await res.text();
+        const { attributes } = fm<{ title?: string; date?: string }>(raw);
 
-      // Parse front-matter metadata from the raw markdown
-      const { attributes } = fm<{ title?: string; date?: string }>(raw);
+        return {
+          slug,
+          title: attributes.title?.trim() || "Untitled",
+          date: attributes.date?.trim() || "",
+        };
+      }),
+    );
 
-      // Generate a slug from the file name
-      const slug = path.split("/").pop()!.replace(/\.md$/, "");
+    // 3️⃣ Sort by date (newest first)
+    posts.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    );
 
-      return {
-        slug,
-        title: attributes.title ?? "Untitled",
-        date: attributes.date ?? "",
-      };
-    }),
-  );
-
-  posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  return posts;
+    return posts;
+  } catch (err) {
+    console.error("Failed to load posts:", err);
+    return [];
+  }
 }

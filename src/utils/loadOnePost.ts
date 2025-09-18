@@ -21,7 +21,8 @@ export async function loadOnePost(slug: string): Promise<Post | null> {
 
   try {
     // Fetch the markdown file from public/posts at runtime
-    const res = await fetch(`/posts/${slug}.md`);
+    // const res = await fetch(`/posts/${slug}.md`);
+    const res = await fetch(`${import.meta.env.BASE_URL}posts/${slug}.md`);
     if (!res.ok) return null;
 
     const raw = await res.text();
