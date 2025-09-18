@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { duotoneSpace as baseTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -9,7 +9,6 @@ import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
 import lua from "react-syntax-highlighter/dist/esm/languages/prism/lua";
 import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
 
-// Register languages
 SyntaxHighlighter.registerLanguage("typescript", ts);
 SyntaxHighlighter.registerLanguage("javascript", js);
 SyntaxHighlighter.registerLanguage("python", python);
@@ -27,14 +26,25 @@ const CodeBlock: React.FC<any> = ({
 }) => {
   const languageMatch = /language-(\w+)/.exec(className || "");
   const [copied, setCopied] = useState(false);
+  const codeString = String(children).replace(/\n$/, "");
 
-  if (!inline && languageMatch) {
-    const language = languageMatch[1];
+  const language = languageMatch ? languageMatch[1] : null;
+
+  if (!inline && language) {
+    if (language === "mermaid") {
+      return (
+        <div
+          className="mermaid"
+          dangerouslySetInnerHTML={{ __html: codeString }}
+        />
+      );
+    }
+
     const handleCopy = async () => {
       try {
-        await navigator.clipboard.writeText(String(children));
+        await navigator.clipboard.writeText(codeString);
         setCopied(true);
-        setTimeout(() => setCopied(false), 1500); // Reset after 1.5s
+        setTimeout(() => setCopied(false), 1500);
       } catch (err) {
         console.error("Failed to copy:", err);
       }
@@ -58,7 +68,7 @@ const CodeBlock: React.FC<any> = ({
           className="code-block"
           {...props}
         >
-          {String(children).replace(/\n$/, "")}
+          {codeString}
         </SyntaxHighlighter>
       </div>
     );

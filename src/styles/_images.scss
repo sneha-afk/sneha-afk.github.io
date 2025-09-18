@@ -50,6 +50,11 @@ img {
   }
 }
 
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
 @include mixins.respond-to(tablet) {
   .img-container {
     grid-template-columns: 1fr; // Stack vertically if not enough space

@@ -8,6 +8,7 @@ interface PageLayoutProps {
   showBackLink?: boolean;
   showPageTitle?: boolean;
   enableMathJax?: boolean;
+  enableMermaid?: boolean;
   Header?: React.ComponentType;
   Footer?: React.ComponentType;
 }
@@ -17,12 +18,14 @@ const PageLayout = ({
   showBackLink = true,
   showPageTitle = true,
   enableMathJax = false,
+  enableMermaid = false,
   Header = DefaultHeader,
   Footer = DefaultFooter,
   children,
 }: React.PropsWithChildren<PageLayoutProps>) => {
   useContentProcessor({
     enableMathJax,
+    enableMermaid,
     dependencies: [children],
   });
 

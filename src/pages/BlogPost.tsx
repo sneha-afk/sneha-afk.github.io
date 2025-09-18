@@ -38,7 +38,7 @@ const BlogPost: React.FC = () => {
   if (!post) return <NotFoundPage />;
 
   return (
-    <PageLayout title={post.title} enableMathJax>
+    <PageLayout title={post.title} enableMathJax enableMermaid>
       <Suspense
         fallback={<LoadingSpinner text="Almost there..." fullscreen={false} />}
       >

@@ -154,3 +154,13 @@ Here is a footnote reference[^1].
 - [x] Task 1
 - [ ] Task 2
 - [ ] Task 3
+
+
+## Mermaid
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
