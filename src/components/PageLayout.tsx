@@ -56,7 +56,7 @@ const DefaultHeader = React.memo(() => {
     { name: "/home", url: "/" },
     { name: "/resume", url: "/resume" },
     { name: "/projects", url: "/projects" },
-    { name: "/posts", url: "/posts" },
+    { name: "/blog", url: "/blog" },
   ];
 
   return (
