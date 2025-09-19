@@ -20,8 +20,10 @@
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.9.1",
     "react-syntax-highlighter": "^15.6.6",
+    "rehype-mathjax": "^7.1.0",
     "rehype-mermaid": "^3.0.0",
     "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {

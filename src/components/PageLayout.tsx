@@ -1,13 +1,10 @@
 import React, { useCallback } from "react";
 import NavigationBar from "@components/NavigationBar";
-import { useContentProcessor } from "@hooks";
-// import "highlight.js/styles/base16/horizon-dark.css";
 
 interface PageLayoutProps {
   title?: string;
   showBackLink?: boolean;
   showPageTitle?: boolean;
-  enableMathJax?: boolean;
   Header?: React.ComponentType;
   Footer?: React.ComponentType;
 }
@@ -16,16 +13,10 @@ const PageLayout = ({
   title,
   showBackLink = true,
   showPageTitle = true,
-  enableMathJax = false,
   Header = DefaultHeader,
   Footer = DefaultFooter,
   children,
 }: React.PropsWithChildren<PageLayoutProps>) => {
-  useContentProcessor({
-    enableMathJax,
-    dependencies: [children],
-  });
-
   const handleBackClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();

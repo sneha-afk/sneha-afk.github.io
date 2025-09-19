@@ -1,62 +1,100 @@
 import React, { useEffect, useState, Suspense } from "react";
-import remarkGfm from "remark-gfm";
 import { LoadingSpinner } from "@components";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface MarkdownRendererProps {
   content: string;
+  enableMathJax?: boolean;
 }
 
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+const mathConfig = {
+  tex: {
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"],
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
+  },
+  svg: { fontCache: "global" },
+};
+
+const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
+  content,
+  enableMathJax = false,
+}) => {
   const [mdElement, setMdElement] = useState<React.ReactElement | null>(null);
 
   useEffect(() => {
-    let mounted = true;
+    if (!enableMathJax) return;
 
+    if (!(window as any).MathJax) {
+      (window as any).MathJax = mathConfig;
+
+      if (!document.getElementById("mathjax-script")) {
+        const script = document.createElement("script");
+        script.id = "mathjax-script";
+        script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
+        script.async = true;
+        document.head.appendChild(script);
+      }
+    }
+  }, [enableMathJax]);
+
+  useEffect(() => {
     async function renderMarkdown() {
-      const { MarkdownAsync } = await import("react-markdown");
+      const { default: ReactMarkdown } = await import("react-markdown");
       const Blockquote = (await import("./Blockquotes")).default;
       const CodeBlock = (await import("./CodeBlock")).default;
 
+      const remarkPlugins: any[] = [(await import("remark-gfm")).default];
       const rehypePlugins: any[] = [];
+
       if (content.includes("```mermaid")) {
-        const rehypeMermaid = (await import("rehype-mermaid")).default;
-        rehypePlugins.push(rehypeMermaid);
+        rehypePlugins.push((await import("rehype-mermaid")).default);
       }
 
-      const markdownComponents = {
-        blockquote: ({ children }: any) => (
-          <Suspense fallback={<span>Loading blockquote…</span>}>
-            <Blockquote>{children}</Blockquote>
-          </Suspense>
-        ),
-        code: (props: any) => (
-          <Suspense fallback={<span>Loading code…</span>}>
-            <CodeBlock {...props} />
-          </Suspense>
-        ),
-      };
+      if (enableMathJax) {
+        remarkPlugins.push((await import("remark-math")).default);
+        const rehypeMathjax = (await import("rehype-mathjax/browser")).default;
+        rehypePlugins.push([rehypeMathjax, mathConfig]);
+      }
 
-      const element = await MarkdownAsync({
-        remarkPlugins: [remarkGfm],
-        rehypePlugins,
-        components: markdownComponents,
-        children: content,
-      });
+      const element = (
+        <ReactMarkdown
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
+          components={{
+            blockquote: ({ children }) => (
+              <Suspense fallback={<span>Loading...</span>}>
+                <Blockquote>{children}</Blockquote>
+              </Suspense>
+            ),
+            code: (props) => (
+              <Suspense fallback={<span>Loading...</span>}>
+                <CodeBlock {...props} />
+              </Suspense>
+            ),
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      );
 
-      if (mounted) setMdElement(element);
+      setMdElement(element);
+
+      if (enableMathJax && (window as any).MathJax?.typesetPromise) {
+        (window as any).MathJax.typesetPromise();
+      }
     }
 
     renderMarkdown();
+  }, [content, enableMathJax]);
 
-    return () => {
-      mounted = false;
-    };
-  }, [content]);
-
-  if (!mdElement)
-    return <LoadingSpinner text="Rendering..." fullscreen={false} />;
-
-  return mdElement;
+  return mdElement || <LoadingSpinner text="Rendering..." fullscreen={false} />;
 };
 
 export default MarkdownRenderer;

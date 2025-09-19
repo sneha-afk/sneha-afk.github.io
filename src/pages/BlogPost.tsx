@@ -38,7 +38,7 @@ const BlogPost: React.FC = () => {
   if (!post) return <NotFoundPage />;
 
   return (
-    <PageLayout title={post.title} enableMathJax>
+    <PageLayout title={post.title}>
       <Suspense
         fallback={<LoadingSpinner text="Almost there..." fullscreen={false} />}
       >
@@ -49,7 +49,7 @@ const BlogPost: React.FC = () => {
             { label: post.title },
           ]}
         />
-        <MarkdownRenderer content={post.content} />
+        <MarkdownRenderer content={post.content} enableMathJax />
         <ViewSourceButton slug={slug ?? ""} />
       </Suspense>
     </PageLayout>

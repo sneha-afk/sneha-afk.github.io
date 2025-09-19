@@ -35,7 +35,7 @@ export default [
       ...react.configs.recommended.rules,
 
       "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": ["warn"],
+      "@typescript-eslint/no-unused-vars": "off",
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "react/react-in-jsx-scope": "off",
       "react/no-unescaped-entities": "off",

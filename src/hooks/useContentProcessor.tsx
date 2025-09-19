@@ -1,6 +1,9 @@
 import { useScript } from "@utils";
 import React, { useEffect } from "react";
 
+// No longer in use, replaced with remark plugins
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 interface UseContentProcessorOptions {
   enableMathJax?: boolean;
   dependencies?: React.DependencyList;
@@ -75,6 +78,7 @@ export const useContentProcessor = ({
           ["$$", "$$"],
           ["\\[", "\\]"],
         ],
+
         tags: "none",
       },
       options: {
