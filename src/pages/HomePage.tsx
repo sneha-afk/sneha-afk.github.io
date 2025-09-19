@@ -1,4 +1,4 @@
-import { PageLayout, Section, PostList } from "@components";
+import { PageLayout, PostList, Section } from "@components";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {

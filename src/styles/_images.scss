@@ -18,7 +18,9 @@ img {
   }
 }
 
-.img-center {
+.img-center,
+.mermaid,
+svg {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -48,11 +50,6 @@ img {
     font-size: 0.75rem;
     color: $gray-500;
   }
-}
-
-.mermaid {
-  display: flex;
-  justify-content: center;
 }
 
 @include mixins.respond-to(tablet) {

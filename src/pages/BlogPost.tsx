@@ -12,9 +12,7 @@ import { NotFoundPage } from "@pages";
 
 import "@styles/posts.scss";
 
-const MarkdownRenderer = React.lazy(
-  () => import("@components/markdown/MarkdownRenderer"),
-);
+import MarkdownRenderer from "@components/markdown/MarkdownRenderer";
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -38,7 +36,7 @@ const BlogPost: React.FC = () => {
   if (!post) return <NotFoundPage />;
 
   return (
-    <PageLayout title={post.title} enableMathJax enableMermaid>
+    <PageLayout title={post.title} enableMathJax>
       <Suspense
         fallback={<LoadingSpinner text="Almost there..." fullscreen={false} />}
       >

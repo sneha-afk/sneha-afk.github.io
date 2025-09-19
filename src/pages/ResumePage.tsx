@@ -1,6 +1,5 @@
-import PageLayout from "../components/PageLayout";
-import ProjectsSection from "../components/ProjectsSection";
-import "../styles/_resume.scss";
+import { PageLayout, ProjectsSection } from "@components";
+import "@styles/_resume.scss";
 
 interface ContactLink {
   label: string;

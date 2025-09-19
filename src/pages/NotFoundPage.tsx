@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageLayout from "../components/PageLayout";
+import { PageLayout } from "@components";
 
 function NotFoundPage() {
   const [emoji, setEmoji] = useState("🛸");

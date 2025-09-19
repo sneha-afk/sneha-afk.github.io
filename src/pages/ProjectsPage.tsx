@@ -1,5 +1,4 @@
-import PageLayout from "../components/PageLayout";
-import ProjectsSection from "../components/ProjectsSection";
+import { PageLayout, ProjectsSection } from "@components";
 
 function ProjectPage() {
   return (

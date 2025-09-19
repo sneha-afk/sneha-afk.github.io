@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import os
-import re
-import json
 import argparse
 from datetime import date
+import json
+import os
+import re
 
 POSTS_DIR = "public/posts"
 INDEX_FILE = os.path.join(POSTS_DIR, "index.json")

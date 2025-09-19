@@ -1,9 +1,8 @@
-import { useEffect } from "react";
 import { useScript } from "@utils";
+import { useEffect } from "react";
 
 interface UseContentProcessorOptions {
   enableMathJax?: boolean;
-  enableMermaid?: boolean;
   dependencies?: React.DependencyList;
 }
 
@@ -17,7 +16,7 @@ const useRetryProcessor = (
   processFn: () => boolean | void | Promise<boolean | void>,
   dependencies: React.DependencyList,
   delays: number[] = [100, 300, 1000, 2000],
-  stopOnSuccess = true
+  stopOnSuccess = true,
 ) => {
   useEffect(() => {
     let stopped = false;
@@ -55,20 +54,12 @@ const useRetryProcessor = (
  */
 export const useContentProcessor = ({
   enableMathJax = false,
-  enableMermaid = false,
   dependencies = [],
 }: UseContentProcessorOptions) => {
   const mathJaxStatus = useScript(
     enableMathJax
       ? "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-      : null
-  );
-
-  const mermaidStatus = useScript(
-    enableMermaid
-      ? "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs"
       : null,
-    { type: "module" }
   );
 
   useEffect(() => {
@@ -116,30 +107,9 @@ export const useContentProcessor = ({
     return false;
   };
 
-  const processMermaid = async () => {
-    if (!enableMermaid) return true;
-    const mermaid = (window as any).mermaid;
-
-    if (mermaidStatus === "ready" && mermaid) {
-      try {
-        mermaid.initialize({ startOnLoad: true });
-        return true;
-      } catch (err) {
-        console.warn("Mermaid processing error:", err);
-      }
-    }
-    return false;
-  };
-
   useRetryProcessor(processMathJax, [
     enableMathJax,
     mathJaxStatus,
-    ...dependencies,
-  ]);
-
-  useRetryProcessor(processMermaid, [
-    enableMermaid,
-    mermaidStatus,
     ...dependencies,
   ]);
 };

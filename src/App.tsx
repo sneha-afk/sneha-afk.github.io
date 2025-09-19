@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
-  HomePage,
-  ResumePage,
-  NotFoundPage,
-  BlogPost,
   BlogIndex,
+  BlogPost,
+  HomePage,
+  NotFoundPage,
   ProjectsPage,
+  ResumePage,
 } from "@pages";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 function App() {
   return (
