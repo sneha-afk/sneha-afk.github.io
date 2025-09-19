@@ -2,7 +2,7 @@
   "name": "sneha-afk-website",
   "homepage": "https://sneha-afk.github.io",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",

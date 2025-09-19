@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 600, // in kB
     rollupOptions: {
-      external: ["katex", "cytoscape"],
+      external: ["cytoscape"],
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
