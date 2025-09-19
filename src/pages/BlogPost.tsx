@@ -12,7 +12,9 @@ import { NotFoundPage } from "@pages";
 
 import "@styles/posts.scss";
 
-import MarkdownRenderer from "@components/markdown/MarkdownRenderer";
+const MarkdownRenderer = React.lazy(
+  () => import("@components/markdown/MarkdownRenderer"),
+);
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();

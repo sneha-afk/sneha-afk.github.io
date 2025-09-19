@@ -1,15 +1,16 @@
 {
   "name": "sneha-afk-website",
-  "homepage": "sneha-afk.github.io",
+  "homepage": "https://sneha-afk.github.io",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build-preview": "pnpm build && pnpm preview"
+    "build-preview": "pnpm build && pnpm preview",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "front-matter": "^4.0.2",
@@ -33,6 +34,7 @@
     "@typescript-eslint/parser": "^8.44.0",
     "@vitejs/plugin-react-swc": "^4.0.0",
     "eslint": "^9.33.0",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "eslint-plugin-unused-imports": "^4.2.0",

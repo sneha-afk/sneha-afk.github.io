@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import { PostsContext } from "./PostsContext";
+import { PostsContext, type PostsContextType } from "./PostsContext";
 
-export const usePosts = () => useContext(PostsContext);
+export const usePosts = (): PostsContextType => useContext(PostsContext);

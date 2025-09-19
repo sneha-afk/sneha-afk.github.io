@@ -7,5 +7,3 @@ export { default as PostList } from "./PostList";
 export { default as ProjectsSection } from "./ProjectsSection";
 export { default as Section } from "./Section";
 export { default as ViewSourceButton } from "./ViewSourceButton";
-
-export * as Markdown from "./markdown/MarkdownComponents";

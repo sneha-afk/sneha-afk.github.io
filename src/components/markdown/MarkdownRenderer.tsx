@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { MarkdownAsync } from "react-markdown";
+import React, { useEffect, useState, Suspense } from "react";
 import remarkGfm from "remark-gfm";
-import rehypeMermaid from "rehype-mermaid";
-import { markdownComponents } from "./MarkdownComponents";
-
 import { LoadingSpinner } from "@components";
 
 interface MarkdownRendererProps {
@@ -14,18 +10,47 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   const [mdElement, setMdElement] = useState<React.ReactElement | null>(null);
 
   useEffect(() => {
+    let mounted = true;
+
     async function renderMarkdown() {
+      const { MarkdownAsync } = await import("react-markdown");
+      const Blockquote = (await import("./Blockquotes")).default;
+      const CodeBlock = (await import("./CodeBlock")).default;
+
+      const rehypePlugins: any[] = [];
+      if (content.includes("```mermaid")) {
+        const rehypeMermaid = (await import("rehype-mermaid")).default;
+        rehypePlugins.push(rehypeMermaid);
+      }
+
+      const markdownComponents = {
+        blockquote: ({ children }: any) => (
+          <Suspense fallback={<span>Loading blockquote…</span>}>
+            <Blockquote>{children}</Blockquote>
+          </Suspense>
+        ),
+        code: (props: any) => (
+          <Suspense fallback={<span>Loading code…</span>}>
+            <CodeBlock {...props} />
+          </Suspense>
+        ),
+      };
+
       const element = await MarkdownAsync({
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeMermaid],
+        rehypePlugins,
         components: markdownComponents,
         children: content,
       });
 
-      setMdElement(element);
+      if (mounted) setMdElement(element);
     }
 
     renderMarkdown();
+
+    return () => {
+      mounted = false;
+    };
   }, [content]);
 
   if (!mdElement)
