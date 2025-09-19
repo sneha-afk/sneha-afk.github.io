@@ -1,7 +1,6 @@
 import { useScript } from "@utils";
 import React, { useEffect } from "react";
 
-// No longer in use, replaced with remark plugins
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface UseContentProcessorOptions {

@@ -3,7 +3,7 @@ name: Build and deploy to GH Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ['main']
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,13 +16,13 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
-  PNPM_VERSION: '10'
-  BUILD_DIR: './dist'
+  NODE_VERSION: "20"
+  PNPM_VERSION: "10"
+  BUILD_DIR: "./dist"
 
 jobs:
   lint:
@@ -69,26 +69,19 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      # Cache node_modules separately for faster installs
-      - name: Cache node_modules
+      - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
 
-      # Cache build outputs for faster rebuilds
-      - name: Cache build outputs
+      - name: Cache Vite cache
         uses: actions/cache@v4
         with:
           path: |
-            ${{ env.BUILD_DIR }}
             .vite
             node_modules/.vite
-          key: ${{ runner.os }}-build-${{ hashFiles('src/**/*', 'public/**/*', 'package.json', 'vite.config.*', 'tsconfig.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
+          key: ${{ runner.os }}-vite-cache-${{ hashFiles('package.json', 'vite.config.*') }}
 
       - name: Install dependencies
         run: pnpm install

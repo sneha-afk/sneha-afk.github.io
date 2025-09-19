@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { LoadingSpinner } from "@components";
-import { useScript } from "@utils";
+import { useContentProcessor } from "@hooks";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -28,20 +28,6 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   enableMathJax = false,
 }) => {
   const [mdElement, setMdElement] = useState<React.ReactElement | null>(null);
-
-  useScript(
-    enableMathJax
-      ? "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-      : null,
-    { async: true, defer: true },
-  );
-
-  useEffect(() => {
-    if (!enableMathJax) return;
-    if (!(window as any).MathJax) {
-      (window as any).MathJax = mathConfig;
-    }
-  }, [enableMathJax]);
 
   useEffect(() => {
     async function renderMarkdown() {
@@ -81,14 +67,12 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       });
 
       setMdElement(element);
-
-      if (enableMathJax && (window as any).MathJax?.typesetPromise) {
-        (window as any).MathJax.typesetPromise();
-      }
     }
 
     renderMarkdown();
   }, [content, enableMathJax]);
+
+  useContentProcessor({ enableMathJax });
 
   return mdElement || <LoadingSpinner text="Rendering..." fullscreen={false} />;
 };
