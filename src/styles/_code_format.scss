@@ -27,20 +27,23 @@ code {
   margin: $spacing-xs 0;
 }
 
-.code-lang-label {
-  position: absolute;
-  right: 0.5rem;
-  font-size: $font-size-xs;
-  font-family: $font-monospace;
-  user-select: none;
-  color: $gray-500;
-  z-index: 1;
-}
-
 .code-block {
   border-radius: $spacing-sm;
+  padding: 1.5rem 1rem !important;
+  font-size: $code-block-font-size !important;
 }
 
-.code-block code {
-  font-size: $code-block-font-size;
+.code-lang-label {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  font-size: $font-size-xs;
+  font-family: $font-monospace;
+  color: $gray-700;
+  line-height: 1;
+  height: 1.25rem;
+
+  user-select: none;
+  z-index: 1;
 }

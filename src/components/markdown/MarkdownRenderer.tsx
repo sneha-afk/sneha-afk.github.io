@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { LoadingSpinner } from "@components";
+import { useScript } from "@utils";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -28,25 +29,23 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
 }) => {
   const [mdElement, setMdElement] = useState<React.ReactElement | null>(null);
 
+  useScript(
+    enableMathJax
+      ? "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+      : null,
+    { async: true, defer: true },
+  );
+
   useEffect(() => {
     if (!enableMathJax) return;
-
     if (!(window as any).MathJax) {
       (window as any).MathJax = mathConfig;
-
-      if (!document.getElementById("mathjax-script")) {
-        const script = document.createElement("script");
-        script.id = "mathjax-script";
-        script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js";
-        script.async = true;
-        document.head.appendChild(script);
-      }
     }
   }, [enableMathJax]);
 
   useEffect(() => {
     async function renderMarkdown() {
-      const { default: ReactMarkdown } = await import("react-markdown");
+      const { MarkdownAsync } = await import("react-markdown");
       const Blockquote = (await import("./Blockquotes")).default;
       const CodeBlock = (await import("./CodeBlock")).default;
 
@@ -63,26 +62,23 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         rehypePlugins.push([rehypeMathjax, mathConfig]);
       }
 
-      const element = (
-        <ReactMarkdown
-          remarkPlugins={remarkPlugins}
-          rehypePlugins={rehypePlugins}
-          components={{
-            blockquote: ({ children }) => (
-              <Suspense fallback={<span>Loading...</span>}>
-                <Blockquote>{children}</Blockquote>
-              </Suspense>
-            ),
-            code: (props) => (
-              <Suspense fallback={<span>Loading...</span>}>
-                <CodeBlock {...props} />
-              </Suspense>
-            ),
-          }}
-        >
-          {content}
-        </ReactMarkdown>
-      );
+      const element = await MarkdownAsync({
+        remarkPlugins,
+        rehypePlugins,
+        components: {
+          blockquote: ({ children }) => (
+            <Suspense fallback={<span>Loading...</span>}>
+              <Blockquote>{children}</Blockquote>
+            </Suspense>
+          ),
+          code: (props) => (
+            <Suspense fallback={<span>Loading...</span>}>
+              <CodeBlock {...props} />
+            </Suspense>
+          ),
+        },
+        children: content,
+      });
 
       setMdElement(element);
 

@@ -75,7 +75,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         style={{ cursor: "pointer" }}
         title={copied ? "Copied!" : `Copy ${language} code`}
       >
-        {copied ? "✔" : `${language}`} 📋
+        {copied ? "✔" : `${language}`} ⧉
       </div>
       <SyntaxHighlighter
         style={codeTheme as any}
