@@ -98,12 +98,10 @@ ol {
     max-width: 100%;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: 1.1em;
+  table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
   }
 }

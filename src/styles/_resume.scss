@@ -135,31 +135,30 @@
       }
     }
   }
+}
 
-  .skills-container {
-    margin: $spacing-lg 0 0;
-  }
+.skills-container {
+  margin: $spacing-lg 0 0;
+}
 
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $spacing-xs;
-    margin: $spacing-sm 0;
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin: $spacing-sm 0;
 
-    .skill {
-      @include mixins.pill(
-        $background: color.adjust($background-secondary, $lightness: 5%),
-        $hover-background: $primary-color,
-        $color: $text-color,
-        $hover-color: $background-primary,
-        $padding-x: $spacing-sm,
-        $padding-y: 2px
-      );
+  .skill {
+    @include mixins.pill(
+      $background: color.adjust($background-secondary, $lightness: 5%),
+      $hover-background: $primary-color,
+      $hover-color: $background-primary,
+      $padding-x: $spacing-sm,
+      $padding-y: 2px
+    );
 
-      &:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
   }
 }

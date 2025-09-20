@@ -11,14 +11,16 @@
 
   .post-card {
     @include mixins.pill(
-      $background:
-        linear-gradient(
+      $background: linear-gradient(
           135deg,
           color.scale($background-secondary, $lightness: -30%),
           color.scale($background-secondary, $lightness: 5%)
         ),
-      $hover-background:
-        linear-gradient(135deg, $color-blue-dark, $color-blue-light),
+      $hover-background: linear-gradient(
+          135deg,
+          $color-blue-dark,
+          $color-blue-light
+        ),
       $color: $text-color,
       $hover-color: $hover-text,
       $padding-x: $post-card-padding-x,
@@ -58,5 +60,37 @@
         color: $primary-color;
       }
     }
+  }
+}
+
+.post-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  margin: $spacing-sm 0;
+}
+
+.post-tag {
+  @include mixins.pill(
+    $background: linear-gradient(
+        135deg,
+        color.scale($background-secondary, $lightness: -45%),
+        color.scale($background-secondary, $lightness: 5%)
+      ),
+    $padding-x: $spacing-sm,
+    $padding-y: 2px
+  );
+
+  font-size: $font-size-xs;
+  font-family: $font-monospace;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &::before {
+    content: "#";
+    color: $gray-700;
   }
 }

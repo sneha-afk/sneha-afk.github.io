@@ -49,6 +49,17 @@ const BlogPost: React.FC = () => {
             { label: post.title },
           ]}
         />
+
+        {
+          <div className="post-tag-list">
+            {post.tags?.map((tag) => (
+              <span key={tag} className="post-tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        }
+
         <MarkdownRenderer content={post.content} enableMathJax />
         <ViewSourceButton slug={slug ?? ""} />
       </Suspense>

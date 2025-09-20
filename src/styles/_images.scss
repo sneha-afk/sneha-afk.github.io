@@ -60,20 +60,10 @@ svg {
 }
 
 mjx-container {
-  &::after {
-    content: "⋮";
-    position: absolute;
-    top: $spacing-sm;
-    right: $spacing-xs;
-    font-size: $font-size-xs;
-    opacity: 0.5;
-    user-select: none;
-  }
-
   &::before {
     content: "Right-click for MathJax options";
     position: absolute;
-    top: -$spacing-md;
+    top: -$spacing-lg;
     right: 0;
     background: $background-secondary;
     font-family: $font-primary;
