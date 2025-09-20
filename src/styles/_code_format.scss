@@ -21,6 +21,17 @@ code {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
+a {
+  .inline-code {
+    transition: all 0.2s ease-in-out;
+    &:hover,
+    &:focus {
+      background-color: $hover-bg;
+      color: $hover-text;
+    }
+  }
+}
+
 // ================== CODE BLOCKS ==================
 .code-block-wrapper {
   position: relative;

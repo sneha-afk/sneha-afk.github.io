@@ -28,12 +28,12 @@ const PostList: React.FC<PostListProps> = ({ limit }) => {
   return (
     <ul className="post-list">
       {displayPosts.map((post) => (
-        <li key={post.slug} className="post-card">
-          <Link to={`/blog/${post.slug}`}>
+        <Link key={post.slug} to={`/blog/${post.slug}`}>
+          <li key={post.slug} className="post-card">
             <span className="post-date">{post.date}</span>
             <span className="post-title">{post.title}</span>
-          </Link>
-        </li>
+          </li>
+        </Link>
       ))}
     </ul>
   );

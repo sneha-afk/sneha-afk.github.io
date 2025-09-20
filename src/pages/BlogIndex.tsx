@@ -3,7 +3,7 @@ import { PageLayout, PostList } from "@components";
 
 const BlogIndex: React.FC = () => {
   return (
-    <PageLayout title="/posts">
+    <PageLayout title="/blog">
       <PostList />
     </PageLayout>
   );

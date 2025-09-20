@@ -6,6 +6,7 @@ import React, { useEffect } from "react";
 interface UseContentProcessorOptions {
   enableMathJax?: boolean;
   dependencies?: React.DependencyList;
+  mathJaxConfig?: Record<string, any>;
 }
 
 /**
@@ -57,62 +58,32 @@ const useRetryProcessor = (
 export const useContentProcessor = ({
   enableMathJax = false,
   dependencies = [],
+  mathJaxConfig = {},
 }: UseContentProcessorOptions) => {
-  const mathJaxStatus = useScript(
-    enableMathJax
-      ? "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-      : null,
-  );
-
-  useEffect(() => {
-    if (!enableMathJax || (window as any).MathJax) return;
-
-    (window as any).MathJax = {
-      tex: {
-        inlineMath: [
-          ["$", "$"],
-          ["\\(", "\\)"],
-        ],
-        displayMath: [
-          ["$$", "$$"],
-          ["\\[", "\\]"],
-        ],
-
-        tags: "none",
-      },
-      options: {
-        skipHtmlTags: [
-          "script",
-          "noscript",
-          "style",
-          "textarea",
-          "pre",
-          "code",
-        ],
-      },
-      loader: { load: ["[tex]/noerrors", "[tex]/noundefined"] },
-      svg: { fontCache: "local" },
-    };
-  }, [enableMathJax]);
-
-  const processMathJax = async () => {
-    if (!enableMathJax) return true;
-    const mj = (window as any).MathJax;
-
-    if (mathJaxStatus === "ready" && mj?.typesetPromise) {
-      try {
-        await mj.typesetPromise();
-        return true;
-      } catch (err) {
-        console.warn("MathJax processing error:", err);
-      }
+  if (enableMathJax) {
+    if (!(window as any).MathJax) {
+      (window as any).MathJax = mathJaxConfig;
     }
-    return false;
-  };
 
-  useRetryProcessor(processMathJax, [
-    enableMathJax,
-    mathJaxStatus,
-    ...dependencies,
-  ]);
+    const mathJaxStatus = useScript({
+      src: enableMathJax
+        ? "https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js"
+        : undefined,
+    });
+
+    const processMathJax = async () => {
+      const mj = (window as any).MathJax;
+      if (mathJaxStatus === "ready" && mj?.typesetPromise) {
+        try {
+          await mj.typesetPromise();
+          return true;
+        } catch (err) {
+          console.warn("MathJax processing error:", err);
+        }
+      }
+      return false;
+    };
+
+    useRetryProcessor(processMathJax, [mathJaxStatus, ...dependencies, true]);
+  }
 };

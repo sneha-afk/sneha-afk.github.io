@@ -8,7 +8,7 @@ interface ViewSourceButtonProps {
 
 const ViewSourceButton: React.FC<ViewSourceButtonProps> = ({
   slug,
-  label = "View source on GitHub",
+  label = "View source",
 }) => {
   const githubUrl = `https://github.com/sneha-afk/sneha-afk.github.io/blob/main/public/posts/${slug}.md`;
 

@@ -38,7 +38,7 @@ const BlogPost: React.FC = () => {
   if (!post) return <NotFoundPage />;
 
   return (
-    <PageLayout title={post.title}>
+    <PageLayout title={(post.title.startsWith("/") ? "" : "/") + post.title}>
       <Suspense
         fallback={<LoadingSpinner text="Almost there..." fullscreen={false} />}
       >

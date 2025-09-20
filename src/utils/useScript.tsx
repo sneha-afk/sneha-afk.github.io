@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
 
 interface UseScriptOptions {
-  type?: "module" | "text/javascript";
-  async?: boolean;
-  defer?: boolean;
+  type: "module" | "text/javascript";
+  async: boolean;
+  defer: boolean;
 }
 
-export function useScript(
-  src: string | null,
-  options: UseScriptOptions = {},
-): "loading" | "ready" | "error" {
+interface UseScriptProps {
+  src?: string;
+  options?: UseScriptOptions;
+}
+
+export function useScript({
+  src,
+  options = {
+    type: "text/javascript",
+    async: true,
+    defer: true,
+  },
+}: UseScriptProps): "loading" | "ready" | "error" {
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
     src ? "loading" : "ready",
   );
@@ -27,9 +36,9 @@ export function useScript(
     if (!script) {
       script = document.createElement("script");
       script.src = src;
-      script.type = options.type || "text/javascript";
-      script.async = options.async ?? true;
-      script.defer = options.defer ?? true;
+      script.type = options.type;
+      script.async = options.async;
+      script.defer = options.defer;
 
       script.addEventListener("load", handleLoad);
       script.addEventListener("error", handleError);

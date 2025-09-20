@@ -9,7 +9,7 @@ interface MarkdownRendererProps {
   enableMathJax?: boolean;
 }
 
-const mathConfig = {
+const mathJaxConfig = {
   tex: {
     inlineMath: [
       ["$", "$"],
@@ -19,8 +19,26 @@ const mathConfig = {
       ["$$", "$$"],
       ["\\[", "\\]"],
     ],
+    processEscapes: true,
   },
-  svg: { fontCache: "global" },
+  options: {
+    skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+    menuOptions: {
+      settings: {
+        breakInline: false,
+
+        enrich: false,
+        collapsible: true,
+      },
+    },
+  },
+  svg: { fontCache: "local" },
+  loader: { load: ["ui/lazy"] },
+  output: {
+    linebreaks: {
+      inline: false,
+    },
+  },
 };
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
@@ -45,7 +63,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       if (enableMathJax) {
         remarkPlugins.push((await import("remark-math")).default);
         const rehypeMathjax = (await import("rehype-mathjax/browser")).default;
-        rehypePlugins.push([rehypeMathjax, mathConfig]);
+        rehypePlugins.push([rehypeMathjax, mathJaxConfig]);
       }
 
       const element = await MarkdownAsync({
@@ -72,7 +90,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     renderMarkdown();
   }, [content, enableMathJax]);
 
-  useContentProcessor({ enableMathJax });
+  useContentProcessor({ enableMathJax, mathJaxConfig });
 
   return mdElement || <LoadingSpinner text="Rendering..." fullscreen={false} />;
 };

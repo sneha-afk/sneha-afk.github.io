@@ -60,10 +60,11 @@ svg {
 }
 
 mjx-container {
+  padding: $spacing-sm 0;
   &::before {
-    content: "Right-click for MathJax options";
+    content: "Right-click for more";
     position: absolute;
-    top: -$spacing-lg;
+    top: -$spacing-sm;
     right: 0;
     background: $background-secondary;
     font-family: $font-primary;
@@ -73,6 +74,7 @@ mjx-container {
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
+    transform: translateY(-2px);
     transition: opacity 0.2s ease-in-out;
   }
 

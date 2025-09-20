@@ -48,12 +48,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   }
 
   if (language === "mermaid") {
-    return (
-      <div
-        className="mermaid"
-        dangerouslySetInnerHTML={{ __html: codeString }}
-      />
-    );
+    return <div className="mermaid">{codeString}</div>;
   }
 
   // Regular syntax-highlighted block
