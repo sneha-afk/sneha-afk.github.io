@@ -1,5 +1,15 @@
 [
   {
+    "slug": "turning-on-the-lights",
+    "title": "turning-on-the-lights",
+    "date": "2025-09-19",
+    "tags": [
+      "react",
+      "markdown",
+      "hooks??"
+    ]
+  },
+  {
     "slug": "testing",
     "title": "/testing-css",
     "date": "2025-02-23",

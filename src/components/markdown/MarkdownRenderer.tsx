@@ -57,7 +57,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const rehypePlugins: any[] = [];
 
       if (content.includes("```mermaid")) {
-        rehypePlugins.push((await import("rehype-mermaid")).default);
+        const rehypeMermaid = (await import("rehype-mermaid")).default;
+        rehypePlugins.push([rehypeMermaid, { strategy: "inline-svg" }]);
       }
 
       if (enableMathJax) {

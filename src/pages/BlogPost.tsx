@@ -50,6 +50,8 @@ const BlogPost: React.FC = () => {
           ]}
         />
 
+        {post.date}
+
         {
           <div className="post-tag-list">
             {post.tags?.map((tag) => (

@@ -131,6 +131,7 @@
         li {
           position: relative;
           margin-bottom: $spacing-xs;
+          margin-left: $spacing-xs;
         }
       }
     }
@@ -266,15 +267,6 @@
         margin: 0 $spacing-xs $spacing-xs 0 !important;
         display: inline-block;
       }
-    }
-
-    ul,
-    ol {
-      page-break-inside: avoid;
-    }
-
-    li {
-      page-break-inside: avoid;
     }
 
     a[href] {
