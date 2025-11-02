@@ -14,5 +14,14 @@
     "title": "/testing-css",
     "date": "2025-02-23",
     "tags": []
+  },
+  {
+    "slug": "whats-in-a-nvim-config",
+    "title": "whats-in-a-nvim-config",
+    "date": "2025-09-28",
+    "tags": [
+      "neovim",
+      "config"
+    ]
   }
 ]
