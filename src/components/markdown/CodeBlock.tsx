@@ -8,6 +8,9 @@ import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
 import c from "react-syntax-highlighter/dist/esm/languages/prism/c";
 import lua from "react-syntax-highlighter/dist/esm/languages/prism/lua";
 import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
+import powershell from "react-syntax-highlighter/dist/esm/languages/prism/powershell";
+import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
+import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
 
 // Register languages
 [
@@ -17,6 +20,9 @@ import go from "react-syntax-highlighter/dist/esm/languages/prism/go";
   ["c", c],
   ["lua", lua],
   ["go", go],
+  ["powershell", powershell],
+  ["json", json],
+  ["bash", bash],
 ].forEach(([name, lang]) => SyntaxHighlighter.registerLanguage(name, lang));
 
 const codeTheme = { ...baseTheme, 'code[class*="language-"]': {} };
