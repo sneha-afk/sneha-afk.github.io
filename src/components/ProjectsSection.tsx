@@ -23,9 +23,9 @@ const PROJECTS: ProjectItem[] = [
     location: "University of California, San Diego",
     technologies: ["Python", "Flask", "SQLite", "Raspberry Pi"],
     achievements: [
-      "Co-designed an RFID-based home access system with embedded hardware, achieving 90%+ detection reliability with 0.592s average detection time and 20ms authentication latency",
-      "Optimized energy efficiency through interrupt-driven multithreading, significantly reducing power consumption to below 1A while maintaining real-time performance",
-      "Utilized SQLite's Write-Ahead-Logging to ensure data consistency with concurrent multi-client operations",
+      "Co-designed an embedded RFID-based home access system, achieving 600 ms average end-to-end latency and 90%+ detection accuracy using hardware-level interrupts",
+      "Optimized real-time power efficiency to below 1 amperes using interrupt-driven multi-threading",
+      "Ensured high-concurrency data integrity by utilizing SQLite’s Write-Ahead-Logging schematics for multi-client access",
     ],
   },
   {
@@ -46,9 +46,8 @@ const PROJECTS: ProjectItem[] = [
     technologies: ["C++", "CMake", "Bash"],
     links: [{ label: "GitHub", url: "https://github.com/sneha-afk/KeplerKV" }],
     achievements: [
-      "Built a lightweight NoSQL key-value store supporting typed key-value pairs and basic transactions",
-      "Designed a custom, extensible query language for efficient data management and manipulation, supporting both interactive CLI and automated script execution for production workflows",
-      "Implemented ACID-compliant transactions with efficient serialization, ensuring data persistence and atomic operations under concurrent access",
+      "Built a lightweight NoSQL key-value store featuring a custom, extensible Domain Specific Language (DSL) for interactive CLI usage and automated script execution",
+      "Implemented ACID-compliant, atomic transactions with efficient serialization and data persistence through WAL",
     ],
   },
   {
@@ -60,7 +59,7 @@ const PROJECTS: ProjectItem[] = [
     links: [{ label: "GitHub", url: "https://github.com/SlugQuest" }],
     achievements: [
       "Built a gamified productivity app with collaborative features and a reward system to boost user engagement",
-      "Integrated Auth0 API by Okta for secure authentication, ensuring seamless user experience and data protection",
+      "Integrated Auth0 API by Okta for secure authentication via OAuth for session-handling with safe OIDC tokens",
       "Achieved over 95% code coverage through comprehensive unit testing with Go's native test framework",
     ],
   },

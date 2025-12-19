@@ -44,6 +44,7 @@ const SKILLS = {
     "Go",
     "SQL",
     "TypeScript",
+    "Ruby",
     "HTML",
     "CSS",
   ],
@@ -52,11 +53,12 @@ const SKILLS = {
     "Linux (Ubuntu, WSL)",
     "SQLite",
     "GNU Make",
-    "Postman",
     "Markdown",
     "LaTeX",
+    "Postman",
+    "Splunk",
   ],
-  "Frameworks & Libraries": ["Keras", "PyTorch", "NumPy", "gpiozero", "React"],
+  "Frameworks & Libraries": ["Keras", "PyTorch", "NumPy", "React", "gpiozero"],
 } as const;
 
 const EDUCATION: EducationItem[] = [
@@ -66,13 +68,15 @@ const EDUCATION: EducationItem[] = [
     date: "Sep. 2024 - Dec. 2025",
     location: "La Jolla, CA",
     degree: "Master of Science in Computer Science",
-    gpa: "3.89",
+    gpa: "3.91",
     coursework: [
       "Data Structures and Algorithms",
       "Artificial Intelligence and Machine Learning",
       "Operating Systems",
       "Embedded Systems",
-      "Networked Systems",
+      "Networked Services",
+      "Parallel Computation",
+      "Agentic LLM Systems",
     ],
   },
   {
@@ -119,7 +123,7 @@ const EXPERIENCE: ExperienceItem[] = [
     responsibilities: [
       "Contributed to Microsoft's Semantic Kernel, an open-source multi-language SDK for AI orchestration",
       'Collaborated on enabling logit bias adjustments to prioritize tokens for fine-tuned LLM outputs: <a href="https://github.com/microsoft/semantic-kernel/pull/1880" target="_blank" rel="noopener noreferrer">(PR #1880)</a>',
-      'Integrated Redis vector embedding storage with configurable indexing (HNSW/FLAT) and distance metrics, enabling context-aware, semantically grounded LLM responses on user-provided data: <a href="https://github.com/microsoft/semantic-kernel/pull/2132" target="_blank" rel="noopener noreferrer">(PR #2132)</a>',
+      'Integrated Redis vector embedding storage with configurable ANN indexing (HNSW/FLAT) and similarity metrics to enable low-latency, RAG-driven retrieval from user-provided datasets: <a href="https://github.com/microsoft/semantic-kernel/pull/2132" target="_blank" rel="noopener noreferrer">(PR #2132)</a>',
     ],
   },
 ];
