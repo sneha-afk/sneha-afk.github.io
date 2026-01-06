@@ -96,6 +96,13 @@ const EDUCATION: EducationItem[] = [
 
 const EXPERIENCE: ExperienceItem[] = [
   {
+    id: "stripe-fulltime",
+    title: "Software Engineer",
+    company: "Stripe",
+    date: "Jan. 2026 - Present",
+    location: "South San Francisco, CA",
+  },
+  {
     id: "stripe-intern",
     title: "Software Engineering Intern",
     company: "Stripe",

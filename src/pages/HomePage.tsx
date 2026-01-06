@@ -8,7 +8,19 @@ const HomePage = () => {
         <p>hello, i'm sneha (she/her) and you've found your way here!</p>
 
         <p>
-          I am currently a Master's student in Computer Science at{" "}
+          I am currently working as a Software Engineer at{" "}
+          <a
+            href="https://stripe.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Stripe
+          </a>{" "}
+          in San Francisco.
+        </p>
+
+        <p>
+          I obtained my Masters in Computer Science at{" "}
           <a
             href="https://cse.ucsd.edu/"
             target="_blank"
@@ -25,18 +37,6 @@ const HomePage = () => {
             UC Santa Cruz
           </a>{" "}
           🍌🐌 ❤️ 🧜‍♀️🔱.
-        </p>
-
-        <p>
-          In my quest to know a bit of everything, my interests in tech lie
-          primarily in OS and systems development, networked services, and
-          AI/ML.
-        </p>
-
-        <p>
-          Outside of CS, I love to travel and try new food from any cuisine. And
-          for a fun fact, I practiced Shotokan karate for eight years and
-          reached Sandan (3rd degree black belt)!
         </p>
 
         <p>
