@@ -11,7 +11,7 @@ export type Post = PostMeta & {
   content: string;
 };
 
-const MAX_CACHE_SIZE = 20;
+const MAX_CACHE_SIZE = 5;
 const postCache = new Map<string, Post>();
 const lruQueue: string[] = [];
 let metadataCache: PostMeta[] = [];
@@ -128,7 +128,7 @@ export function getAdjacentPosts(currentSlug: string): {
  */
 export function getPostsByTag(tag: string): PostMeta[] {
   return metadataCache.filter((post) =>
-    post.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
+    post.tags?.some((t) => t.toLowerCase() === tag.toLowerCase()),
   );
 }
 

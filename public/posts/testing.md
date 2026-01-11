@@ -83,6 +83,16 @@ void main() {
 vim.g.is_windows = vim.fn.has("win32") or vim.fn.has("win64")
 ```
 
+```markdown
+## test of a header in here
+
+blah `blah`
+
+### then here
+
+blah `blah`
+```
+
 ## Tables
 
 | Header 1 | Header 2 | Header 3 |
