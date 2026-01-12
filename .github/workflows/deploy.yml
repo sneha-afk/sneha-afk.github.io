@@ -62,13 +62,13 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Cache Vite cache
+      - name: Cache Vite build cache
         uses: actions/cache@v4
         with:
           path: |
             .vite
             node_modules/.vite
-          key: ${{ runner.os }}-vite-${{ hashFiles('package.json', 'vite.config.*', 'public/**') }}
+          key: ${{ runner.os }}-vite-${{ hashFiles('package.json', 'vite.config.*', 'src/**', 'index.html') }}
           restore-keys: |
             ${{ runner.os }}-vite-
 
