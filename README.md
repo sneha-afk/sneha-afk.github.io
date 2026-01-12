@@ -9,8 +9,8 @@
 * **React + TypeScript**
 * **Vite**
 * **SCSS**
-* **React Markdown + front-matter** — blog posts
-* **GitHub Pages** — hosting
+* **React Markdown + front-matter**: blog posts
+* **GitHub Pages**: hosting
 
 All posts live in `public/posts` as Markdown.
 
@@ -18,7 +18,7 @@ All posts live in `public/posts` as Markdown.
 
 ## blog CLI
 
-A tiny Python tool to manage Markdown blog posts. Automatically updates `index.json` so your frontend sees new posts instantly—no manual steps needed.
+use to automatically update `index.json` so the frontend sees these instantly.
 
 ### Quick Commands
 
@@ -49,8 +49,6 @@ Should also work just off `./post_cli.py`.
 - Posts live in `public/posts/` as `.md` files with clean front-matter
 - Every CLI command automatically updates `index.json` with post metadata
 - Frontend loads metadata from the index and content from individual files
-- Pure Python—no dependencies or setup required
-
 
 ```markdown
 ---

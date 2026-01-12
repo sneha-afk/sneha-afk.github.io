@@ -1,7 +1,7 @@
 ---
 layout: default
 date: "2025-02-23"
-title: /testing-css
+title: testing-css
 mathjax: true
 ---
 

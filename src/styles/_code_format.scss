@@ -40,7 +40,7 @@ a {
 
     &:hover,
     &:focus {
-      background-color: $hover-bg;
+      background-color: $hover-bg !important;
       color: $hover-text;
     }
   }
@@ -54,7 +54,7 @@ a {
 
 .code-block {
   border-radius: $spacing-sm;
-  padding: 1.5rem 1rem !important;
+  padding: 2rem 1rem !important;
   font-size: $code-block-font-size !important;
   line-height: 1.6;
   overflow-x: auto;
@@ -69,7 +69,7 @@ a {
   align-items: center;
   gap: 0.4rem;
 
-  padding: 0.3rem 0.55rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 0.5rem;
 
   font-family: $font-monospace;

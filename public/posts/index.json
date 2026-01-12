@@ -10,8 +10,19 @@
     ]
   },
   {
+    "slug": "trovling-around",
+    "title": "trovling-around",
+    "date": "2026-01-11",
+    "tags": [
+      "project",
+      "golang",
+      "cli",
+      "actually-solving-problems?"
+    ]
+  },
+  {
     "slug": "testing",
-    "title": "/testing-css",
+    "title": "testing-css",
     "date": "2025-02-23",
     "tags": []
   }
