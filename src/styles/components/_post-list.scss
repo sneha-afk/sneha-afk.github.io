@@ -56,7 +56,8 @@
 
 .post-tag {
   @include pill(
-    $bg: linear-gradient(
+    $bg:
+      linear-gradient(
         135deg,
         color.adjust($surface-raised, $lightness: -5%),
         color.adjust($surface-raised, $lightness: 5%)
@@ -70,7 +71,6 @@
   font-family: $font-family-mono;
   padding: $space-1 $space-3;
 
-  // Hash symbol before tag
   &::before {
     content: "#";
     color: $neutral-700;

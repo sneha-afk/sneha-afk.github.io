@@ -46,7 +46,6 @@
 @include respond-to(mobile) {
   .breadcrumbs {
     font-size: $font-size-xs;
-    float: none;
-    position: static;
+    width: 100%;
   }
 }
