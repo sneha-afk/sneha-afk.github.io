@@ -1,60 +1,40 @@
-import { PageLayout, PostList, Section } from "@components";
-import { Link } from "react-router-dom";
+import { PostList } from "@components";
+import { type PageConfig } from "@pages/page_types";
+import { PageRenderer } from "./PageRenderer";
 
-const HomePage = () => {
-  return (
-    <PageLayout title="Welcome" showBackLink={false} showPageTitle={false}>
-      <Section title="/welcome" emoji="👋">
-        <p>hello, i'm sneha (she/her) and you've found your way here!</p>
+export const homePage: PageConfig = {
+  title: "/home",
+  layout: {
+    showPageTitle: false,
+    showBackLink: false,
+  },
+  sections: [
+    {
+      type: "markdown",
+      title: "/welcome",
+      content: `
+Hello! I'm Sneha (she/her) and you've found your way here!
 
-        <p>
-          I am currently working as a Software Engineer at{" "}
-          <a
-            href="https://stripe.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Stripe
-          </a>{" "}
-          in San Francisco.
-        </p>
+I am currently working as a Software Engineer at [Stripe](https://stripe.com/) in San Francisco.
 
-        <p>
-          I obtained my Masters in Computer Science at{" "}
-          <a
-            href="https://cse.ucsd.edu/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            UC San Diego
-          </a>{" "}
-          and obtained my Bachelor's in the same at{" "}
-          <a
-            href="https://engineering.ucsc.edu/departments/computer-science-and-engineering/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            UC Santa Cruz
-          </a>{" "}
-          🍌🐌 ❤️ 🧜‍♀️🔱.
-        </p>
+I got my Masters in Computer Science at [UC San Diego](https://cse.ucsd.edu/) and my Bachelor's in the same at [UC Santa Cruz](https://engineering.ucsc.edu/departments/computer-science-and-engineering/) 🍌🐌 ❤️ 🧜‍♀️🔱.
 
-        <p>
-          See my resume at{" "}
-          <Link key={"/resume"} to={"/resume"}>
-            {"/resume"}
-          </Link>{" "}
-          for more details on my experience.
-        </p>
+In my free time, I am probably tinkering with my config files, trying to learn how to play [Project Zomboid](https://projectzomboid.com/) properly, or trying out food in the beautiful Bay Area.
 
-        <p>Thank you for visiting, have a good one :)</p>
-      </Section>
+Check out my [/resume](/resume) to see my experience, or read my ramblings at my [/blog](/blog), or explore some of my [projects](/projects).
 
-      <Section title="/recent-posts" emoji="📝">
-        <PostList limit={5} />
-      </Section>
-    </PageLayout>
-  );
+Thank you for visiting, have a good one :)`,
+      emoji: "👋",
+    },
+    {
+      type: "markdown",
+      title: "/recent-posts",
+      emoji: "📝",
+      Component: <PostList limit={5} />,
+    },
+  ],
 };
 
-export default HomePage;
+export default function HomePage() {
+  return <PageRenderer page={homePage} />;
+}

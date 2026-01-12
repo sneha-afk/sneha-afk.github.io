@@ -24,7 +24,9 @@
       "@context": ["context"],
       "@context/*": ["context/*"],
       "@hooks": ["hooks"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@types": ["types"],
+      "@types/*": ["types/*"]
     },
     "types": ["vite/client", "node"]
   }

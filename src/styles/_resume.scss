@@ -4,21 +4,34 @@
 
 .resume {
   max-width: 80ch;
+  margin: 0 auto;
+  padding: $spacing-lg;
+
+  ul {
+    li {
+      position: relative;
+      margin: 0 0 $spacing-xs $spacing-md;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
   &-header {
     text-align: center;
-    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
 
     h1 {
-      margin: 0 0 $spacing-sm;
+      margin: 0 0 $spacing-sm 0;
       font-size: $font-size-2xl;
       font-weight: $font-weight-bold;
       color: $text-color;
     }
 
     .subtitle {
-      color: $gray-400;
-      margin: 0 0 $spacing-md;
+      margin: 0 0 $spacing-sm 0;
+      color: $gray-800;
       font-size: $font-size-md;
     }
 
@@ -27,22 +40,34 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: $spacing-sm;
+      margin: 0;
+
+      a {
+        transition: all 0.5s ease;
+      }
     }
   }
 
   &-section {
-    margin: 0;
+    margin-bottom: $spacing-lg;
+
+    &-title {
+      margin: 0 0 $spacing-md 0;
+    }
 
     p {
-      margin: 0 0 $spacing-sm;
+      margin: 0 0 $spacing-sm 0;
+      line-height: 1.6;
     }
 
     ul {
       list-style-type: square;
-      margin: 0 0 $spacing-md $spacing-md;
-      padding-left: 0;
+      margin: 0 0 $spacing-sm $spacing-md;
+      padding: 0;
 
       li {
+        margin-bottom: $spacing-xs;
+
         &::marker {
           color: $primary-color;
         }
@@ -55,7 +80,11 @@
     padding: $spacing-md;
     @include mixins.card($elevation: 1);
     border-left: 2px solid $gray-600;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &:hover {
       border-left-color: $primary-color;
@@ -65,88 +94,82 @@
       display: grid;
       grid-template-columns: 1fr auto;
       grid-template-rows: auto auto;
-      gap: $spacing-xs $spacing-md;
       margin-bottom: $spacing-sm;
 
       .position {
         grid-column: 1;
         grid-row: 1;
         font-weight: $font-weight-bold;
+        font-size: $font-size-md;
         color: $text-color;
         margin: 0;
-        font-size: $font-size-md;
       }
 
       .date {
         grid-column: 2;
         grid-row: 1;
         text-align: right;
-        color: $gray-200;
-        margin: 0;
+        color: $gray-400;
         font-size: $font-size-sm;
+        margin: 0;
       }
 
       .meta-info {
+        display: inline-block;
         grid-column: 1;
         grid-row: 2;
-        color: $gray-300;
-        margin: 0;
+        color: $gray-400;
         font-size: $font-size-sm;
+        margin: 0;
       }
 
       .location {
         grid-column: 2;
         grid-row: 2;
         text-align: right;
-        color: $gray-300;
+        color: $gray-400;
         font-size: $font-size-xs;
+        margin: 0;
       }
     }
 
     .tech-stack {
       margin: $spacing-sm 0;
+      color: $gray-400;
 
       strong {
         display: block;
+        margin: 0 0 $spacing-xs 0;
         color: $text-color;
-        margin: 0 0 $spacing-xs;
         font-size: $font-size-xs;
         font-weight: $font-weight-medium;
       }
 
       .tech-items {
         font-size: $font-size-xs;
-        color: $gray-400;
 
         &:not(:last-child)::after {
           content: "•";
           margin: 0 $spacing-xs;
-          color: $gray-600;
         }
       }
     }
 
     &-details {
-      ul {
-        li {
-          position: relative;
-          margin-bottom: $spacing-xs;
-          margin-left: $spacing-xs;
-        }
-      }
+      margin: 0;
     }
   }
 }
 
 .skills-container {
-  margin: $spacing-lg 0 0;
+  margin-top: $spacing-md;
 }
 
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-xs;
-  margin: $spacing-sm 0;
+  margin: $spacing-sm 0 0 0;
 
   .skill {
     @include mixins.pill(
@@ -166,153 +189,31 @@
 
 @include mixins.respond-to(mobile) {
   .resume {
+    padding: $spacing-sm;
+
     &-item {
       padding: $spacing-sm;
-      margin-bottom: $spacing-md;
 
       &-header {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: $spacing-xs;
 
         .position,
         .date,
         .meta-info,
         .location {
+          width: 100%;
           text-align: left;
           margin: 0;
         }
 
         .date,
         .location {
-          order: 3;
           color: $gray-500;
         }
       }
-    }
-  }
-}
-
-@media print {
-  .resume {
-    padding: 0;
-    max-width: none;
-    font-size: 12pt;
-    line-height: 1.4;
-
-    // Reset colors for print
-    * {
-      color: black !important;
-      background: white !important;
-      box-shadow: none !important;
-    }
-
-    &-header {
-      border-bottom: 2px solid #000 !important;
-      margin-bottom: $spacing-md;
-      padding: $spacing-md !important;
-
-      h1 {
-        font-size: 18pt !important;
-        margin-bottom: $spacing-xs !important;
-      }
-
-      .contact-info {
-        a {
-          border: 1px solid #000 !important;
-          padding: 1px $spacing-xs !important;
-          margin: 0 $spacing-xs $spacing-xs 0 !important;
-        }
-      }
-    }
-
-    &-section {
-      margin-bottom: $spacing-lg;
-      page-break-inside: avoid;
-
-      &-title {
-        font-size: 14pt !important;
-        border-bottom: 1px solid #000 !important;
-      }
-    }
-
-    &-item {
-      border: 1px solid #ccc !important;
-      border-left: 3px solid #000 !important;
-      margin-bottom: $spacing-md;
-      padding: $spacing-sm !important;
-      page-break-inside: avoid;
-
-      &-header {
-        .date,
-        .meta-info,
-        .location {
-          color: #555 !important;
-        }
-      }
-
-      .tech-stack {
-        .tech-items {
-          color: #555 !important;
-        }
-      }
-    }
-
-    .skills-list {
-      margin: $spacing-sm 0;
-
-      .skill {
-        border: 1px solid #000 !important;
-        padding: 1px $spacing-xs !important;
-        margin: 0 $spacing-xs $spacing-xs 0 !important;
-        display: inline-block;
-      }
-    }
-
-    a[href] {
-      &::after {
-        content: " (" attr(href) ")";
-        font-size: 10pt;
-        font-style: italic;
-        color: #555 !important;
-      }
-
-      &[href^="mailto:"]::after,
-      &[href^="tel:"]::after {
-        content: "";
-      }
-    }
-
-    .resume-item:hover {
-      transform: none !important;
-    }
-
-    .skill:hover {
-      transform: none !important;
-    }
-  }
-}
-
-@page {
-  margin: 0.5in;
-}
-
-@media print and (color) {
-  .resume {
-    .primary-color {
-      color: #000 !important;
-    }
-
-    .resume-item {
-      border-left-color: #000 !important;
-    }
-
-    li::before {
-      color: #000 !important;
-    }
-
-    li::marker {
-      color: #000 !important;
     }
   }
 }
