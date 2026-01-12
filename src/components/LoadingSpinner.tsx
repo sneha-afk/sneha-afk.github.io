@@ -1,16 +1,13 @@
-import "@styles/_loading.scss";
+import "@styles/components/_loading.scss";
 
 interface Props {
-    text?: string,
-    fullscreen?: boolean
+  text?: string;
+  fullscreen?: boolean;
 }
 
-const Loading = ({
-    text = "",
-    fullscreen = true
-}: Props) => {
+const Loading = ({ text = "", fullscreen = true }: Props) => {
   return (
-    <div className={fullscreen ? 'loading loading-fullscreen' : 'loading'}>
+    <div className={fullscreen ? "loading loading-fullscreen" : "loading"}>
       <div className="loading-spinner-wheel" />
       {text && <p className="loading-text">{text}</p>}
     </div>

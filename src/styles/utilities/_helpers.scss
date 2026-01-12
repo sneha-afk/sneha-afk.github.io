@@ -1,0 +1,247 @@
+// ============================================================================
+// UTILITY CLASSES, for easily styling components
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+.sr-only {
+  @include sr-only;
+}
+
+// ============================================================================
+// SPACING UTILITIES
+// ============================================================================
+
+// Margin utilities
+.mt-0 {
+  margin-top: $space-0;
+}
+.mt-1 {
+  margin-top: $space-1;
+}
+.mt-2 {
+  margin-top: $space-2;
+}
+.mt-3 {
+  margin-top: $space-3;
+}
+.mt-4 {
+  margin-top: $space-4;
+}
+.mt-5 {
+  margin-top: $space-5;
+}
+.mt-6 {
+  margin-top: $space-6;
+}
+
+.mb-0 {
+  margin-bottom: $space-0;
+}
+.mb-1 {
+  margin-bottom: $space-1;
+}
+.mb-2 {
+  margin-bottom: $space-2;
+}
+.mb-3 {
+  margin-bottom: $space-3;
+}
+.mb-4 {
+  margin-bottom: $space-4;
+}
+.mb-5 {
+  margin-bottom: $space-5;
+}
+.mb-6 {
+  margin-bottom: $space-6;
+}
+
+// Padding utilities
+.p-0 {
+  padding: $space-0;
+}
+.p-1 {
+  padding: $space-1;
+}
+.p-2 {
+  padding: $space-2;
+}
+.p-3 {
+  padding: $space-3;
+}
+.p-4 {
+  padding: $space-4;
+}
+.p-5 {
+  padding: $space-5;
+}
+.p-6 {
+  padding: $space-6;
+}
+
+// ============================================================================
+// TEXT UTILITIES
+// ============================================================================
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+.text-sm {
+  font-size: $font-size-sm;
+}
+.text-base {
+  font-size: $font-size-base;
+}
+.text-lg {
+  font-size: $font-size-lg;
+}
+.text-xl {
+  font-size: $font-size-xl;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+.text-primary {
+  color: $text-primary;
+}
+.text-secondary {
+  color: $text-secondary;
+}
+.text-tertiary {
+  color: $text-tertiary;
+}
+
+// ============================================================================
+// DISPLAY UTILITIES
+// ============================================================================
+
+.hidden {
+  display: none;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+
+// ============================================================================
+// FLEXBOX UTILITIES
+// ============================================================================
+
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-1 {
+  gap: $space-1;
+}
+.gap-2 {
+  gap: $space-2;
+}
+.gap-3 {
+  gap: $space-3;
+}
+.gap-4 {
+  gap: $space-4;
+}
+.gap-5 {
+  gap: $space-5;
+}
+
+// ============================================================================
+// WIDTH & HEIGHT
+// ============================================================================
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+.max-h-full {
+  max-height: 100%;
+}
+
+// ============================================================================
+// POSITION
+// ============================================================================
+
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.sticky {
+  position: sticky;
+}

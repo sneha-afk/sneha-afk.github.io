@@ -1,0 +1,117 @@
+// ============================================================================
+// CODE COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+
+// ============================================================================
+// BASE CODE STYLING
+// ============================================================================
+
+code,
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-size-xs;
+  line-height: $line-height-normal;
+
+  // Enable contextual alternates and slashed zero
+  font-feature-settings:
+    "calt" 1,
+    "zero" 1;
+}
+
+pre {
+  // Disable ligatures for code blocks
+  font-feature-settings:
+    "calt" 1,
+    "liga" 0,
+    "zero" 1;
+}
+
+// ============================================================================
+// INLINE CODE
+// ============================================================================
+
+.inline-code {
+  display: inline-block;
+  background: $code-bg;
+  color: $code-text;
+  padding: $space-1 $space-2;
+  border-radius: $radius-sm;
+  font-family: $font-family-mono;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  box-shadow: $shadow-sm;
+}
+
+a .inline-code {
+  transition:
+    background-color $transition-fast,
+    color $transition-fast;
+
+  &:hover,
+  &:focus {
+    background-color: $link-hover-bg;
+    color: $link-hover-text;
+  }
+}
+
+// ============================================================================
+// CODE BLOCKS
+// ============================================================================
+
+.code-block-wrapper {
+  position: relative;
+}
+
+.code-block {
+  border-radius: $radius-md;
+  padding: $space-6 $space-4 !important;
+  font-size: $font-size-xs;
+  line-height: $line-height-relaxed;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-copy {
+  position: absolute;
+  top: $space-2;
+  right: $space-2;
+
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  padding: $space-2 $space-3;
+  border-radius: $radius-md;
+
+  font-family: $font-family-mono;
+  font-size: $font-size-xs;
+
+  background: none;
+  border: none;
+  color: $text-secondary;
+  cursor: pointer;
+
+  transition:
+    background $transition-fast,
+    color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover:not(:disabled),
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.06);
+    color: $text-primary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $interactive-focus;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

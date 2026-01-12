@@ -1,0 +1,124 @@
+// ============================================================================
+// IMAGES COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// BASE IMAGE STYLING
+// ============================================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 2px solid $neutral-800;
+  border-radius: $radius-md;
+  object-fit: cover;
+  transition: all $transition-normal;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+// ============================================================================
+// CENTERED IMAGES & SVGs
+// ============================================================================
+
+.img-center,
+.mermaid,
+svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    z-index: $z-base;
+    position: relative;
+  }
+}
+
+// ============================================================================
+// IMAGE CONTAINER (GRID)
+// ============================================================================
+
+.img-container {
+  @include grid(2, $space-3);
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: $space-5;
+  padding: 0 $space-3;
+}
+
+// ============================================================================
+// IMAGE ITEM
+// ============================================================================
+
+.img-item {
+  img {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .caption {
+    text-align: center;
+    margin-top: $space-2;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+}
+
+// ============================================================================
+// MATH EXPRESSIONS (MathJax)
+// ============================================================================
+
+mjx-container {
+  padding: $space-3 0;
+  position: relative;
+
+  // Hint tooltip
+  &::before {
+    content: "Right-click for more";
+    position: absolute;
+    top: -$space-3;
+    right: 0;
+    background: $surface-raised;
+    font-family: $font-family-sans;
+    font-size: $font-size-2xs;
+    padding: $space-1 $space-2;
+    border-radius: $radius-full;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-2px);
+    transition: opacity $transition-fast;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &:hover::after {
+    opacity: 0.9;
+    color: $neutral-600;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include respond-to(tablet) {
+  .img-container {
+    grid-template-columns: 1fr;
+    padding: 0 $space-2;
+  }
+}

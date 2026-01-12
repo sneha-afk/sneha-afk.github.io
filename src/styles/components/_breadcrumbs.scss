@@ -1,0 +1,52 @@
+// ============================================================================
+// BREADCRUMBS COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// BREADCRUMBS
+// ============================================================================
+
+.breadcrumbs {
+  @include gradient-bg($color1: $surface-base, $color2: $surface-raised);
+
+  position: sticky;
+  top: 10px;
+  float: right;
+  z-index: $z-sticky;
+
+  margin-left: auto;
+  margin-bottom: $space-4;
+  padding: $space-2 $space-3;
+
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  border-radius: $radius-full;
+  box-shadow: $shadow-md;
+  opacity: 0.95;
+
+  a {
+    text-decoration: none;
+    transition: color $transition-fast;
+  }
+
+  // Current page (non-link)
+  span {
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include respond-to(mobile) {
+  .breadcrumbs {
+    font-size: $font-size-xs;
+    float: none;
+    position: static;
+  }
+}

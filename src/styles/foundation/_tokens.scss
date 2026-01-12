@@ -1,0 +1,277 @@
+// ============================================================================
+// DESIGN TOKENS
+// ============================================================================
+// This file contains all design primitives. These should rarely be used
+// directly - instead, use the semantic aliases defined later in this file.
+
+@use "sass:color";
+
+// ============================================================================
+// TYPOGRAPHY TOKENS
+// ============================================================================
+
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sintony:wght@400;700&display=swap");
+
+// Font families
+$font-family-sans: "Sintony", sans-serif;
+$font-family-mono: "Geist Mono", monospace;
+
+// Font sizes (using a modular scale)
+$font-size-2xs: 0.625rem; // 10px
+$font-size-xs: 0.75rem; // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem; // 20px
+$font-size-2xl: 1.5rem; // 24px
+$font-size-3xl: 2rem; // 32px
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Line heights
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.6;
+$line-height-loose: 2;
+
+// ============================================================================
+// SPACING TOKENS
+// ============================================================================
+
+// Base spacing unit (using 4px/8px system)
+$space-0: 0;
+$space-1: 0.125rem; // 2px
+$space-2: 0.25rem; // 4px
+$space-3: 0.5rem; // 8px
+$space-4: 1rem; // 16px
+$space-5: 1.5rem; // 24px
+$space-6: 2rem; // 32px
+$space-8: 3rem; // 48px
+$space-10: 4rem; // 64px
+
+// ============================================================================
+// COLOR PRIMITIVES
+// ============================================================================
+// These are the base colors from your original palette
+
+// Grayscale
+$neutral-50: #fafafa;
+$neutral-100: #f4f4f5;
+$neutral-200: #e4e4e7;
+$neutral-300: #d4d4d8;
+$neutral-400: #a1a1aa;
+$neutral-500: #71717a;
+$neutral-600: #52525b;
+$neutral-700: #3f3f46;
+$neutral-800: #27272a;
+$neutral-900: #18181b;
+$neutral-950: #161616;
+
+// Chromatic colors
+$red-base: #bc7171;
+$orange-base: #c99577;
+$yellow-base: #d5be82;
+$green-base: #9fbc85;
+$cyan-base: #89b7b0;
+$blue-base: #7c9bb4;
+$magenta-base: #a883a2;
+
+// Color variants (automatically generated)
+$red-light: color.adjust($red-base, $lightness: 20%);
+$red-dark: color.adjust($red-base, $lightness: -25%);
+
+$orange-light: color.adjust($orange-base, $lightness: 20%);
+$orange-dark: color.adjust($orange-base, $lightness: -25%);
+
+$yellow-light: color.adjust($yellow-base, $lightness: 20%);
+$yellow-dark: color.adjust($yellow-base, $lightness: -25%);
+
+$green-light: color.adjust($green-base, $lightness: 20%);
+$green-dark: color.adjust($green-base, $lightness: -25%);
+
+$cyan-light: color.adjust($cyan-base, $lightness: 20%);
+$cyan-dark: color.adjust($cyan-base, $lightness: -25%);
+
+$blue-light: color.adjust($blue-base, $lightness: 20%);
+$blue-dark: color.adjust($blue-base, $lightness: -25%);
+
+$magenta-light: color.adjust($magenta-base, $lightness: 20%);
+$magenta-dark: color.adjust($magenta-base, $lightness: -25%);
+
+// ============================================================================
+// SEMANTIC COLOR ALIASES
+// ============================================================================
+// These map primitives to semantic meanings. Use these in components.
+
+// Surface colors
+$surface-base: $neutral-950;
+$surface-raised: color.adjust($neutral-950, $lightness: 5%);
+$surface-overlay: rgba($neutral-950, 0.95);
+
+// Text colors
+$text-primary: $neutral-100;
+$text-secondary: $neutral-400;
+$text-tertiary: $neutral-500;
+$text-inverse: $neutral-900;
+
+// Brand colors
+$brand-primary: $red-base;
+$brand-secondary: $orange-base;
+$brand-accent: $yellow-base;
+
+// Interactive colors
+$interactive-default: $brand-primary;
+$interactive-hover-bg: $brand-accent;
+$interactive-hover-text: $neutral-900;
+$interactive-focus: rgba($brand-primary, 0.3);
+
+// State colors
+$state-success: $green-dark;
+$state-warning: $yellow-dark;
+$state-error: $red-dark;
+$state-info: $blue-dark;
+
+// Border colors
+$border-subtle: rgba($neutral-700, 0.2);
+$border-default: $neutral-700;
+$border-strong: $neutral-600;
+
+// ============================================================================
+// COMPONENT-SPECIFIC SEMANTIC COLORS
+// ============================================================================
+
+// Links
+$link-color: $brand-primary;
+$link-hover-bg: $interactive-hover-bg;
+$link-hover-text: $interactive-hover-text;
+
+// Code blocks
+$code-bg: $surface-raised;
+$code-text: $neutral-100;
+$code-border: $neutral-800;
+
+// Blockquotes
+$blockquote-bg: $neutral-100;
+$blockquote-text: $neutral-900;
+$blockquote-border-info: $blue-base;
+$blockquote-border-success: $state-success;
+$blockquote-border-warning: $state-warning;
+$blockquote-border-error: $state-error;
+$blockquote-border-note: $cyan-base;
+
+// Tables
+$table-bg: $surface-raised;
+$table-border: $border-subtle;
+$table-header-bg: color.adjust($surface-base, $lightness: 2%);
+$table-header-text: $brand-primary;
+$table-row-odd-bg: rgba($neutral-700, 0.1);
+$table-row-even-bg: rgba($neutral-900, 0.05);
+$table-row-hover-bg: rgba($brand-primary, 0.05);
+
+// Buttons
+$button-primary-bg: $surface-base;
+$button-primary-text: $brand-primary;
+$button-primary-hover-bg: linear-gradient(135deg, $blue-dark, $blue-light);
+$button-primary-hover-text: $text-inverse;
+
+// Post cards
+$post-card-bg: linear-gradient(
+  135deg,
+  color.adjust($surface-raised, $lightness: -5%),
+  color.adjust($surface-raised, $lightness: 5%)
+);
+$post-card-hover-bg: linear-gradient(135deg, $blue-dark, $blue-light);
+
+// Tags
+$tag-bg: color.adjust($surface-raised, $lightness: 5%);
+$tag-hover-bg: $brand-primary;
+$tag-hover-text: $surface-base;
+
+// Navigation
+$nav-bg: $surface-base;
+$nav-text: $text-primary;
+
+// ============================================================================
+// RADIUS TOKENS
+// ============================================================================
+
+$radius-sm: 0.25rem; // 4px
+$radius-md: 0.5rem; // 8px
+$radius-lg: 1rem; // 16px
+$radius-full: 9999px; // pill shape
+
+// ============================================================================
+// SHADOW TOKENS
+// ============================================================================
+
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 2px 6px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.2);
+$shadow-xl: 0 10px 20px rgba(0, 0, 0, 0.25);
+
+// Elevation shadows (for card mixin)
+$elevation-1:
+  0 1px 3px rgba(0, 0, 0, 0.12),
+  0 1px 2px rgba(0, 0, 0, 0.24);
+$elevation-2:
+  0 3px 6px rgba(0, 0, 0, 0.16),
+  0 3px 6px rgba(0, 0, 0, 0.23);
+$elevation-3:
+  0 10px 20px rgba(0, 0, 0, 0.19),
+  0 6px 6px rgba(0, 0, 0, 0.23);
+$elevation-4:
+  0 14px 28px rgba(0, 0, 0, 0.25),
+  0 10px 10px rgba(0, 0, 0, 0.22);
+$elevation-5:
+  0 19px 38px rgba(0, 0, 0, 0.3),
+  0 15px 12px rgba(0, 0, 0, 0.22);
+
+// ============================================================================
+// TRANSITION TOKENS
+// ============================================================================
+
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+// ============================================================================
+// BREAKPOINT TOKENS
+// ============================================================================
+
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1440px;
+
+// ============================================================================
+// Z-INDEX SCALE
+// ============================================================================
+
+$z-base: 1;
+$z-dropdown: 100;
+$z-sticky: 500;
+$z-modal: 1000;
+$z-popover: 1500;
+$z-tooltip: 2000;
+
+// ============================================================================
+// COMPONENT SIZE TOKENS
+// ============================================================================
+
+// Checkbox
+$checkbox-size: $font-size-base;
+$checkbox-border-radius: $radius-sm;
+$checkbox-check-size: 0.7rem;
+
+// Loading spinner
+$spinner-size: 2rem;
+$spinner-thickness: 0.25rem;
+$spinner-speed: 0.8s;
+
+// Content width
+$content-max-width: 80ch;

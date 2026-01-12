@@ -1,0 +1,59 @@
+// ============================================================================
+// BUTTONS COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "sass:color";
+
+// ============================================================================
+// BUTTON LINK
+// ============================================================================
+
+.button-link {
+  @include pill(
+    $bg: $button-primary-bg,
+    $color: $button-primary-text,
+    $hover-bg: $button-primary-hover-bg,
+    $hover-color: $button-primary-hover-text
+  );
+
+  font-weight: $font-weight-bold;
+}
+
+// ============================================================================
+// BACK LINK
+// ============================================================================
+
+.back-link {
+  @include pill(
+    $bg: linear-gradient(
+        135deg,
+        color.adjust($surface-raised, $lightness: -5%),
+        color.adjust($surface-raised, $lightness: 5%)
+      ),
+    $color: $text-primary,
+    $hover-bg: linear-gradient(135deg, $blue-dark, $blue-light),
+    $hover-color: $text-inverse
+  );
+
+  font-family: $font-family-mono;
+  font-weight: $font-weight-bold;
+  margin-bottom: $space-3;
+
+  // Arrow icon
+  &::before {
+    content: "<";
+    font-size: $font-size-sm;
+  }
+
+  // Special hover effect
+  &:hover,
+  &:focus-visible {
+    transform: translateX(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-primary;
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "@styles/_navigation.scss";
+import "@styles/components/_navigation.scss";
 import ButtonLink from "@components/ButtonLink";
 
 type NavItem = {
@@ -13,10 +13,7 @@ type NavigationBarProps = {
   navigation: NavItem[];
 };
 
-const NavigationBar: React.FC<NavigationBarProps> = ({
-  title = "Sneha De",
-  navigation,
-}) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({ title = "Sneha De", navigation }) => {
   return (
     <div className="container">
       <header className="site-navbar">

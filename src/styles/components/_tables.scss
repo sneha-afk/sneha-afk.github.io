@@ -1,0 +1,175 @@
+// ============================================================================
+// TABLES COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "sass:color";
+
+// ============================================================================
+// BASE TABLE
+// ============================================================================
+
+table:not(.highlight table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: $space-5 0;
+  color: $text-primary;
+  background: $table-bg;
+  line-height: $line-height-tight;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $elevation-2;
+  transition: all $transition-fast;
+}
+
+// ============================================================================
+// TABLE HEADER
+// ============================================================================
+
+table:not(.highlight table) th {
+  background: $table-header-bg;
+  color: $table-header-text;
+  font-weight: $font-weight-bold;
+  padding: $space-3;
+  font-size: $font-size-sm;
+  text-align: left;
+  position: relative;
+  border-bottom: 2px solid $border-subtle;
+
+  &:hover {
+    background: rgba($blue-dark, 0.1);
+  }
+
+  &:not(:last-child) {
+    border-right: 1px solid $border-subtle;
+  }
+}
+
+// ============================================================================
+// TABLE CELLS
+// ============================================================================
+
+table:not(.highlight table) td {
+  padding: $space-3;
+  color: $neutral-200;
+  position: relative;
+  border-bottom: 1px solid $border-subtle;
+}
+
+// ============================================================================
+// ZEBRA STRIPING
+// ============================================================================
+
+table:not(.highlight table) tbody tr:nth-child(odd) {
+  background-color: $table-row-odd-bg;
+}
+
+table:not(.highlight table) tbody tr:nth-child(even) {
+  background-color: $table-row-even-bg;
+}
+
+// ============================================================================
+// ROW HOVER EFFECTS
+// ============================================================================
+
+table:not(.highlight table) tbody tr {
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $table-row-hover-bg;
+
+    td {
+      color: color.adjust($neutral-200, $lightness: 15%);
+    }
+  }
+}
+
+// ============================================================================
+// CORNER RADIUS
+// ============================================================================
+
+table:not(.highlight table) {
+  th:first-child {
+    border-top-left-radius: $radius-md;
+  }
+
+  th:last-child {
+    border-top-right-radius: $radius-md;
+  }
+
+  tr:last-child {
+    td:first-child {
+      border-bottom-left-radius: $radius-md;
+    }
+
+    td:last-child {
+      border-bottom-right-radius: $radius-md;
+      padding-right: $space-5;
+    }
+
+    td {
+      border-bottom: none;
+    }
+  }
+}
+
+// ============================================================================
+// TABLE CAPTION
+// ============================================================================
+
+table:not(.highlight table) caption {
+  caption-side: top;
+  text-align: left;
+  padding: $space-4 $space-5;
+  font-weight: $font-weight-bold;
+  color: $brand-primary;
+  background: rgba($blue-dark, 0.08);
+  border-top-left-radius: $radius-md;
+  border-top-right-radius: $radius-md;
+  font-size: $font-size-lg;
+}
+
+// ============================================================================
+// ROW VARIANTS
+// ============================================================================
+
+table:not(.highlight table) tr.success {
+  background-color: rgba($state-success, 0.08);
+
+  &:hover {
+    background-color: rgba($state-success, 0.12);
+  }
+}
+
+table:not(.highlight table) tr.warning {
+  background-color: rgba($state-warning, 0.08);
+
+  &:hover {
+    background-color: rgba($state-warning, 0.12);
+  }
+}
+
+table:not(.highlight table) tr.danger {
+  background-color: rgba($state-error, 0.08);
+
+  &:hover {
+    background-color: rgba($state-error, 0.12);
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include respond-to(mobile) {
+  table:not(.highlight table) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: $radius-md;
+  }
+}

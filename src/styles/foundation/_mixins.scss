@@ -1,0 +1,297 @@
+// ============================================================================
+// MIXINS
+// ============================================================================
+// Reusable style patterns
+
+@use "tokens" as *;
+@use "sass:color";
+
+// ============================================================================
+// RESPONSIVE MIXINS
+// ============================================================================
+
+/// Responsive breakpoint helper
+/// @param {String} $breakpoint - Breakpoint name (mobile, tablet, desktop, wide)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  } @else if $breakpoint == wide {
+    @media (min-width: $breakpoint-wide) {
+      @content;
+    }
+  }
+}
+
+// ============================================================================
+// LAYOUT MIXINS
+// ============================================================================
+
+/// Grid layout helper
+/// @param {Number} $columns - Number of columns
+/// @param {Number} $gap - Gap between items (default: $space-3)
+@mixin grid($columns, $gap: $space-3) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+/// Flexbox centering
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Content width container
+/// @param {Number} $max-width - Maximum width (default: $content-max-width)
+@mixin container($max-width: $content-max-width) {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ============================================================================
+// VISUAL EFFECT MIXINS
+// ============================================================================
+
+/// Card with elevation shadow
+/// @param {Number} $elevation - Elevation level (1-5)
+/// @param {Color} $bg - Background color
+/// @param {Color} $border-color - Left border color
+/// @param {Number} $border-width - Border width (default: 2px)
+@mixin card($elevation: 1, $bg: $surface-raised, $border-color: $brand-primary, $border-width: 2px) {
+  background: $bg;
+  border-radius: $radius-md;
+  border-left: $border-width solid $border-color;
+  transition: all $transition-normal;
+
+  @if $elevation == 1 {
+    box-shadow: $elevation-1;
+    &:hover {
+      box-shadow: $elevation-2;
+    }
+  } @else if $elevation == 2 {
+    box-shadow: $elevation-2;
+    &:hover {
+      box-shadow: $elevation-3;
+    }
+  } @else if $elevation == 3 {
+    box-shadow: $elevation-3;
+  } @else if $elevation == 4 {
+    box-shadow: $elevation-4;
+  } @else if $elevation == 5 {
+    box-shadow: $elevation-5;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/// Pill-shaped element (buttons, tags, etc.)
+/// @param {Color} $bg - Background color
+/// @param {Color} $color - Text color
+/// @param {Color} $hover-bg - Hover background
+/// @param {Color} $hover-color - Hover text color
+@mixin pill(
+  $bg: $surface-raised,
+  $color: $text-primary,
+  $hover-bg: $interactive-hover-bg,
+  $hover-color: $interactive-hover-text
+) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border-radius: $radius-full;
+
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  color: $color;
+  background: $bg;
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: $shadow-md;
+  transition: all $transition-normal;
+
+  &:hover {
+    background: $hover-bg;
+    color: $hover-color;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: $shadow-lg;
+  }
+
+  &:focus-visible {
+    background: $hover-bg;
+    color: $hover-color;
+    outline: 2px solid $interactive-focus;
+    outline-offset: 2px;
+  }
+}
+
+/// Gradient background
+/// @param {Angle} $angle - Gradient angle
+/// @param {Color} $color1 - Start color
+/// @param {Color} $color2 - End color
+@mixin gradient-bg($angle: 135deg, $color1: $brand-primary, $color2: $brand-secondary) {
+  background: linear-gradient($angle, $color1, $color2);
+}
+
+/// Text with subtle glow effect
+/// @param {Color} $color - Glow color
+@mixin text-glow($color: $brand-primary) {
+  text-shadow: 0 0 10px rgba($color, 0.3);
+}
+
+/// Box with subtle glow effect
+/// @param {Color} $color - Glow color
+@mixin box-glow($color: $brand-primary) {
+  box-shadow: 0 0 10px rgba($color, 0.3);
+}
+
+// ============================================================================
+// FORM ELEMENT MIXINS
+// ============================================================================
+
+/// Custom checkbox styling
+/// @param {Number} $size - Checkbox size
+/// @param {Number} $border-radius - Border radius
+@mixin checkbox($size: $checkbox-size, $border-radius: $checkbox-border-radius) {
+  appearance: none;
+  width: $size;
+  height: $size;
+  border: 2px solid $neutral-400;
+  border-radius: $border-radius;
+  background-color: $surface-raised;
+  cursor: pointer;
+  position: relative;
+  transition: all $transition-fast;
+
+  &:checked {
+    background-color: $state-success;
+    border-color: $state-success;
+
+    &::after {
+      content: "✓";
+      font-size: $checkbox-check-size;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $state-success;
+    outline-offset: 2px;
+  }
+}
+
+// ============================================================================
+// TYPOGRAPHY MIXINS
+// ============================================================================
+
+/// High contrast text (for readability on images)
+@mixin high-contrast-text {
+  color: $text-primary;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/// Truncate text with ellipsis
+/// @param {Number} $lines - Number of lines (default: 1)
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ============================================================================
+// ANIMATION MIXINS
+// ============================================================================
+
+/// Fade in animation
+/// @param {Number} $duration - Animation duration
+@mixin fade-in($duration: $transition-normal) {
+  animation: fade-in $duration ease-in;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/// Spin animation (for loading spinners)
+/// @param {Number} $duration - Animation duration
+@mixin spin($duration: $spinner-speed) {
+  animation: spin $duration linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+// ============================================================================
+// UTILITY MIXINS
+// ============================================================================
+
+/// Visually hide element (accessible to screen readers)
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/// Reset list styles
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/// Focus styles
+@mixin focus-outline($color: $interactive-focus) {
+  outline: 2px solid $color;
+  outline-offset: 2px;
+}

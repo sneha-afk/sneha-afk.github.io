@@ -1,4 +1,4 @@
-import "@styles/_button.scss";
+import "@styles/components/_buttons.scss";
 import { Link } from "react-router-dom";
 
 interface ButtonLinkProps {

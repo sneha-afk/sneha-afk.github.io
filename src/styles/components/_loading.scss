@@ -1,0 +1,52 @@
+// ============================================================================
+// LOADING COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// LOADING CONTAINER
+// ============================================================================
+
+.loading {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-6;
+
+  // Fullscreen variant
+  &--fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $surface-overlay;
+    z-index: $z-modal;
+  }
+}
+
+// ============================================================================
+// LOADING SPINNER
+// ============================================================================
+
+.loading-spinner-wheel {
+  width: $spinner-size;
+  height: $spinner-size;
+  border: $spinner-thickness solid rgba($brand-primary, 0.3);
+  border-radius: 50%;
+  border-top-color: $brand-primary;
+  @include spin;
+}
+
+// ============================================================================
+// LOADING TEXT
+// ============================================================================
+
+.loading-text {
+  color: $text-secondary;
+  text-align: center;
+  margin: 0;
+  font-family: $font-family-mono;
+}

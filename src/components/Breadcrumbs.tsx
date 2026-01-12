@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "@styles/_breadcrumbs.scss";
+import "@styles/components/_breadcrumbs.scss";
 
 type BreadcrumbItem = {
   label: string;
@@ -23,11 +23,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => {
     <nav className="breadcrumbs">
       {items.map((item, i) => (
         <span key={i}>
-          {item.path ? (
-            <Link to={item.path}>{item.label}</Link>
-          ) : (
-            removeLeadingChar(item.label, "/")
-          )}
+          {item.path ? <Link to={item.path}>{item.label}</Link> : removeLeadingChar(item.label, "/")}
           {i < items.length - 1 && " / "}
         </span>
       ))}

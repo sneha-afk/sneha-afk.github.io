@@ -1,0 +1,54 @@
+// ============================================================================
+// NAVIGATION COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// SITE NAVBAR
+// ============================================================================
+
+.site-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: $space-4;
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $space-4;
+
+    a {
+      font-family: $font-family-mono;
+    }
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include respond-to(mobile) {
+  .site-navbar {
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      text-align: center;
+      font-size: $font-size-xl;
+      justify-content: center;
+      width: 100%;
+    }
+
+    nav {
+      width: auto;
+      margin-left: 0;
+      justify-content: center;
+    }
+  }
+}

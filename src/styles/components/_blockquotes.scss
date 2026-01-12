@@ -1,0 +1,76 @@
+// ============================================================================
+// BLOCKQUOTES COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// BASE BLOCKQUOTE
+// ============================================================================
+
+blockquote {
+  margin: $space-5 0;
+  padding: $space-4 $space-5;
+  border-radius: $radius-md;
+  border-left: $space-2 solid $blockquote-border-info;
+  background-color: $blockquote-bg;
+  color: $blockquote-text;
+  font-style: italic;
+  box-shadow: $shadow-sm;
+
+  p {
+    margin: 0;
+  }
+
+  // Icon/label before content
+  &::before {
+    margin-right: $space-2;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+  }
+}
+
+// ============================================================================
+// BLOCKQUOTE VARIANTS
+// ============================================================================
+
+/// Mixin for creating blockquote variants
+/// @param {Color} $border - Border color
+/// @param {Color} $bg - Background color
+/// @param {String} $label - Label text
+/// @param {Color} $label-color - Label color
+@mixin blockquote-variant($border, $bg, $label, $label-color) {
+  border-left-color: $border;
+  background-color: $bg;
+
+  &::before {
+    content: $label;
+    color: $label-color;
+  }
+}
+
+// Tip variant
+.blockquote-tip {
+  @include blockquote-variant($blockquote-border-success, $green-light, "💡 TIP", $green-dark);
+}
+
+// Warning variant
+.blockquote-warning {
+  @include blockquote-variant($blockquote-border-warning, $yellow-light, "⚠️ WARNING", $yellow-dark);
+}
+
+// Danger variant
+.blockquote-danger {
+  @include blockquote-variant($blockquote-border-error, $red-light, "🛑 DANGER", $red-dark);
+}
+
+// Info variant (default)
+.blockquote-info {
+  @include blockquote-variant($blockquote-border-info, $blue-light, "ℹ️ INFO", $blue-dark);
+}
+
+// Note variant
+.blockquote-note {
+  @include blockquote-variant($blockquote-border-note, $cyan-light, "📝 NOTE", $cyan-dark);
+}

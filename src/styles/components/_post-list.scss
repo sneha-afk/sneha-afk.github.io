@@ -1,0 +1,78 @@
+// ============================================================================
+// POST LIST COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+@use "sass:color";
+
+// ============================================================================
+// POST LIST
+// ============================================================================
+
+.post-list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+}
+
+// ============================================================================
+// POST CARD
+// ============================================================================
+
+.post-card {
+  @include pill($bg: $post-card-bg, $color: $text-primary, $hover-bg: $post-card-hover-bg, $hover-color: $text-inverse);
+
+  text-decoration: none;
+
+  .post-date {
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+    opacity: 0.8;
+  }
+
+  .post-title {
+    font-weight: $font-weight-medium;
+
+    &::before {
+      content: "•";
+      margin: 0 $space-3;
+      color: $brand-primary;
+    }
+  }
+}
+
+// ============================================================================
+// POST TAGS
+// ============================================================================
+
+.post-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin: $space-3 0;
+}
+
+.post-tag {
+  @include pill(
+    $bg: linear-gradient(
+        135deg,
+        color.adjust($surface-raised, $lightness: -5%),
+        color.adjust($surface-raised, $lightness: 5%)
+      ),
+    $color: $text-primary,
+    $hover-bg: $tag-hover-bg,
+    $hover-color: $tag-hover-text
+  );
+
+  font-size: $font-size-xs;
+  font-family: $font-family-mono;
+  padding: $space-1 $space-3;
+
+  // Hash symbol before tag
+  &::before {
+    content: "#";
+    color: $neutral-700;
+  }
+}

@@ -1,0 +1,89 @@
+// ============================================================================
+// TABLE OF CONTENTS COMPONENT
+// ============================================================================
+
+@use "../foundation/tokens" as *;
+@use "../foundation/mixins" as *;
+
+// ============================================================================
+// TABLE OF CONTENTS
+// ============================================================================
+
+.toc {
+  background: $surface-raised;
+  border-radius: $radius-md;
+  padding: $space-5;
+  margin: $space-5 0;
+  font-family: $font-family-sans;
+
+  // Border only on outermost .toc
+  &:not(.toc .toc) {
+    border-left: 3px solid $neutral-500;
+  }
+
+  // Reset list styling
+  &,
+  ul {
+    @include list-reset;
+  }
+
+  // Heading
+  &::before {
+    content: "Contents";
+    display: block;
+    margin-bottom: $space-4;
+    color: $neutral-100;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+    border-bottom: 1px solid $neutral-100;
+  }
+
+  // Remove duplicate heading for nested TOCs
+  > .toc::before {
+    content: none;
+  }
+}
+
+// ============================================================================
+// TOC STRUCTURE
+// ============================================================================
+
+.toc-sublist {
+  padding-left: $space-5;
+  margin: $space-2 0;
+}
+
+.toc-item {
+  margin: $space-2 0;
+}
+
+// ============================================================================
+// TOC LINKS
+// ============================================================================
+
+.toc a {
+  text-decoration: none;
+  color: $blue-light;
+  transition: color $transition-fast;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: underline;
+    color: $interactive-hover-text;
+    background-color: $interactive-hover-bg;
+  }
+}
+
+// ============================================================================
+// RESPONSIVE
+// ============================================================================
+
+@include respond-to(mobile) {
+  .toc {
+    padding: $space-4;
+
+    .toc-sublist {
+      padding-left: $space-4;
+    }
+  }
+}
