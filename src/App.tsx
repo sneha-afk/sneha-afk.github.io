@@ -1,27 +1,40 @@
-import {
-  BlogIndex,
-  BlogPost,
-  HomePage,
-  NotFoundPage,
-  ProjectsPage,
-  ResumePage,
-} from "@pages";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation, Navigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import * as P from "@pages";
+import PageTransition from "@components/ui/PageTransition";
 
-function App() {
+const ROUTE_CONFIG = [
+  { path: "/",         element: <P.HomePage /> },
+  { path: "/home",     element: <Navigate to="/" replace /> },
+  { path: "/resume",   element: <P.ResumePage /> },
+  { path: "/projects", element: <P.ProjectsPage /> },
+  { path: "/blog",     element: <P.BlogIndex /> },
+  { path: "/blog/:slug", element: <P.BlogPost /> },
+  { path: "*",         element: <P.NotFoundPage /> },
+];
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        {ROUTE_CONFIG.map(({ path, element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={<PageTransition>{element}</PageTransition>}
+          />
+        ))}
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
+export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/resume" element={<ResumePage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/blog" element={<BlogIndex />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <AnimatedRoutes />
     </Router>
   );
 }
-
-export default App;

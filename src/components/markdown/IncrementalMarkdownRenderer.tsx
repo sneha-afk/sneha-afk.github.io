@@ -40,13 +40,19 @@ const chunkMarkdownByHeaders = (content: string): string[] => {
   return chunks;
 };
 
-const MarkdownChunk = memo<{
+interface MarkdownChunkProps {
   content: string;
   enableMathJax: boolean;
   isFirst: boolean;
-}>(({ content, enableMathJax, isFirst }) => (
+}
+
+const MarkdownChunk = memo(({ content, enableMathJax, isFirst }: MarkdownChunkProps) => (
   <div className="markdown-chunk">
-    <MarkdownRenderer content={content} enableMathJax={enableMathJax} showLoadingSpinner={isFirst} />
+    <MarkdownRenderer
+      content={content}
+      enableMathJax={enableMathJax}
+      showLoadingSpinner={isFirst}
+    />
   </div>
 ));
 

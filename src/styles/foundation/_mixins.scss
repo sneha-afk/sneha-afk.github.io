@@ -68,23 +68,25 @@
 /// @param {Number} $elevation - Elevation level (1-5)
 /// @param {Color} $bg - Background color
 /// @param {Color} $border-color - Left border color
-/// @param {Number} $border-width - Border width (default: 2px)
-@mixin card($elevation: 1, $bg: $surface-raised, $border-color: $brand-primary, $border-width: 2px) {
+/// @param {Number} $border-width - Border width
+/// @param {Boolean} $interactive - Whether card has hover motion
+@mixin card(
+  $elevation: 1,
+  $bg: $surface-raised,
+  $border-color: $brand-primary,
+  $border-width: 2px,
+  $interactive: true
+) {
   background: $bg;
   border-radius: $radius-md;
   border-left: $border-width solid $border-color;
-  transition: all $transition-normal;
+
+  transition: box-shadow $transition-normal, transform $transition-normal, border-left-color $transition-fast;
 
   @if $elevation == 1 {
     box-shadow: $elevation-1;
-    &:hover {
-      box-shadow: $elevation-2;
-    }
   } @else if $elevation == 2 {
     box-shadow: $elevation-2;
-    &:hover {
-      box-shadow: $elevation-3;
-    }
   } @else if $elevation == 3 {
     box-shadow: $elevation-3;
   } @else if $elevation == 4 {
@@ -93,8 +95,22 @@
     box-shadow: $elevation-5;
   }
 
-  &:hover {
-    transform: translateY(-2px);
+  @if $interactive {
+    &:hover {
+      transform: translateY(-1px);
+
+      @if $elevation < 5 {
+        box-shadow: map-get(
+          (
+            1: $elevation-2,
+            2: $elevation-3,
+            3: $elevation-4,
+            4: $elevation-5,
+          ),
+          $elevation
+        );
+      }
+    }
   }
 }
 
@@ -104,10 +120,10 @@
 /// @param {Color} $hover-bg - Hover background
 /// @param {Color} $hover-color - Hover text color
 @mixin pill(
-  $bg: $surface-raised,
-  $color: $text-primary,
-  $hover-bg: $interactive-hover-bg,
-  $hover-color: $interactive-hover-text
+  $bg: $button-primary-bg,
+  $color: $button-primary-text,
+  $hover-bg: $button-primary-hover-bg,
+  $hover-color: $button-primary-hover-text
 ) {
   display: inline-flex;
   align-items: center;
@@ -119,20 +135,19 @@
   font-family: $font-family-sans;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
-
   color: $color;
   background: $bg;
   text-decoration: none;
   cursor: pointer;
 
-  box-shadow: $shadow-md;
+  box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all $transition-normal;
 
   &:hover {
     background: $hover-bg;
     color: $hover-color;
     transform: translateY(-2px) scale(1.02);
-    box-shadow: $shadow-lg;
+    box-shadow: $shadow-lg, inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
 
   &:focus-visible {

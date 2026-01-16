@@ -57,9 +57,17 @@ a .inline-code {
 }
 
 .code-block {
+  font-size: $font-size-xs !important;
+  pre,
+  code,
+  span {
+    font-size: inherit !important;
+    font-family: $font-family-mono !important;
+    line-height: $line-height-relaxed;
+  }
+
   border-radius: $radius-md;
   padding: $space-6 $space-4 !important;
-  line-height: $line-height-relaxed;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }

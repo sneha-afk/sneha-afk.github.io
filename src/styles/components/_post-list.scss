@@ -1,15 +1,8 @@
-// ============================================================================
-// POST LIST COMPONENT
-// ============================================================================
-
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 @use "sass:color";
 
-// ============================================================================
-// POST LIST
-// ============================================================================
-
+// On /home and /blog
 .post-list {
   @include list-reset;
   display: flex;
@@ -17,10 +10,7 @@
   gap: $space-3;
 }
 
-// ============================================================================
-// POST CARD
-// ============================================================================
-
+// Each entry of the list
 .post-card {
   @include pill($bg: $post-card-bg, $color: $text-primary, $hover-bg: $post-card-hover-bg, $hover-color: $text-inverse);
 
@@ -41,12 +31,13 @@
       color: $brand-primary;
     }
   }
+
+  &:hover {
+    transform: translateY(-1px);
+  }
 }
 
-// ============================================================================
-// POST TAGS
-// ============================================================================
-
+// Tags at the top of a post
 .post-tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -56,13 +47,8 @@
 
 .post-tag {
   @include pill(
-    $bg:
-      linear-gradient(
-        135deg,
-        color.adjust($surface-raised, $lightness: -5%),
-        color.adjust($surface-raised, $lightness: 5%)
-      ),
-    $color: $text-primary,
+    $bg: $surface-raised,
+    $color: $text-secondary,
     $hover-bg: $tag-hover-bg,
     $hover-color: $tag-hover-text
   );
@@ -71,8 +57,11 @@
   font-family: $font-family-mono;
   padding: $space-1 $space-3;
 
+  box-shadow: none;
+
   &::before {
     content: "#";
+    margin-right: 0.25em;
     color: $neutral-700;
   }
 }

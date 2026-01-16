@@ -1,86 +1,29 @@
-// ============================================================================
-// RESUME COMPONENT
-// ============================================================================
-
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 @use "sass:color";
 
-// ============================================================================
-// RESUME CONTAINER
-// ============================================================================
+%list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
 .resume {
   @include container;
   padding: $space-5;
 
-  ul li {
-    position: relative;
-    margin: 0 0 $space-2 $space-4;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-// ============================================================================
-// RESUME HEADER
-// ============================================================================
-
-.resume-header {
-  text-align: center;
-  margin-bottom: $space-5;
-
-  h1 {
-    margin: 0 0 $space-3 0;
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-bold;
-    color: $text-primary;
-  }
-
-  .subtitle {
-    margin: 0 0 $space-3 0;
-    color: $neutral-800;
-    font-size: $font-size-base;
-  }
-
-  .contact-info {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: $space-3;
-    margin: 0;
-
-    a {
-      transition: all $transition-slow;
-    }
-  }
-}
-
-// ============================================================================
-// RESUME SECTIONS
-// ============================================================================
-
-.resume-section {
-  margin-bottom: $space-5;
-
-  &-title {
-    margin: 0 0 $space-4 0;
-  }
-
-  p {
-    margin: 0 0 $space-3 0;
-    line-height: $line-height-relaxed;
-  }
-
   ul {
-    list-style-type: square;
     margin: 0 0 $space-3 $space-4;
     padding: 0;
+    list-style-type: square;
 
     li {
+      position: relative;
       margin-bottom: $space-2;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       &::marker {
         color: $brand-primary;
@@ -89,16 +32,50 @@
   }
 }
 
-// ============================================================================
-// RESUME ITEMS (Experience, Education, etc.)
-// ============================================================================
+.resume-header {
+  text-align: center;
+  margin-bottom: $space-5;
+
+  h1 {
+    margin: 0 0 $space-3;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+  }
+
+  .subtitle {
+    margin: 0 0 $space-3;
+    color: $neutral-800;
+    font-size: $font-size-base;
+  }
+
+  .contact-info {
+    @extend %list-reset;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $space-3;
+  }
+}
+
+.resume-section {
+  margin-bottom: $space-5;
+
+  &-title {
+    margin-bottom: $space-4;
+  }
+
+  p {
+    margin-bottom: $space-3;
+    line-height: $line-height-relaxed;
+  }
+}
 
 .resume-item {
-  @include card($elevation: 1, $border-color: $neutral-600);
-
+  @include card($bg: $surface-raised, $border-color: $neutral-600, $interactive: false);
   margin-bottom: $space-4;
   padding: $space-4;
-  transition: border-color $transition-fast;
+  transition: border-left-color $transition-fast;
 
   &:last-child {
     margin-bottom: 0;
@@ -107,58 +84,53 @@
   &:hover {
     border-left-color: $brand-primary;
   }
+
+  &-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: $space-1 $space-3;
+    margin-bottom: $space-3;
+    align-items: start;
+
+    .position {
+      grid-column: 1;
+      grid-row: 1;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-base;
+      color: $text-primary;
+      margin: 0;
+    }
+
+    .date {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      margin: 0;
+      align-self: start;
+    }
+
+    .meta-info {
+      grid-column: 1;
+      grid-row: 2;
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      margin: 0;
+    }
+
+    .location {
+      grid-column: 2;
+      grid-row: 2;
+      text-align: right;
+      color: $text-secondary;
+      font-size: $font-size-xs;
+      margin: 0;
+      align-self: start;
+    }
+  }
 }
-
-// ============================================================================
-// RESUME ITEM HEADER
-// ============================================================================
-
-.resume-item-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  margin-bottom: $space-3;
-
-  .position {
-    grid-column: 1;
-    grid-row: 1;
-    font-weight: $font-weight-bold;
-    font-size: $font-size-base;
-    color: $text-primary;
-    margin: 0;
-  }
-
-  .date {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: right;
-    color: $text-secondary;
-    font-size: $font-size-sm;
-    margin: 0;
-  }
-
-  .meta-info {
-    display: inline-block;
-    grid-column: 1;
-    grid-row: 2;
-    color: $text-secondary;
-    font-size: $font-size-sm;
-    margin: 0;
-  }
-
-  .location {
-    grid-column: 2;
-    grid-row: 2;
-    text-align: right;
-    color: $text-secondary;
-    font-size: $font-size-xs;
-    margin: 0;
-  }
-}
-
-// ============================================================================
-// TECH STACK
-// ============================================================================
 
 .tech-stack {
   margin: $space-3 0;
@@ -166,7 +138,7 @@
 
   strong {
     display: block;
-    margin: 0 0 $space-2 0;
+    margin-bottom: $space-2;
     color: $text-primary;
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
@@ -182,27 +154,11 @@
   }
 }
 
-// ============================================================================
-// ITEM DETAILS
-// ============================================================================
-
-.resume-item-details {
-  margin: 0;
-}
-
-// ============================================================================
-// SKILLS SECTION
-// ============================================================================
-
-.skills-container {
-  margin-top: $space-4;
-}
-
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: $space-2;
-  margin: $space-3 0 0 0;
+  margin-top: $space-3;
 
   .skill {
     @include pill(
@@ -211,28 +167,18 @@
       $hover-bg: $brand-primary,
       $hover-color: $surface-base
     );
-
     padding: $space-1 $space-3;
   }
 }
 
-// ============================================================================
-// RESPONSIVE
-// ============================================================================
-
 @include respond-to(mobile) {
-  .resume {
-    padding: $space-3;
-  }
-
   .resume-item {
     padding: $space-3;
 
     &-header {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: $space-2;
+      gap: $space-1;
 
       .position,
       .date,

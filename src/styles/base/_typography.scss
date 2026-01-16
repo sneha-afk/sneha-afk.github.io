@@ -1,200 +1,124 @@
-// ============================================================================
-// TYPOGRAPHY BASE
-// ============================================================================
-
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
+
+// ============================================================================
+// BASE ELEMENTS
+// ============================================================================
+
+body {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+}
 
 // ============================================================================
 // HEADINGS
 // ============================================================================
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:is(h1, h2, h3, h4, h5, h6) {
   color: $brand-primary;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
-  margin-top: $space-5;
-  margin-bottom: $space-4;
+  margin-top: 1.5em;
+  margin-bottom: $space-3;
 }
 
-h1 {
-  font-size: $font-size-3xl;
-}
-
-h2 {
-  font-size: $font-size-2xl;
-}
-
-h3 {
-  font-size: $font-size-xl;
-}
-
-h4 {
-  font-size: $font-size-lg;
-}
-
-h5 {
-  font-size: $font-size-base;
-}
-
-h6 {
-  font-size: $font-size-sm;
-}
+h1 { font-size: $font-size-3xl; letter-spacing: -0.02em; }
+h2 { font-size: $font-size-xl;  }
+h3 { font-size: $font-size-lg;  }
+h4 { font-size: $font-size-base;}
+h5 { font-size: $font-size-sm;  text-transform: uppercase; letter-spacing: 0.05em; }
+h6 { font-size: $font-size-xs;  color: $text-secondary; }
 
 // ============================================================================
-// BODY TEXT
+// BODY & SEMANTICS
 // ============================================================================
 
 p {
   margin-bottom: $space-4;
-  line-height: $line-height-relaxed;
 }
-
-// ============================================================================
-// LINKS
-// ============================================================================
 
 a {
   color: $link-color;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px; // Slightly more air for 12pt base
   transition: all $transition-fast;
 
   &:hover,
   &:focus-visible {
     background-color: $link-hover-bg;
     color: $link-hover-text;
+    text-decoration-color: transparent;
   }
 
-  &:focus-visible {
-    @include focus-outline;
-  }
+  &:focus-visible { @include focus-outline; }
 
-  // Don't add background on hover for links with specific children
-  &:has(.inline-code),
-  &:has(.post-card) {
-    &:hover,
-    &:focus-visible {
-      background-color: transparent;
-    }
+  // Clean selector for "Wrapper" links
+  &:is(:has(.inline-code), :has(.post-card)) {
+    background-color: transparent;
+    text-decoration: none;
   }
 }
 
-// ============================================================================
-// INLINE TEXT SEMANTICS
-// ============================================================================
-
-strong,
-b {
-  font-weight: $font-weight-bold;
-}
-
-em,
-i {
-  font-style: italic;
-}
-
-small {
-  font-size: $font-size-xs;
-}
+small { font-size: $font-size-xs; }
 
 mark {
   background-color: $brand-accent;
   color: $text-inverse;
-  padding: 0 $space-1;
+  padding: 0.1em 0.3em;
+  border-radius: $radius-sm;
 }
 
 // ============================================================================
-// LISTS
+// LISTS & BLOCKS
 // ============================================================================
 
-ul,
-ol {
+:is(ul, ol) {
   padding-left: $space-5;
   margin-bottom: $space-4;
 
   li {
-    margin-bottom: $space-3;
+    margin-bottom: $space-2;
+    &::marker { color: $text-tertiary; }
   }
 
-  // Nested lists
-  ul,
-  ol {
-    margin-top: $space-2;
-    margin-bottom: $space-2;
+  // Nested reset
+  :is(ul, ol) {
+    margin-block: $space-2;
   }
 }
 
-// ============================================================================
-// DEFINITION LISTS
-// ============================================================================
-
+// Definition Lists - Great for technical glossaries
 dl {
   margin-bottom: $space-4;
-}
-
-dt {
-  font-weight: $font-weight-bold;
-  margin-top: $space-3;
-}
-
-dd {
-  margin-left: $space-5;
-  margin-bottom: $space-2;
+  dt { font-weight: $font-weight-bold; margin-top: $space-4; color: $text-primary; }
+  dd { margin-left: $space-4; font-size: $font-size-sm; color: $text-secondary; }
 }
 
 // ============================================================================
-// ABBREVIATIONS
+// CODE
 // ============================================================================
 
-abbr[title] {
-  text-decoration: underline dotted;
-  cursor: help;
-}
-
-// ============================================================================
-// QUOTATIONS
-// ============================================================================
-
-q {
-  quotes: "" " " "" "'" "'";
-}
-
-// ============================================================================
-// CODE & PREFORMATTED TEXT
-// ============================================================================
-
-code,
-kbd,
-samp {
+:is(code, kbd, samp) {
   font-family: $font-family-mono;
-  font-size: $font-size-xs;
+  font-size: $font-size-xs; // Slightly smaller than body
 }
 
 pre {
-  overflow-x: auto;
-  margin-bottom: $space-4;
+  margin-block: $space-6;
+  border-radius: $radius-md;
 }
 
 // ============================================================================
-// RESPONSIVE TYPOGRAPHY
+// RESPONSIVE
 // ============================================================================
 
 @include respond-to(mobile) {
-  h1 {
-    font-size: $font-size-2xl;
+  :is(h1, h2, h3) {
+    margin-top: 1.2em;
   }
-
-  h2 {
-    font-size: $font-size-xl;
-  }
-
-  h3 {
-    font-size: $font-size-lg;
-  }
+  h1 { font-size: $font-size-2xl; }
+  h2 { font-size: $font-size-lg; }
 }
