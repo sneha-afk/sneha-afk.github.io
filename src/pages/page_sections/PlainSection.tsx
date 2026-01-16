@@ -1,5 +1,5 @@
 import { type PlainSection as PlainSectionType } from "@pages/section_types";
-import HeaderSection from "@components/HeaderSection";
+import HeaderSection from "@components/ui/HeaderSection";
 
 export const PlainSection = ({ title, content, emoji, Component }: PlainSectionType) => {
   const sectionContent = Component ? Component : content;

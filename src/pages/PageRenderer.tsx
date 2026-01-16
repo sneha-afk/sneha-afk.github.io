@@ -1,4 +1,4 @@
-import PageLayout from "@components/PageLayout";
+import PageLayout from "@components/layout/PageLayout";
 import { type PageConfig } from "@pages/page_types";
 import { SectionRenderer } from "./SectionRenderer";
 

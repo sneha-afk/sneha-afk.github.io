@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { duotoneSpace as baseTheme } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { CopyIcon, CheckIcon } from "@components/Icons";
+import { CopyIcon, CheckIcon } from "@components/ui/Icons";
+
+const COPY_FEEDBACK_DURATION = 1500;
 
 const codeTheme = {
   ...baseTheme,
@@ -11,10 +13,7 @@ const codeTheme = {
   },
 };
 
-const COPY_FEEDBACK_DURATION = 1500;
-const loadedLanguages = new Set<string>();
-
-const loaders: Record<string, () => Promise<any>> = {
+const loaders: Record<string, () => Promise<{ default: unknown }>> = {
   typescript: () => import("react-syntax-highlighter/dist/esm/languages/prism/typescript"),
   javascript: () => import("react-syntax-highlighter/dist/esm/languages/prism/javascript"),
   python: () => import("react-syntax-highlighter/dist/esm/languages/prism/python"),
@@ -26,8 +25,11 @@ const loaders: Record<string, () => Promise<any>> = {
   bash: () => import("react-syntax-highlighter/dist/esm/languages/prism/bash"),
 };
 
+const loadedLanguages = new Set<string>();
 const loadLanguage = async (lang: string): Promise<boolean> => {
+  if (loadedLanguages.has(lang)) return true;
   if (!loaders[lang]) return false;
+
   try {
     const mod = await loaders[lang]();
     SyntaxHighlighter.registerLanguage(lang, mod.default);
@@ -40,6 +42,51 @@ const loadLanguage = async (lang: string): Promise<boolean> => {
 };
 
 const extractLanguage = (className?: string): string | null => className?.match(/language-(\w+)/)?.[1] ?? null;
+
+const useClipboard = (duration = COPY_FEEDBACK_DURATION) => {
+  const [copied, setCopied] = useState(false);
+
+  const copy = useCallback(
+    async (text: string) => {
+      if (!navigator.clipboard) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), duration);
+      } catch (err) {
+        console.error("Failed to copy", err);
+      }
+    },
+    [duration]
+  );
+
+  return { copied, copy, available: !!navigator.clipboard };
+};
+
+const useLanguageLoader = (lang: string) => {
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (lang === "mermaid") {
+      setReady(true);
+      return;
+    }
+
+    let mounted = true;
+    loadLanguage(lang).then((success) => {
+      if (!mounted) return;
+      setError(!success && !!loaders[lang]);
+      setReady(true);
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, [lang]);
+
+  return { ready, error };
+};
 
 const InlineCode: React.FC<React.HTMLAttributes<HTMLElement>> = ({ children, ...props }) => (
   <code className="inline-code" {...props}>
@@ -54,53 +101,24 @@ interface BlockCodeProps extends React.HTMLAttributes<HTMLPreElement> {
 }
 
 const BlockCode: React.FC<BlockCodeProps> = ({ language, children, showLineNumbers = true, ...props }) => {
-  const [copied, setCopied] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [loadError, setLoadError] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const { ready, error } = useLanguageLoader(language);
+  const { copied, copy, available } = useClipboard();
 
-  useEffect(() => {
-    if (language === "mermaid") {
-      setReady(true);
-      return;
-    }
-
-    loadLanguage(language).then((success) => {
-      if (!success && loaders[language]) setLoadError(true);
-      setReady(true);
-    });
-  }, [language]);
-
-  const handleCopy = async () => {
-    if (!navigator.clipboard) return;
-    try {
-      await navigator.clipboard.writeText(children);
-      setCopied(true);
-      setTimeout(() => setCopied(false), COPY_FEEDBACK_DURATION);
-    } catch (err) {
-      console.error("Failed to copy code", err);
-    }
-  };
-
-  // If language is mermaid, just render raw div
   if (language === "mermaid") return <div className="mermaid">{children}</div>;
-
-  // Show raw code if Prism is still loading or failed
-  if (!ready || loadError) {
+  if (!ready || error)
     return (
       <pre className="code-block-fallback" {...props}>
         {children}
       </pre>
     );
-  }
 
   return (
-    <div className="code-block-wrapper" ref={wrapperRef}>
+    <div className="code-block-wrapper">
       <button
         type="button"
         className={`code-copy${copied ? " is-copied" : ""}`}
-        onClick={handleCopy}
-        disabled={!navigator.clipboard}
+        onClick={() => copy(children)}
+        disabled={!available}
         aria-label={copied ? `Copied ${language} code` : `Copy ${language} code`}
       >
         <span className="code-copy-lang">{language}</span>

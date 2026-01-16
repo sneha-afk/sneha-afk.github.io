@@ -15,7 +15,7 @@ import remarkGfm from "remark-gfm";
  * > NOTE: Your note message here
  */
 
-const BlockquoteType = {
+const TYPES = {
   INFO: "info",
   WARNING: "warning",
   DANGER: "danger",
@@ -25,40 +25,38 @@ const BlockquoteType = {
 
 const extractText = (children: React.ReactNode): string => {
   if (typeof children === "string") return children;
-  if (typeof children === "number") return children.toString();
+  if (typeof children === "number") return String(children);
   if (!children) return "";
   if (Array.isArray(children)) return children.map(extractText).join("\n");
+
   if (React.isValidElement(children)) {
-    const propsWithChildren = children.props as { children?: React.ReactNode };
+    const { children: nested } = children.props as { children?: React.ReactNode };
 
-    // Preserve paragraph breaks
     if (children.type === "p" || children.type === "div") {
-      return extractText(propsWithChildren.children) + "\n";
+      return extractText(nested) + "\n";
     }
+    if (children.type === "br") return "\n";
 
-    // Preserve explicit line breaks
-    if (children.type === "br") {
-      return "\n";
-    }
-
-    return extractText(propsWithChildren.children);
+    return extractText(nested);
   }
+
   return "";
 };
 
-interface CustomBlockquoteProps {
+interface Props {
   children: React.ReactNode;
 }
 
-const CustomBlockquote: React.FC<CustomBlockquoteProps> = ({ children }) => {
+const CustomBlockquote: React.FC<Props> = ({ children }) => {
   const text = extractText(children).trim();
   const match = text.match(/^(INFO|WARNING|DANGER|TIP|NOTE):\s*(.*)/is);
 
-  if (!match) return <blockquote>{children}</blockquote>;
+  if (!match) {
+    return <blockquote>{children}</blockquote>;
+  }
 
   const [, typeStr, content] = match;
-  const type =
-    BlockquoteType[typeStr.toUpperCase() as keyof typeof BlockquoteType];
+  const type = TYPES[typeStr.toUpperCase() as keyof typeof TYPES];
 
   return (
     <blockquote className={`blockquote-${type}`} data-type={type}>

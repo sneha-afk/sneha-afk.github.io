@@ -1,6 +1,6 @@
 import { type MarkdownSection as MarkdownSectionType } from "@pages/section_types";
 import ReactMarkdown from "react-markdown";
-import HeaderSection from "@components/HeaderSection";
+import HeaderSection from "@components/ui/HeaderSection";
 
 export const MarkdownSection = ({ title, content, emoji, Component }: MarkdownSectionType) => {
   const sectionContent = Component ? Component : <ReactMarkdown>{content ?? ""}</ReactMarkdown>;

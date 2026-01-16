@@ -10,22 +10,15 @@
 
 code,
 pre {
-  font-family: $font-family-mono;
+  font-family: $font-family-mono !important;
   font-size: $font-size-xs;
   line-height: $line-height-normal;
 
-  // Enable contextual alternates and slashed zero
-  font-feature-settings:
-    "calt" 1,
-    "zero" 1;
+  font-feature-settings: "calt" 1, "zero" 1;
 }
 
 pre {
-  // Disable ligatures for code blocks
-  font-feature-settings:
-    "calt" 1,
-    "liga" 0,
-    "zero" 1;
+  font-feature-settings: "calt" 1, "liga" 0, "zero" 1;
 }
 
 // ============================================================================
@@ -46,9 +39,7 @@ pre {
 }
 
 a .inline-code {
-  transition:
-    background-color $transition-fast,
-    color $transition-fast;
+  transition: background-color $transition-fast, color $transition-fast;
 
   &:hover,
   &:focus {
@@ -68,7 +59,6 @@ a .inline-code {
 .code-block {
   border-radius: $radius-md;
   padding: $space-6 $space-4 !important;
-  font-size: $font-size-xs;
   line-height: $line-height-relaxed;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -94,10 +84,7 @@ a .inline-code {
   color: $text-secondary;
   cursor: pointer;
 
-  transition:
-    background $transition-fast,
-    color $transition-fast,
-    box-shadow $transition-fast;
+  transition: background $transition-fast, color $transition-fast, box-shadow $transition-fast;
 
   &:hover:not(:disabled),
   &:focus-visible {
