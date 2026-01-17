@@ -1,13 +1,5 @@
-// ============================================================================
-// IMAGES COMPONENT
-// ============================================================================
-
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
-
-// ============================================================================
-// BASE IMAGE STYLING
-// ============================================================================
 
 img {
   max-width: 100%;
@@ -24,16 +16,13 @@ img {
   }
 }
 
-// ============================================================================
-// CENTERED IMAGES & SVGs
-// ============================================================================
-
 .img-center,
 .mermaid,
 svg {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
   transition: all $transition-fast;
 
   &:hover {
@@ -44,10 +33,6 @@ svg {
   }
 }
 
-// ============================================================================
-// IMAGE CONTAINER (GRID)
-// ============================================================================
-
 .img-container {
   @include grid(2, $space-3);
   width: 100%;
@@ -56,14 +41,9 @@ svg {
   padding: 0 $space-3;
 }
 
-// ============================================================================
-// IMAGE ITEM
-// ============================================================================
-
 .img-item {
   img {
     margin: 0;
-    max-width: 100%;
     width: 100%;
     height: auto;
   }
@@ -76,15 +56,12 @@ svg {
   }
 }
 
-// ============================================================================
-// MATH EXPRESSIONS (MathJax)
-// ============================================================================
-
 mjx-container {
   padding: $space-3 0;
   position: relative;
+  display: flex;
+  justify-content: center;
 
-  // Hint tooltip
   &::before {
     content: "Right-click for more";
     position: absolute;
@@ -94,7 +71,7 @@ mjx-container {
     font-family: $font-family-sans;
     font-size: $font-size-2xs;
     padding: $space-1 $space-2;
-    border-radius: $radius-full;
+    border-radius: $radius-md;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
@@ -105,16 +82,7 @@ mjx-container {
   &:hover::before {
     opacity: 1;
   }
-
-  &:hover::after {
-    opacity: 0.9;
-    color: $neutral-600;
-  }
 }
-
-// ============================================================================
-// RESPONSIVE
-// ============================================================================
 
 @include respond-to(tablet) {
   .img-container {

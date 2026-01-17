@@ -1,29 +1,20 @@
 @use "../foundation/tokens" as *;
 @use "../foundation/mixins" as *;
 
-// ============================================================================
-// BASE TABLE
-// ============================================================================
-
 table:not(.highlight table) {
   width: auto;
-  border-collapse: collapse;
-  margin: $space-6 0;
+  margin: $space-6 auto;
   background: $surface-raised;
   border-radius: $radius-md;
   overflow: hidden;
-  box-shadow: $shadow-md;
-  display: flex;
-  justify-content: center;
 
-  // Header
   thead {
     background: $surface-base;
     border-bottom: 2px solid $border-default;
 
     th {
       padding: $space-3 $space-4;
-      text-align: left;
+      text-align: center;
       font-weight: $font-weight-semibold;
       font-size: $font-size-sm;
       color: $text-secondary;
@@ -32,10 +23,10 @@ table:not(.highlight table) {
     }
   }
 
-  // Body
   tbody {
+    font-size: $font-size-base;
     tr {
-      border-bottom: 1px solid $border-subtle;
+      border-bottom: 1.5px solid $border-subtle;
       transition: background $transition-fast;
 
       &:last-child {
@@ -44,20 +35,15 @@ table:not(.highlight table) {
 
       &:hover {
         background: $interactive-hover-bg;
+        color: $interactive-hover-text !important;
       }
     }
 
     td {
       padding: $space-4;
-      color: $text-primary;
-      font-size: $font-size-base;
     }
   }
 }
-
-// ============================================================================
-// RESPONSIVE: HORIZONTAL SCROLL ON MOBILE
-// ============================================================================
 
 @include respond-to(mobile) {
   table:not(.highlight table) {

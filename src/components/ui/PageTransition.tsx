@@ -1,15 +1,28 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, type Transition } from "framer-motion";
 
-const PAGE_VARIANTS = {
-  initial: { opacity: 0, y: 8, filter: "blur(2px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  exit: { opacity: 0, y: -8, filter: "blur(2px)" },
+const EASE = [0.4, 0, 0.2, 1] as const;
+
+const pageTransition: Transition = {
+  duration: 0.25,
+  ease: EASE
 };
 
-const PAGE_TRANSITION = {
-  duration: 0.35,
-  ease: [0.25, 0.1, 0.25, 1] as const,
+const PAGE_VARIANTS = {
+  initial: {
+    opacity: 0,
+    filter: "blur(2px)"
+  },
+  animate: {
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: pageTransition
+  },
+  exit: {
+    opacity: 0,
+    filter: "blur(2px)",
+    transition: pageTransition
+  }
 };
 
 interface PageTransitionProps {
@@ -23,7 +36,6 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, className }) 
     initial="initial"
     animate="animate"
     exit="exit"
-    transition={PAGE_TRANSITION}
     className={className}
   >
     {children}
@@ -32,4 +44,5 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, className }) 
 
 PageTransition.displayName = "PageTransition";
 
+export { EASE };
 export default PageTransition;
