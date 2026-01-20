@@ -3,17 +3,15 @@ import ReactMarkdown from "react-markdown";
 import HeaderSection from "@components/ui/HeaderSection";
 
 export const MarkdownSection = ({ title, content, emoji, Component }: MarkdownSectionType) => {
-  const sectionContent = Component ? Component : <ReactMarkdown>{content ?? ""}</ReactMarkdown>;
+  const Content = Component ?? <ReactMarkdown>{content ?? ""}</ReactMarkdown>;
 
-  if (emoji) {
-    return (
-      <HeaderSection title={title ?? ""} emoji={emoji}>
-        {sectionContent}
-      </HeaderSection>
-    );
-  }
-
-  return <section className="markdown-section">{sectionContent}</section>;
+  return emoji ? (
+    <HeaderSection title={title ?? ""} emoji={emoji}>
+      {Content}
+    </HeaderSection>
+  ) : (
+    <section className="markdown-section">{Content}</section>
+  );
 };
 
 export default MarkdownSection;

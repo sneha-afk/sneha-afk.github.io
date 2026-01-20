@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { usePosts } from "@context";
+import { loadPosts, type PostMeta } from "@utils";
 import LoadingSpinner from "@components/ui/LoadingSpinner";
 import "@styles/components/_post-list.scss";
-
-export interface Post {
-  slug: string;
-  title: string;
-  date: string;
-}
 
 interface PostListProps {
   limit?: number;
 }
 
-const PostCard: React.FC<Post> = ({ slug, title, date }) => (
+const PostCard: React.FC<PostMeta> = ({ slug, title, date }) => (
   <li>
     <Link to={`/blog/${slug}`} className="post-card">
       <span className="post-date">{date}</span>
@@ -24,7 +18,15 @@ const PostCard: React.FC<Post> = ({ slug, title, date }) => (
 );
 
 const PostList: React.FC<PostListProps> = ({ limit }) => {
-  const { posts, loading } = usePosts();
+  const [posts, setPosts] = useState<PostMeta[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadPosts().then((data) => {
+      setPosts(data);
+      setLoading(false);
+    });
+  }, []);
 
   if (loading) {
     return <LoadingSpinner text="Loading posts..." fullscreen={false} />;

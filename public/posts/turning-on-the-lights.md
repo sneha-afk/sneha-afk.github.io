@@ -4,6 +4,10 @@ date: "2025-09-19"
 tags: ["react", "markdown", "hooks??"]
 ---
 
+> INFO: A lot of this has been revamped in January 2026, including incremental rendering of Markdown documents and
+> a way, way simpler caching pattern that does not require the context/provider model. Still, technical writing
+> is an important thing to practice, so this shall be kept here.
+
 ## is this thing on
 
 With a complete rewrite from scratch, I have made the second rendition of my website! Notably, I tried my hand at

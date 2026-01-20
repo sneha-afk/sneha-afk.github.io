@@ -1,4 +1,5 @@
 import fm from "front-matter";
+import { LRUCache } from "@utils/LRUCache";
 
 export type PostMeta = {
   slug: string;
@@ -6,32 +7,29 @@ export type PostMeta = {
   date: string;
   tags?: string[];
 };
+
 /** Represents a complete post with content */
 export type Post = PostMeta & {
   content: string;
 };
 
-const MAX_CACHE_SIZE = 5;
-const postCache = new Map<string, Post>();
-const lruQueue: string[] = [];
-let metadataCache: PostMeta[] = [];
+let allPosts: PostMeta[] | null = null;
+const postCache = new LRUCache<Post>(5);
 
 /**
  * Loads all post metadata from index.json
  * @returns Sorted array of post metadata
  */
 export async function loadPosts(): Promise<PostMeta[]> {
-  if (metadataCache.length > 0) {
-    return metadataCache;
-  }
+  if (allPosts) return allPosts;
 
   try {
-    const indexRes = await fetch(`${import.meta.env.BASE_URL}posts/index.json`);
-    if (!indexRes.ok) throw new Error("Post index not found");
+    const res = await fetch(`${import.meta.env.BASE_URL}posts/index.json`);
+    if (!res.ok) throw new Error("Post index not found");
 
-    const posts: PostMeta[] = await indexRes.json();
-    metadataCache = posts.sort(sortByDate);
-    return metadataCache;
+    const posts: PostMeta[] = await res.json();
+    allPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return allPosts;
   } catch (err) {
     console.error("Failed to load posts:", err);
     return [];
@@ -44,22 +42,15 @@ export async function loadPosts(): Promise<PostMeta[]> {
  * @returns Post with content or null if not found
  */
 export async function loadOnePost(slug: string): Promise<Post | null> {
-  if (postCache.has(slug)) {
-    const cached = postCache.get(slug)!;
-    updateLruOrder(slug);
-    return cached;
-  }
+  const cached = postCache.get(slug);
+  if (cached) return cached;
 
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}posts/${slug}.md`);
     if (!res.ok) return null;
 
     const raw = await res.text();
-    const { attributes, body } = fm<{
-      title?: string;
-      date?: string;
-      tags?: string[];
-    }>(raw);
+    const { attributes, body } = fm<PostMeta>(raw);
 
     const post: Post = {
       slug,
@@ -69,37 +60,10 @@ export async function loadOnePost(slug: string): Promise<Post | null> {
       content: body.trim(),
     };
 
-    cachePost(slug, post);
+    postCache.set(slug, post);
     return post;
   } catch {
     return null;
-  }
-}
-
-/**
- * Updates LRU order by moving slug to most recent position
- * @param slug - The post identifier to update
- */
-function updateLruOrder(slug: string): void {
-  const index = lruQueue.indexOf(slug);
-  if (index > -1) {
-    lruQueue.splice(index, 1);
-  }
-  lruQueue.push(slug);
-}
-
-/**
- * Caches a post and handles LRU eviction if needed
- * @param slug - The post identifier
- * @param post - The post content to cache
- */
-function cachePost(slug: string, post: Post): void {
-  postCache.set(slug, post);
-  lruQueue.push(slug);
-
-  if (postCache.size > MAX_CACHE_SIZE) {
-    const oldest = lruQueue.shift()!;
-    postCache.delete(oldest);
   }
 }
 
@@ -108,16 +72,18 @@ function cachePost(slug: string, post: Post): void {
  * @param currentSlug - The current post identifier
  * @returns Previous and next post metadata
  */
-export function getAdjacentPosts(currentSlug: string): {
+export function getAdjacentPosts(slug: string): {
   prev: PostMeta | null;
   next: PostMeta | null;
 } {
-  const index = metadataCache.findIndex((p) => p.slug === currentSlug);
-  if (index === -1) return { prev: null, next: null };
+  if (!allPosts) return { prev: null, next: null };
+
+  const idx = allPosts.findIndex((p) => p.slug === slug);
+  if (idx === -1) return { prev: null, next: null };
 
   return {
-    prev: index > 0 ? metadataCache[index - 1] : null,
-    next: index < metadataCache.length - 1 ? metadataCache[index + 1] : null,
+    prev: idx > 0 ? allPosts[idx - 1] : null,
+    next: idx < allPosts.length - 1 ? allPosts[idx + 1] : null,
   };
 }
 
@@ -127,9 +93,9 @@ export function getAdjacentPosts(currentSlug: string): {
  * @returns Array of posts with matching tag
  */
 export function getPostsByTag(tag: string): PostMeta[] {
-  return metadataCache.filter((post) =>
-    post.tags?.some((t) => t.toLowerCase() === tag.toLowerCase()),
-  );
+  if (!allPosts) return [];
+  const lower = tag.toLowerCase();
+  return allPosts.filter((p) => p.tags?.some((t) => t.toLowerCase() === lower));
 }
 
 /**
@@ -137,8 +103,9 @@ export function getPostsByTag(tag: string): PostMeta[] {
  * @returns Sorted array of unique tags
  */
 export function getAllTags(): string[] {
-  const allTags = metadataCache.flatMap((post) => post.tags || []);
-  return Array.from(new Set(allTags)).sort();
+  if (!allPosts) return [];
+  const tags = new Set(allPosts.flatMap((p) => p.tags || []));
+  return Array.from(tags).sort();
 }
 
 /**
@@ -147,15 +114,14 @@ export function getAllTags(): string[] {
  * @param b - Second post to compare
  * @returns Comparison result for sorting
  */
-function sortByDate(a: PostMeta, b: PostMeta): number {
-  return new Date(b.date).getTime() - new Date(a.date).getTime();
-}
+// function sortByDate(a: PostMeta, b: PostMeta): number {
+//   return new Date(b.date).getTime() - new Date(a.date).getTime();
+// }
 
 /**
  * Clears all post caches
  */
-export function clearPostCaches(): void {
+export function clearCaches(): void {
+  allPosts = null;
   postCache.clear();
-  lruQueue.length = 0;
-  metadataCache = [];
 }
